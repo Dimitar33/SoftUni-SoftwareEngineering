@@ -13,7 +13,7 @@ namespace _09._Simple_Text_Editor
 
             var sb = new StringBuilder();
             Stack<string> stack = new Stack<string>();
-           // stack.Push(sb.ToString());
+            stack.Push(sb.ToString());
 
             for (int i = 0; i < n; i++)
             {
