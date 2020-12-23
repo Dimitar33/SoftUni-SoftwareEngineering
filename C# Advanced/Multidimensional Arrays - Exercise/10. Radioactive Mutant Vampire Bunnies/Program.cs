@@ -30,7 +30,7 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                 }
             }
 
-            string moves = Console.ReadLine();
+            string moves = Console.ReadLine().ToUpper();
             bool isDead = false;
             bool won = false;
 
