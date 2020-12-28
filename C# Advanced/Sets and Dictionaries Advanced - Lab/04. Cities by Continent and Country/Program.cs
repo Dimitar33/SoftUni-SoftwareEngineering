@@ -44,7 +44,7 @@ namespace _03._Product_Shop
 
                 foreach (var product in item.Value)
                 {
-                    Console.WriteLine($"{product.Key} -> {string.Join(" ", product.Value)}");
+                    Console.WriteLine($" {product.Key} -> {string.Join(", ", product.Value)}");
                 }
             }
         }
