@@ -31,7 +31,7 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
             }
 
             string moves = Console.ReadLine();
-            
+
             bool isDead = false;
             bool won = false;
 
@@ -151,20 +151,13 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                         {
                             newField[i, j] = '.';
                         }
-                        else if (field[i, j] == 'P' && newField[i, j] == 'B')
-                        {
-                            newField[i, j] = 'B';
-                            isDead = true;
-                        }
-                        else if (field[i, j] == 'P')
-                        {
-                            newField[i, j] = 'P';
-                        }
                     }
                 }
                 field = newField;
-                if (isDead)
+
+                if (newField[col, row] == 'B')
                 {
+                    isDead = true;
                     break;
                 }
                 else if (won)
