@@ -10,8 +10,8 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
             int[] matrixSize = Console.ReadLine().Split().Select(int.Parse).ToArray();
 
             char[,] field = new char[matrixSize[0], matrixSize[1]];
-            int row = 0;
             int col = 0;
+            int row = 0;
 
 
             for (int i = 0; i < matrixSize[0]; i++)
@@ -30,7 +30,8 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                 }
             }
 
-            string moves = Console.ReadLine().ToUpper();
+            string moves = Console.ReadLine();
+            
             bool isDead = false;
             bool won = false;
 
@@ -44,10 +45,11 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                         field[col, row] = '.';
 
                     }
-                    else if (col - 1 == 'B')
+                    else if (field[col - 1, row] == 'B')
                     {
-                        field[col - 1, row] = '.';
+                        field[col, row] = '.';
                         isDead = true;
+                        col -= 1;
                     }
                     else
                     {
@@ -58,15 +60,16 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                 }
                 else if (moves[k] == 'D')
                 {
-                    if (col + 1 >= matrixSize.GetLength(1))
+                    if (col + 1 >= matrixSize[0])
                     {
                         won = true;
                         field[col, row] = '.';
                     }
-                    else if (col + 1 == 'B')
+                    else if (field[col + 1, row] == 'B')
                     {
                         isDead = true;
                         field[col, row] = '.';
+                        col += 1;
                     }
                     else
                     {
@@ -81,12 +84,13 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                     {
                         won = true;
                         field[col, row] = '.';
-                        
+
                     }
-                    else if (row - 1 == 'B')
+                    else if (field[col, row - 1] == 'B')
                     {
                         field[col, row] = '.';
                         isDead = true;
+                        row -= 1;
                     }
                     else
                     {
@@ -97,16 +101,17 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                 }
                 else if (moves[k] == 'R')
                 {
-                    if (row + 1 >= matrixSize.GetLength(0))
+                    if (row + 1 >= matrixSize[1])
                     {
                         won = true;
                         field[col, row] = '.';
 
                     }
-                    else if (row + 1 == 'B')
+                    else if (field[col, row + 1] == 'B')
                     {
                         isDead = true;
                         field[col, row] = '.';
+                        row += 1;
                     }
                     else
                     {
@@ -146,10 +151,10 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                         {
                             newField[i, j] = '.';
                         }
-                        if (field[i, j] == 'P' && newField[i, j] == 'B')
+                        else if (field[i, j] == 'P' && newField[i, j] == 'B')
                         {
                             newField[i, j] = 'B';
-                            isDead = true;                            
+                            isDead = true;
                         }
                         else if (field[i, j] == 'P')
                         {
@@ -162,10 +167,10 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                 {
                     break;
                 }
-                if (won)
+                else if (won)
                 {
                     break;
-                }             
+                }
 
             }
             for (int i = 0; i < field.GetLength(0); i++)
@@ -176,15 +181,15 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                 }
                 Console.WriteLine();
             }
-
-            if (isDead)
-            {
-                Console.WriteLine($"dead: {col} {row}");
-            }
-            else
+            if (won)
             {
                 Console.WriteLine($"won: {col} {row}");
             }
+            else
+            {
+                Console.WriteLine($"dead: {col} {row}");
+            }
+
         }
     }
 }
