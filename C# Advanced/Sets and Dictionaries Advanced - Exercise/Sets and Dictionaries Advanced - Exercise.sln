@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01. Unique Usernames", "01. Unique Usernames\01. Unique Usernames.csproj", "{BEC78753-C716-45E3-982F-CE21CFB82813}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01. Unique Usernames", "01. Unique Usernames\01. Unique Usernames.csproj", "{BEC78753-C716-45E3-982F-CE21CFB82813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. Sets of Elements", "02. Sets of Elements\02. Sets of Elements.csproj", "{65A06E4F-4E56-40A0-BF58-E0F0201FFDCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02. Sets of Elements", "02. Sets of Elements\02. Sets of Elements.csproj", "{65A06E4F-4E56-40A0-BF58-E0F0201FFDCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03. Periodic Table", "03. Periodic Table\03. Periodic Table.csproj", "{EEA39D4B-2357-4DAB-AC06-01BE4C7AEBA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03. Periodic Table", "03. Periodic Table\03. Periodic Table.csproj", "{EEA39D4B-2357-4DAB-AC06-01BE4C7AEBA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Even Times", "04. Even Times\04. Even Times.csproj", "{B36BCE56-C333-45A4-B28E-9D25FE260D62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04. Even Times", "04. Even Times\04. Even Times.csproj", "{B36BCE56-C333-45A4-B28E-9D25FE260D62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05. Count Symbols", "05. Count Symbols\05. Count Symbols.csproj", "{00BD8456-435E-4AFE-8868-6AFABEC8EBEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05. Count Symbols", "05. Count Symbols\05. Count Symbols.csproj", "{00BD8456-435E-4AFE-8868-6AFABEC8EBEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06. Wardrobe", "06. Wardrobe\06. Wardrobe.csproj", "{338B009C-8DE3-4503-B22D-E6E48A073BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06. Wardrobe", "06. Wardrobe\06. Wardrobe.csproj", "{338B009C-8DE3-4503-B22D-E6E48A073BBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07. The V-Logger", "07. The V-Logger\07. The V-Logger.csproj", "{9FC0BFA8-6B0A-43AB-95E0-64BB291AD108}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07. The V-Logger", "07. The V-Logger\07. The V-Logger.csproj", "{9FC0BFA8-6B0A-43AB-95E0-64BB291AD108}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08. Ranking", "08. Ranking\08. Ranking.csproj", "{87655804-69B6-4685-8113-EEFA6B7C0E39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{9FC0BFA8-6B0A-43AB-95E0-64BB291AD108}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FC0BFA8-6B0A-43AB-95E0-64BB291AD108}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FC0BFA8-6B0A-43AB-95E0-64BB291AD108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87655804-69B6-4685-8113-EEFA6B7C0E39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87655804-69B6-4685-8113-EEFA6B7C0E39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87655804-69B6-4685-8113-EEFA6B7C0E39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87655804-69B6-4685-8113-EEFA6B7C0E39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
