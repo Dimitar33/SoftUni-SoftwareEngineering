@@ -120,40 +120,7 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                         row += 1;
                     }
                 }
-                char[,] newField = new char[matrixSize[0], matrixSize[1]];
-
-                for (int i = 0; i < field.GetLength(0); i++)
-                {
-                    for (int j = 0; j < field.GetLength(1); j++)
-                    {
-                        if (field[i, j] == 'B')
-                        {
-                            newField[i, j] = 'B';
-
-                            if (i + 1 < newField.GetLength(0))
-                            {
-                                newField[i + 1, j] = 'B';
-                            }
-                            if (j + 1 < newField.GetLength(1))
-                            {
-                                newField[i, j + 1] = 'B';
-                            }
-                            if (i - 1 >= 0)
-                            {
-                                newField[i - 1, j] = 'B';
-                            }
-                            if (j - 1 >= 0)
-                            {
-                                newField[i, j - 1] = 'B';
-                            }
-                        }
-                        if (field[i, j] == '.' && newField[i, j] != 'B' && newField[i, j] != 'P')
-                        {
-                            newField[i, j] = '.';
-                        }
-                    }
-                }
-                field = newField;
+                char[,] newField = NewMethod(matrixSize, ref field);
 
                 if (newField[col, row] == 'B')
                 {
@@ -183,6 +150,45 @@ namespace _10._Radioactive_Mutant_Vampire_Bunnies
                 Console.WriteLine($"dead: {col} {row}");
             }
 
+        }
+
+        private static char[,] NewMethod(int[] matrixSize, ref char[,] field)
+        {
+            char[,] newField = new char[matrixSize[0], matrixSize[1]];
+
+            for (int i = 0; i < field.GetLength(0); i++)
+            {
+                for (int j = 0; j < field.GetLength(1); j++)
+                {
+                    if (field[i, j] == 'B')
+                    {
+                        newField[i, j] = 'B';
+
+                        if (i + 1 < newField.GetLength(0))
+                        {
+                            newField[i + 1, j] = 'B';
+                        }
+                        if (j + 1 < newField.GetLength(1))
+                        {
+                            newField[i, j + 1] = 'B';
+                        }
+                        if (i - 1 >= 0)
+                        {
+                            newField[i - 1, j] = 'B';
+                        }
+                        if (j - 1 >= 0)
+                        {
+                            newField[i, j - 1] = 'B';
+                        }
+                    }
+                    if (field[i, j] == '.' && newField[i, j] != 'B' && newField[i, j] != 'P')
+                    {
+                        newField[i, j] = '.';
+                    }
+                }
+            }
+            field = newField;
+            return newField;
         }
     }
 }
