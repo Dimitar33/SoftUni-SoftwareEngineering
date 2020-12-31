@@ -5,13 +5,15 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1. Odd Lines", "1. Odd Lines\1. Odd Lines.csproj", "{5C927A9F-C75B-4B98-9F57-5180A8777F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2. Line Numbers", "2. Line Numbers\2. Line Numbers.csproj", "{FBDF27D8-A821-4377-B065-08DE9B401601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2. Line Numbers", "2. Line Numbers\2. Line Numbers.csproj", "{FBDF27D8-A821-4377-B065-08DE9B401601}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3. Word Count", "3. Word Count\3. Word Count.csproj", "{4426663E-4D22-427F-B3D4-E7936F7BB173}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3. Word Count", "3. Word Count\3. Word Count.csproj", "{4426663E-4D22-427F-B3D4-E7936F7BB173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4. Merge Files", "4. Merge Files\4. Merge Files.csproj", "{ECE446B7-BDCD-419C-B956-D436FFFB8F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4. Merge Files", "4. Merge Files\4. Merge Files.csproj", "{ECE446B7-BDCD-419C-B956-D436FFFB8F19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5. Slice a File", "5. Slice a File\5. Slice a File.csproj", "{A4325F19-4275-4B7A-B2D0-A1FF5D013AB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5. Slice a File", "5. Slice a File\5. Slice a File.csproj", "{A4325F19-4275-4B7A-B2D0-A1FF5D013AB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6. Folder Size", "6. Folder Size\6. Folder Size.csproj", "{7ACD70FC-8871-4376-917D-26356238B659}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A4325F19-4275-4B7A-B2D0-A1FF5D013AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4325F19-4275-4B7A-B2D0-A1FF5D013AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4325F19-4275-4B7A-B2D0-A1FF5D013AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ACD70FC-8871-4376-917D-26356238B659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ACD70FC-8871-4376-917D-26356238B659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ACD70FC-8871-4376-917D-26356238B659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ACD70FC-8871-4376-917D-26356238B659}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

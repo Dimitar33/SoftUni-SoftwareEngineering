@@ -9,20 +9,24 @@ namespace _5._Slice_a_File
         {
             string[] files = new string[] { "Part-1.txt", "Part-2.txt", "Part-3.txt", "Part-4.txt" };
 
-            using (FileStream bigFile = new FileStream("../../../slice.txt", FileMode.Open))
+            using (FileStream bigFile = new FileStream("../../../sliceMe.txt", FileMode.Open))
             {
-                long size = bigFile.Length / 4;
+                long size = (long)Math.Ceiling((double)bigFile.Length / 4);
             
                 for (int i = 0; i < 4; i++)
                 {
-                    using (var parts = new FileStream(files[i], FileMode.Create))
+                    using (var parts = new FileStream($"../../../{files[i]}", FileMode.Create))
                     {
                         byte[] buffer = new byte[4096];
-                        int count = 0;
+                        long count = 0;
 
-                        while (count < buffer)
+                        while (count <= size)
                         {
-
+                            bigFile.Read(buffer, 0, buffer.Length);
+                            parts.Write(buffer, 0, buffer.Length);
+                            count += buffer.Length;
+                          
+                            
                         }
                     }
                 }
