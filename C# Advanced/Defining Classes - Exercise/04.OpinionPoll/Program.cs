@@ -27,17 +27,17 @@ namespace DefiningClasses
 
                 family.Add(person);
             }
-            
-            Console.WriteLine($"{Oldest(family).Name} {Oldest(family).Age}");
+
+            family = family.Where(c => c.Age > 30).OrderBy(c => c.Name).ToList();
+
+            foreach (var item in family)
+            {
+                Console.WriteLine($"{item.Name} - {item.Age}");
+            }
            
 
         }
                    
-        static Person Oldest(List<Person> ppl)
-        {
-            var oldest = ppl.OrderByDescending(c => c.Age).First();
-
-            return oldest;
-        }
+        
     }
 }

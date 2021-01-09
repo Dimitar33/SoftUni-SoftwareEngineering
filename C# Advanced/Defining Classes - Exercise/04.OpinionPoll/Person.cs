@@ -26,7 +26,15 @@ namespace DefiningClasses
             Name = name;
             Age = age;
         }
-    
+
+        public void AddMember(string name, int age)
+        {
+            Person person = new Person();
+
+            person.Name = name;
+            person.Age = age;
+        }
+
        
     }
 }
