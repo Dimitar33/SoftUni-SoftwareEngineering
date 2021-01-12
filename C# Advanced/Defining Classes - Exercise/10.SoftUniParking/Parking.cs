@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
 
 namespace SoftUniParking
 {
@@ -10,14 +10,13 @@ namespace SoftUniParking
         private List<Car> cars;
 
         private int capacity;
-        public int Count { get; set; }
 
         public Parking(int capacity)
         {
-            this.cars = new List<Car>();
-
             this.capacity = capacity;
+            this.cars = new List<Car>();
         }
+        public int Count => this.cars.Count;
 
         public string AddCar(Car car)
         {
@@ -26,52 +25,49 @@ namespace SoftUniParking
             {
                 return "Car with that registration number, already exists!";
             }
-            else if (Count == capacity)
+            if (cars.Count == capacity)
             {
                 return "Parking is full!";
             }
-            else
-            {
-                cars.Add(car);
-                Count++;
 
-                return $"Successfully added new car {car.Make} {car.RegistrationNumber}";
-            }
+            cars.Add(car);
+
+            return $"Successfully added new car {car.Make} {car.RegistrationNumber}";
+
 
         }
 
-        public string RemoveCar(string regNum)
+        public string RemoveCar(string registrationNumber)
         {
-            if (!cars.Any(c => c.RegistrationNumber == regNum))
+
+            Car car = cars.FirstOrDefault(c => c.RegistrationNumber == registrationNumber);
+
+            if (car == null)
             {
                 return "Car with that registration number, doesn't exist!";
             }
-            else
-            {
-                cars.RemoveAll(c => c.RegistrationNumber == regNum);
-                Count--;
 
-                return $"Successfully removed {regNum}";
+            cars.Remove(car);
 
-            }
+            return $"Successfully removed {registrationNumber}";
+
+
         }
 
-        public string GetCar(string regNum)
+        public Car GetCar(string registrationNumber)
         {
-            var neededCar = cars.First(c => c.RegistrationNumber == regNum);
-
-            return neededCar.ToString();
+            return cars.FirstOrDefault(c => c.RegistrationNumber == registrationNumber);
+          
         }
 
-        public void RemoveSetOfRegs(List<string> regNums)
+        public void RemoveSetOfRegistrationNumber(List<string> registrationNumber)
         {
-            foreach (var item in regNums)
+            foreach (var item in registrationNumber)
             {
-                if (cars.Any(c => c.RegistrationNumber == item))
-                {
-                   Count -= cars.RemoveAll(c => c.RegistrationNumber == item);
-                   
-                }
+
+                var car = cars.FirstOrDefault(c => c.RegistrationNumber == item);
+                cars.Remove(car);
+
             }
         }
 

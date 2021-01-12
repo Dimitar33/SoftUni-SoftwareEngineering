@@ -33,6 +33,7 @@ namespace SoftUniParking
                 //RegistrationNumber: EB8787MN
 
                 Console.WriteLine(parking.RemoveCar("EB8787MN"));
+                Console.WriteLine(parking.RemoveCar("CC1856BG"));
                 //Successfullyremoved EB8787MN
 
                 Console.WriteLine(parking.Count); //1

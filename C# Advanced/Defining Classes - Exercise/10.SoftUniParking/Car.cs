@@ -23,7 +23,14 @@ namespace SoftUniParking
 
         public override string ToString()
         {
-            return $"Make: {Make}\nModel: {Model}\nHorsePower: {HorsePower}\nRegistrationNumber: {RegistrationNumber}";
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Make: {Make}");
+            sb.AppendLine($"Model: {Model}");
+            sb.AppendLine($"HorsePower: {HorsePower}");
+            sb.AppendLine($"RegistrationNumber: {RegistrationNumber}");
+
+            return sb.ToString().Trim();
         }
     }
 }
