@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Create_Custom_Data_Structures
+namespace CustomDoublyLinkedList
 {
-    public class CustomList<T> where T : ICloneable
+    public class CustomList<T> where T : IComparable
     {
-        private const int InitialCapacity = 2;
+        private const int InitialCapacity = 4;
 
         private T[] array;
 
