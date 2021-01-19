@@ -1,0 +1,28 @@
+﻿using System;
+using System.Linq;
+
+namespace IteratorsAndComparators
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Book bookOne = new Book("Animal Farm", 2001, "George Orwell");
+            Book bookTwo = new Book("The Documents in the Case", 21222, "Dorothy Sayers", "Robert Eustace");
+            Book bookThree = new Book("The Documents in the Case", 2222);
+
+            Library libraryOne = new Library();
+            Library libraryTwo = new Library(bookOne, bookTwo, bookThree);
+
+            
+
+            foreach (var book in libraryTwo)
+            {
+                Console.WriteLine(book);
+            }
+
+
+        }
+    }
+}
