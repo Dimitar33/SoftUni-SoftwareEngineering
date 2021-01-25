@@ -21,19 +21,25 @@ public class SumOfCoins
     public static Dictionary<int, int> ChooseCoins(int[] coins, int targetSum)
     {
         int sum = 0;
+        Dictionary<int, int> change = new Dictionary<int, int>();
 
-        while (sum < targetSum)
+
+        for (int i = coins.Length - 1; i >= 0; i--)        
         {
-            for (int i = 0; i < coins.Length; i++)
+            while (sum + coins[i] <= targetSum)
             {
-                if (sum + coins[i] <= targetSum)
+                sum += coins[i];
+
+                if (!change.ContainsKey(coins[i]))
                 {
-                    sum += coins[i];
-                    continue;
+                    change.Add(coins[i], 0);
                 }
+                change[coins[i]]++;
             }
+
         }
 
-        return Dictionary<sum , 3>;
+
+        return change;
     }
 }
