@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.RecursiveFactorial", "02
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.SumofCoins", "03.SumofCoins\03.SumofCoins.csproj", "{00C4CE9E-E461-4D09-9E01-4649BFFF19C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.SetCover", "04.SetCover\04.SetCover.csproj", "{7271F165-708A-42E7-B783-B782149642FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.SetCover", "04.SetCover\04.SetCover.csproj", "{7271F165-708A-42E7-B783-B782149642FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.MergeSort", "05.MergeSort\05.MergeSort.csproj", "{3F300C63-818D-4B75-A181-10A47563E308}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7271F165-708A-42E7-B783-B782149642FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7271F165-708A-42E7-B783-B782149642FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7271F165-708A-42E7-B783-B782149642FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F300C63-818D-4B75-A181-10A47563E308}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F300C63-818D-4B75-A181-10A47563E308}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F300C63-818D-4B75-A181-10A47563E308}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F300C63-818D-4B75-A181-10A47563E308}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
