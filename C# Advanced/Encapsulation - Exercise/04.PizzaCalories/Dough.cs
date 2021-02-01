@@ -69,7 +69,7 @@ namespace _04.PizzaCalories
             {
                 flourCalories = 1.5;
             }
-            else
+            else if (flourType == "wholegrain")
             {
                 flourCalories = 1;
             }
@@ -84,7 +84,7 @@ namespace _04.PizzaCalories
             {
                 techniqueCalories = 1.1;
             }
-            else
+            else if (BakingTechnique == "homemade")
             {
                 techniqueCalories = 1;
             }

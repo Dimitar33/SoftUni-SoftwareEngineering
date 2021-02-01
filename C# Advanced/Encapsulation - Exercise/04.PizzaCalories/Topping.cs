@@ -40,7 +40,7 @@ namespace _04.PizzaCalories
             {
                 if (value < 1 || value > 50)
                 {
-                    Console.WriteLine($"{value} weight should be in the range[1..50].");
+                    Console.WriteLine($"{toppingType} weight should be in the range[1..50].");
                     Environment.Exit(0);
                 }
                 grams = value;
@@ -64,7 +64,7 @@ namespace _04.PizzaCalories
             {
                 calories = 1.1;
             }
-            else
+            else if (toppingType.ToLower() == "sauce")
             {
                 calories = 0.9;
             }

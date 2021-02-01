@@ -25,7 +25,7 @@ namespace _04.PizzaCalories
             get => name;
             set
             {
-                if (value.Length < 1 || value.Length > 15)
+                if ( value.Length < 1 || value.Length > 15)
                 {
                     Console.WriteLine("Pizza name should be between 1 and 15 symbols.");
                     Environment.Exit(0);
