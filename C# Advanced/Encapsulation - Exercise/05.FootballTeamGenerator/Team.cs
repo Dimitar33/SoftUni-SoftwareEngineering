@@ -5,7 +5,7 @@ using System.Text;
 
 namespace _05.FootballTeamGenerator
 {
-    class Team
+    public class Team
     {
         public string name;
 
@@ -35,7 +35,11 @@ namespace _05.FootballTeamGenerator
         }
         public void RemovePlayer(string player)
         {
-            Player toRemove = Players.First(c => c.Name == player);
+            Player toRemove = Players.FirstOrDefault(c => c.Name == player);
+            if (toRemove == null)
+            {
+                throw new ArgumentException(string.Format(ArgumentExeptions.Mesages.InvalidPlayer, toRemove.Name, Name));
+            }
             Players.Remove(toRemove);
         }
 
@@ -43,6 +47,10 @@ namespace _05.FootballTeamGenerator
 
         private int RaitingCalc()
         {
+            if (Players.Count == 0)
+            {
+                return 0;
+            }
             return (int)Math.Ceiling(Players.Average(c => c.Raiting));
         }
     }

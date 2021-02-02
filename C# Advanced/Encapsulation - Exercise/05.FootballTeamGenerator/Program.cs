@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace _05.FootballTeamGenerator
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -53,14 +53,7 @@ namespace _05.FootballTeamGenerator
 
                             Team teamToRemove = teams.First(c => c.name == cmd[1]);
 
-                            if (!teamToRemove.Players.Any(c => c.Name == cmd[2]))
-                            {
-                                Console.WriteLine($"Player {cmd[2]} is not in {cmd[1]} team.");
-                            }
-                            else
-                            {
-                                teamToRemove.RemovePlayer(cmd[2]);
-                            }
+                            teamToRemove.RemovePlayer(cmd[2]);
 
                             break;
                         case "Rating":
@@ -81,7 +74,7 @@ namespace _05.FootballTeamGenerator
                             break;
                     }
                 }
-                catch (Exception e)
+                catch (ArgumentException e)
                 {
 
                     Console.WriteLine(e.Message);

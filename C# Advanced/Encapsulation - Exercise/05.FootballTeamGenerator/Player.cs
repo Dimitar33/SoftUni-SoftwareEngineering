@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _05.FootballTeamGenerator
 {
-    class Player
+   public class Player
     {
         private string name;
         private int endurance;
@@ -95,10 +95,14 @@ namespace _05.FootballTeamGenerator
                 shooting = value;
             }
         }
-        public double Raiting { get => SkillRaitng();}
-        private double SkillRaitng()
+        public double Raiting { get => (endurance + sprint + dribble + passing + shooting) / 5.0; }
+       
+        private void ValidateStats(string stat, int value)
         {
-            return (endurance + sprint + dribble + passing + shooting) / 5.0;
+            if (value < 0 || value > 100)
+            {
+                throw new ArgumentException(string.Format(ArgumentExeptions.Mesages.InvalidStat ,stat));
+            }
         }
     }
 }
