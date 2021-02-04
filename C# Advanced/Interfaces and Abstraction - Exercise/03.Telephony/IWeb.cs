@@ -4,8 +4,9 @@ using System.Text;
 
 namespace _03.Telephony
 {
-    interface IWeb
+    public interface IWeb
     {
-        public string Site { get; set; }
+
+        public string Browse(string url);
     }
 }

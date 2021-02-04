@@ -4,10 +4,8 @@ using System.Text;
 
 namespace _03.Telephony
 {
-    interface ICall
-    {
-        public int Number { get; set; }
-
-        public string Call();
+   public interface ICall
+    {  
+        public string Call(string number);
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace _03.Telephony
 {
-   public class StartUp
+    public class StartUp
     {
         static void Main(string[] args)
         {
@@ -12,38 +12,50 @@ namespace _03.Telephony
 
             string[] sitesInput = Console.ReadLine().Split();
 
-            List<IWeb> sites = new List<IWeb>();
-            List<ICall> numbers = new List<ICall>();
+            Smartphone smartphone = new Smartphone();
+            StationaryPhone stationaryPhone = new StationaryPhone();
 
-            foreach (var item in phonesInput)
+            for (int i = 0; i < phonesInput.Length; i++)           
             {
-                if (!item.All(char.IsDigit))
+                try
                 {
-                    Console.WriteLine("Invalid number!");
+                    if (phonesInput[i].Length == 10)
+                    {
+                        Console.WriteLine(smartphone.Call(phonesInput[i]));
+                    }
+                    else if (phonesInput[i].Length == 7)
+                    {
+                        Console.WriteLine(stationaryPhone.Call(phonesInput[i]));
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid number!");
+                    }
+                    
                 }
-                if (item.Length == 7)
+                catch (Exception e)
                 {
-                    ICall number = new StationaryPhone(int.Parse(item));
-                    numbers.Add(number);
-                }
-                else
-                {
-                    ICall number = new Smartphone(int.Parse(item));
-                    numbers.Add(number);
+
+                    Console.WriteLine(e.Message);
                 }
             }
 
-            foreach (var item in sitesInput)
+            for (int i = 0; i < sitesInput.Length; i++)
+           
             {
-                IWeb site = new Smartphone(item);
+                try
+                {
 
-                sites.Add(site);
+                    Console.WriteLine(smartphone.Browse(sitesInput[i]));
+                }
+                catch (Exception e)
+                {
+
+                    Console.WriteLine(e.Message);
+                }
+
             }
 
-            foreach (var item in numbers)
-            {
-                Console.WriteLine(item.Number);
-            }
         }
     }
 }

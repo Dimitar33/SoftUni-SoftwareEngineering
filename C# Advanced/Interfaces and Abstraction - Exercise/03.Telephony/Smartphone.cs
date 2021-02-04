@@ -7,49 +7,24 @@ namespace _03.Telephony
 {
     public class Smartphone : ICall, IWeb
     {
-        string sites;
-        int number;
-
-        public Smartphone(int number)
+        public string Browse(string url)
         {
-            Number = number;
-        }
-
-        public Smartphone(string site)
-        {
-            Site = site;
-        }
-
-        public int Number { get ; set; }
-        public string Site
-        {
-            get => Site;
-            set
+            if (url.Any(c => char.IsDigit(c)))
             {
-                if (value.Any(c => char.IsDigit(c)))
-                {
-                   throw new ArgumentException("Invalid URL!");
-                }
-                Site = sites;
+                throw new ArgumentException("Invalid URL!");
             }
+            return $"Browsing: {url}!";
         }
 
-        public List<int> Numbers { get; set; }
-        public List<int> Sites { get; set; }
-
-        public string Call()
+        public string Call(string number)
         {
-            return $"Calling... {Number}";
-        }
-
-        public int InvalidNumber(string num)
-        {
-            if (!num.All(char.IsDigit))
+            if (!number.All(c => char.IsDigit(c)))
             {
-               throw new ArgumentException("Invalid number!");
+                throw new ArgumentException("Invalid number!");
             }
+            return $"Calling... {number}";
+        }   
 
-            return int.Parse(num);
-        }
+    
     }
 }
