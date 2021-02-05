@@ -4,7 +4,8 @@ using System.Text;
 
 namespace _07.MilitaryElite
 {
-    public class SpecialisedSoldier
+    public interface ISpecialisedSoldier
     {
+        public string Corps { get; }
     }
 }

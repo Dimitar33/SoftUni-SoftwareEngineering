@@ -4,10 +4,10 @@ using System.Text;
 
 namespace _07.MilitaryElite
 {
-    public class Soldier
+    public interface ISoldier
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 }

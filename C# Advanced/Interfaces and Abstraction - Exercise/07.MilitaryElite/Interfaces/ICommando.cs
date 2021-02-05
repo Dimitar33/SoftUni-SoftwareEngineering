@@ -4,8 +4,8 @@ using System.Text;
 
 namespace _07.MilitaryElite
 {
-    public class Private
+    public interface ICommando
     {
-        public decimal Salary { get; set; }
+        public ICollection<Missions> MissionsList { get; set; }
     }
 }
