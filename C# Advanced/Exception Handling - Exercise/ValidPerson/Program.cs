@@ -15,25 +15,25 @@ namespace ValidPerson
             //Person negativeAge = new Person("Pesho", "Kolev", -1);
             //Person tooOld = new Person("Pesho", "Peshev", 241);
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    try
-            //    {
-            //        string[] info = Console.ReadLine().Split();
+            for (int i = 0; i < 5; i++)
+            {
+                try
+                {
+                    string[] info = Console.ReadLine().Split();
 
-            //        Person person = new Person(info[0], info[1], int.Parse(info[2]));
-            //    }
-            //    catch (ArgumentNullException ex)
-            //    {
+                    Person person = new Person(info[0], info[1], int.Parse(info[2]));
+                }
+                catch (ArgumentNullException ex)
+                {
 
-            //        Console.WriteLine(ex.Message);
-            //    }
-            //    catch (ArgumentOutOfRangeException ex)
-            //    {
-            //        Console.WriteLine(ex.Message);
-            //    }
+                    Console.WriteLine(ex.Message);
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-            //}
+            }
 
             try
             {
