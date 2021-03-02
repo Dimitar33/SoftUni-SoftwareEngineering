@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightingArena", "FightingAr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightingArena.Tests", "FightingArena.Tests\FightingArena.Tests.csproj", "{B06408E4-1E32-4981-AA8F-C32DF68D2B0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{EAAA28C0-3749-409E-9656-DCB90A5C100E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +57,6 @@ Global
 		{B06408E4-1E32-4981-AA8F-C32DF68D2B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B06408E4-1E32-4981-AA8F-C32DF68D2B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B06408E4-1E32-4981-AA8F-C32DF68D2B0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EAAA28C0-3749-409E-9656-DCB90A5C100E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAAA28C0-3749-409E-9656-DCB90A5C100E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAAA28C0-3749-409E-9656-DCB90A5C100E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAAA28C0-3749-409E-9656-DCB90A5C100E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
