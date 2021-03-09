@@ -11,8 +11,11 @@ namespace WarCroft.Entities.Characters
     {
         public Priest(string name) : base(name)
         {
+            Armor = 25;
+            Health = 50;
         }
 
+        public Satchel Bag { get; set; }
         public override double MaxLife { get => 50; }
         public override double maxArmor { get => 25; }
         public void Heal(Character character)
