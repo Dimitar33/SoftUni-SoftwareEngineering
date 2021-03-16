@@ -42,12 +42,12 @@ INSERT INTO Minions (Id, Name, Age , TownId) VALUES
 		(2, 'Bob' , 15, 3),
 		(3, 'Steward', NULL, 2)
 
-			-- 5. Truncate Table Minions
+			-- 5. Truncate Table Minions (empty table)
 
 DELETE Minions
 DELETE Towns
 
-			-- 6. Drop All Tables
+			-- 6. Drop All Tables (delete table)
 
 DROP TABLE Minions
 DROP TABLE Towns
@@ -148,26 +148,270 @@ CREATE TABLE Categories
 CREATE TABLE Movies
 (
  Id INT PRIMARY KEY IDENTITY,
- Title VARCHAR(50),
- DirectorId INT,
- CopyrightYear DATETIME,
- [Length] TIME, 
- GenreId INT,
- CategoryId INT,
+ Title VARCHAR(50) NOT NULL,
+ DirectorId INT NOT NULL,
+ CopyrightYear DATETIME NOT NULL,
+ [Length] INT NOT NULL, 
+ GenreId INT NOT NULL,
+ CategoryId INT NOT NULL,
  Rating DECIMAL (5,2),
  Notes VARCHAR (MAX)
 )
 
-INSERT INTO Directors(Id, DirectorName, Notes) VALUES
- (1, 'Stiven King', NULL),
- (2, 'Pesho', NULL),
- (3, 'Ivan', 'asd'),
- (4, 'Lukas', NULL),
- (5, 'Arts', 'SW')
+INSERT INTO Directors( DirectorName, Notes) VALUES
+ ( 'Stiven King', NULL),
+ ( 'Pesho', NULL),
+ ( 'Ivan', 'asd'),
+ ( 'Lukas', NULL),
+ ( 'Arts', 'SW')
+
+ INSERT INTO Genres( GenreName, Notes) VALUES
+ ( 'Horror', 'scary'),
+ ( 'Comedy', NULL),
+ ( 'Action', 'asd'),
+ ( 'SKYFY', NULL),
+ ( 'Fantasy', 'gfd')
+
+ INSERT INTO Categories( CategoryName, Notes) VALUES
+ ( 'Animated', 'scary'),
+ ( 'Clasic', NULL),
+ ( 'Manga', 'asd'),
+ ( 'Documentary', NULL),
+ ( 'Serial', 'wredd')
+
+ INSERT INTO Movies
+ (Title, DirectorId, CopyrightYear, [Length], GenreId, CategoryId, Rating, Notes)
+ VALUES
+  ('Rambo',		2, 1983, 93, 3 , 1, 8.2, 'asd'),
+  ('It',		1, 1984, 63, 1 , 2, 5.2, 'gdfh'),
+  ('Matrix',	3, 1999, 133, 5 , 3, 9.2, 'qweq'),
+  ('AceVentura',4, 1993, 111, 2 , 4, 8.6, 'ggg'),
+  ('StarWars',	5, 1973, 243, 4 , 5, 8.4, 'fd')
+
+			-- 14. Car Rental Database
+
+CREATE DATABASE CarRental 			
+
+CREATE TABLE Categories 
+(
+ Id INT PRIMARY KEY IDENTITY NOT NULL, 
+ CategoryName VARCHAR(30) NOT NULL, 
+ DailyRate DECIMAL (9,2) NOT NULL, 
+ WeeklyRate DECIMAL (9,2) NOT NULL, 
+ MonthlyRate DECIMAL (9,2) NOT NULL, 
+ WeekendRate DECIMAL (9,2) 
+)
+
+INSERT INTO 
+Categories (CategoryName, DailyRate, WeeklyRate, MonthlyRate, WeekendRate)
+VALUES
+('Economy', 12.21, 41.2, 123.11, NULL ),
+('Compact', 15.21, 51.2, 155.11, NULL ),
+('Mini', 7.21, 31.2, 73.11, NULL )
+
+CREATE TABLE Cars 
+(
+ Id INT PRIMARY KEY IDENTITY NOT NULL, 
+ PlateNumber VARCHAR(10) NOT NULL, 
+ Manufacturer VARCHAR(30) NOT NULL, 
+ Model VARCHAR(30) NOT NULL, 
+ CarYear DATETIME , 
+ CategoryId INT FOREIGN KEY REFERENCES Categories(Id), 
+ Doors INT NOT NULL, 
+ Picture VARCHAR(MAX), 
+ Condition VARCHAR (30), 
+ Available BIT NOT NULL
+)
+
+INSERT INTO Cars 
+(PlateNumber, Manufacturer, Model, CarYear, CategoryId, Doors, Condition, Available)
+VALUES
+ ('A1211KA', 'BMW', 'X5', '1-12-2005', 1, 4, 'Good', 1),
+ ('A2431KA', 'asda', 'gfd', '5-05-2012', 1, 4, 'Fair', 1),
+ ('A1744KA', 'Bgfd', 'zxc', '12-11-2015', 1, 4, 'Good', 0)
+
+CREATE TABLE Employees 
+(
+ Id INT PRIMARY KEY IDENTITY NOT NULL, 
+ FirstName VARCHAR(30) NOT NULL, 
+ LastName VARCHAR(30) NOT NULL, 
+ Title VARCHAR(30) NOT NULL, 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO Employees (FirstName, LastName, Title, Notes) VALUES
+ ('Pesho', 'Peshev', 'mehanic', NULL),
+ ('Ivan', 'Peshev', 'mehanic', NULL),
+ ('Gosho', 'Peshev', 'security', NULL)
+
+CREATE TABLE Customers 
+(
+ Id INT PRIMARY KEY IDENTITY NOT NULL, 
+ DriverLicenceNumber VARCHAR (30) NOT NULL, 
+ FullName VARCHAR(50) NOT NULL, 
+ [Address] VARCHAR(100) NOT NULL, 
+ City VARCHAR (20) NOT NULL, 
+ ZIPCode INT , 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO Customers (DriverLicenceNumber, FullName, [Address], City, ZIPCode, Notes) VALUES
+ ('1234121', 'Ivan Ivanov', 'asda324sadwqe', 'Sofia', 9120, NULL),
+ ('143244121', 'Iwertan Isada', 'assdf12dsadwqe', 'Bs', 8120, NULL),
+ ('124353121', 'Iewran Iewr', 'asdgfd1dwqe', 'Pl', 5120, NULL)
+
+CREATE TABLE RentalOrders 
+(
+ Id INT PRIMARY KEY IDENTITY NOT NULL, 
+ EmployeeId INT FOREIGN KEY REFERENCES Employees(Id), 
+ CustomerId INT FOREIGN KEY REFERENCES Customers(Id), 
+ CarId INT FOREIGN KEY REFERENCES Cars(Id), 
+ TankLevel INT , 
+ KilometrageStart INT, 
+ KilometrageEnd INT, 
+ TotalKilometrage AS KilometrageEnd - KilometrageStart, 
+ StartDate DATETIME NOT NULL, 
+ EndDate DATETIME NOT NULL, 
+ TotalDays AS DATEDIFF(DAY, StartDate, EndDate), 
+ RateApplied DECIMAL (9,2), 
+ TaxRate DECIMAL (9,2), 
+ OrderStatus VARCHAR (20) NOT NULL, 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO RentalOrders (EmployeeId, CustomerId, KilometrageStart, KilometrageEnd, StartDate, EndDate, RateApplied, TaxRate, OrderStatus, Notes) VALUES
+(1, 3,  123, 213, '1-1-2012', '12-1-2012', NULL, NULL, 'available', NULL),
+(2, 2,  213, 323, '1-2-2012', '12-3-2012', NULL, NULL, 'not available', NULL),
+(3, 1,  323, 433, '1-12-2012', '12-12-2012', NULL, NULL, 'reserved', NULL)
+
+ SELECT * FROM RentalOrders
+			-- 15. Hotel Database
+
+CREATE DATABASE Hotel
+
+CREATE TABLE Employees
+(
+ Id  INT PRIMARY KEY IDENTITY, 
+ FirstName VARCHAR(30) NOT NULL, 
+ LastName VARCHAR(30) NOT NULL, 
+ Title  VARCHAR(30) NOT NULL, 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO Employees VALUES
+('Pesho', 'Peshev', 'barman', 'mashina'),
+('Ivan', 'Ivanov', 'shef', 'asd'),
+('Gosho', 'Goshev', 'master', NULL)
+
+CREATE TABLE Customers 
+(
+ AccountNumber BIGINT PRIMARY KEY NOT NULL,
+ FirstName VARCHAR(30) NOT NULL, 
+ LastName VARCHAR(30) NOT NULL, 
+ PhoneNumber VARCHAR(15) NOT NULL, 
+ EmergencyName VARCHAR(50), 
+ EmergencyNumber VARCHAR(15), 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO Customers VALUES
+(123123223, 'Asd', 'Ddsfad', '43432423', NULL, NULL, NULL),
+(12543323, 'SAD', 'Dqwed', '412341423', NULL, NULL, NULL),
+(123123123, 'ASf', 'Dfdsfd', '435435343', NULL, NULL, NULL)
+
+CREATE TABLE RoomStatus 
+(
+ RoomStatus VARCHAR(20) NOT NULL, 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO RoomStatus VALUES
+('Busy', NULL),
+('Empty', NULL),
+('Reserved', NULL)
+
+
+CREATE TABLE RoomTypes 
+(
+ RoomType VARCHAR(30) PRIMARY KEY, 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO RoomTypes VALUES
+ ('Apartment', NULL),
+ ('Suite', NULL),
+ ('Studio', NULL)
+
+CREATE TABLE BedTypes 
+(
+ BedType VARCHAR(30) PRIMARY KEY NOT NULL,
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO BedTypes VALUES
+ ('single' , NULL),
+ ('double' , NULL),
+ ('king size', 'asda')
+
+
+CREATE TABLE Rooms 
+(
+ RoomNumber INT PRIMARY KEY IDENTITY NOT NULL, 
+ RoomType VARCHAR(30) FOREIGN KEY REFERENCES RoomTypes(RoomType), 
+ BedType VARCHAR(30) FOREIGN KEY REFERENCES BedTypes(BedType), 
+ Rate DECIMAL (5,2) NOT NULL, 
+ RoomStatus VARCHAR(30) NOT NULL, 
+ Notes VARCHAR(MAX)
+ )
+ 
+INSERT INTO Rooms (Rate, RoomStatus) VALUES
+ ( 50.54 , 'free'),
+ ( 55.54 , 'free'),
+ ( 66.54 , 'free')
+
+
+CREATE TABLE Payments 
+(
+ Id INT PRIMARY KEY IDENTITY NOT NULL, 
+ EmployeeId INT FOREIGN KEY REFERENCES Employees(Id), 
+ PaymentDate DATETIME NOT NULL, 
+ AccountNumber BIGINT FOREIGN KEY REFERENCES Customers(AccountNumber), 
+ FirstDateOccupied DATETIME NOT NULL, 
+ LastDateOccupied DATETIME NOT NULL, 
+ TotalDays AS DATEDIFF(DAY, FirstDateOccupied, LastDateOccupied), 
+ AmountCharged DECIMAL(9,2) NOT NULL, 
+ TaxRate DECIMAL(5,2), 
+ TaxAmount DECIMAL(5,2), 
+ PaymentTotal DECIMAL(9,2), 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO Payments (EmployeeId, PaymentDate, FirstDateOccupied, LastDateOccupied, AmountCharged, TaxRate, TaxAmount, PaymentTotal, Notes) VALUES
+ (1, GETDATE(), '1-12-2020', '12-12-2020', 1231.22, NULL, NULL ,1231.22, NULL),
+ (2, GETDATE(), '1-1-2020', '12-1-2020', 1251.22, NULL, NULL ,1251.22, NULL),
+ (3, GETDATE(), '1-4-2020', '12-4-2020', 12131.22, NULL, NULL ,12131.22, NULL)
+
+CREATE TABLE Occupancies 
+(
+ Id INT PRIMARY KEY IDENTITY NOT NULL, 
+ EmployeeId INT FOREIGN KEY REFERENCES Employees(Id), 
+ DateOccupied DATETIME NOT NULL, 
+ AccountNumber BIGINT FOREIGN KEY REFERENCES Customers(AccountNumber), 
+ RoomNumber INT FOREIGN KEY REFERENCES Rooms(RoomNumber), 
+ RateApplied DECIMAL(6,2), 
+ PhoneCharge DECIMAL(6,2), 
+ Notes VARCHAR(MAX)
+)
+
+INSERT INTO Occupancies (EmployeeId, DateOccupied, RoomNumber) VALUES
+ (1, '1-2-2012', 1),
+ (2, '1-4-2012', 3),
+ (3, '12-2-2012', 2)
 
 
 
-SELECT * FROM Users
+
+SELECT * FROM Occupancies
 
 
 
