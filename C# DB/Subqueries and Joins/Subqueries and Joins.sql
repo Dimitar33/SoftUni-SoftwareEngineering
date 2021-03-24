@@ -122,17 +122,52 @@ SELECT TOP (5) CountryName, RiverName
 
 				-- 15. Continents and Currencies
 
-SELECT con.ContinentCode, curr.CurrencyCode, COUNT(con.ContinentCode) AS CurrencyUsage
-  FROM Continents AS con
-  JOIN Countries AS c ON con.ContinentCode = c.ContinentCode
-  JOIN Currencies AS curr ON curr.CurrencyCode = c.CurrencyCode
-
- GROUP BY curr.CurrencyCode
- ORDER BY ContinentCode
-
-					-- TODO
-
+SELECT ContinentCode, CurrencyCode, CurrencyUsage FROM 
+(SELECT ContinentCode, CurrencyCode, COUNT(ContinentCode) AS CurrencyUsage, 
+  DENSE_RANK() OVER(PARTITION BY ContinentCode ORDER BY COUNT(ContinentCode) DESC) AS Ranked
+  FROM Countries
+  GROUP BY CurrencyCode, ContinentCode
+  HAVING COUNT(ContinentCode) > 1
+) AS asd
+ WHERE Ranked = 1
+	
 				-- 16. Countries Without Any Mountains
+
+SELECT COUNT(*) AS [Count] FROM Countries AS c
+  LEFT JOIN MountainsCountries AS mc ON c.CountryCode = mc.CountryCode
+  WHERE MountainId IS NULL
+
 				-- 17. Highest Peak and Longest River by Country
+
+SELECT TOP (5) CountryName, HighestPeakElevation, LongestRiverLength FROM (
+SELECT CountryName, p.Elevation AS HighestPeakElevation, r.[Length] AS LongestRiverLength,
+ DENSE_RANK() OVER(PARTITION BY CountryName ORDER BY p.Elevation DESC, r.[Length] DESC) AS Ranked
+ FROM Countries AS c
+ LEFT JOIN MountainsCountries AS mc ON mc.CountryCode = c.CountryCode
+ LEFT JOIN Mountains AS m ON m.Id = mc.MountainId
+ LEFT JOIN Peaks AS p ON p.MountainId = m.Id
+ LEFT JOIN CountriesRivers AS cr ON cr.CountryCode = c.CountryCode
+ LEFT JOIN Rivers AS r ON r.Id = cr.RiverId
+ ) AS asd
+ WHERE Ranked = 1
+ ORDER BY HighestPeakElevation DESC, LongestRiverLength DESC
+
 				-- 18. Highest Peak Name and Elevation by Country
+
+SELECT TOP (5) Country, [Highest Peak Name], [Highest Peak Elevation], Mountain
+	FROM (
+SELECT CountryName AS Country, 
+	   ISNULL(PeakName,'(no highest peak)') AS [Highest Peak Name], 
+	   ISNULL(MAX(p.Elevation), 0) AS [Highest Peak Elevation], 
+	   ISNULL(MountainRange, '(no mountain)') AS Mountain, 
+	DENSE_RANK() OVER (PARTITION BY CountryName ORDER BY MAX(p.Elevation) DESC) AS Ranked
+ FROM Countries AS c
+ LEFT JOIN MountainsCountries AS mc ON mc.CountryCode = c.CountryCode
+ LEFT JOIN Mountains AS m ON m.Id = mc.MountainId
+ LEFT JOIN Peaks AS p ON p.MountainId = m.Id
+ GROUP BY c.CountryName, p.PeakName, m.MountainRange
+ ) AS Result
+ WHERE Ranked = 1
+ ORDER BY Country, [Highest Peak Name]
+
 
