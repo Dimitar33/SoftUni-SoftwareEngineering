@@ -85,12 +85,62 @@ SELECT
 
 				-- 13. Departments Total Salaries
 
-
+SELECT DepartmentID, SUM(Salary) AS TotalSalary 
+	FROM Employees 
+  GROUP BY DepartmentID
+  ORDER BY DepartmentID
 
 				-- 14. Employees Minimum Salaries
+
+SELECT DepartmentID, MIN(Salary) AS TotalSalary 
+	FROM Employees 
+	WHERE DepartmentID IN (2,5,7) AND HireDate > '01/01/2000'
+  GROUP BY DepartmentID
+
 				-- 15. Employees Average Salaries
+
+SELECT EmployeeID, ManagerID, DepartmentID, Salary
+  INTO NewTable FROM Employees
+  WHERE  Salary > 30000
+
+DELETE FROM NewTable
+ WHERE ManagerID = 42
+
+UPDATE NewTable
+ SET Salary += 5000
+ WHERE DepartmentID = 1
+
+SELECT DepartmentID, AVG(Salary) AS AverageSalary FROM NewTable
+ GROUP BY DepartmentID
+
 				-- 16. Employees Maximum Salaries
+
+SELECT DepartmentID, MAX(Salary) AS MaxSalary FROM Employees
+ WHERE Salary NOT BETWEEN 30000 AND 70000
+ GROUP BY DepartmentID
+
 				-- 17. Employees Count Salaries
+
+SELECT COUNT(Salary) AS [Count] FROM Employees
+ WHERE ManagerID IS NULL
+
 				-- 18. 3rd Highest Salary
+
+SELECT DISTINCT DepartmentID, ThirdHighestSalary FROM (
+	SELECT DepartmentID, FirstName, Salary AS ThirdHighestSalary,
+	DENSE_RANK() OVER (PARTITION BY DepartmentID ORDER BY Salary DESC) AS Ranked
+ FROM Employees
+ ) AS Result
+ WHERE Ranked = 3 
+
 				-- 19. Salary Challenge
+
+SELECT TOP (10) FirstName, LastName, DepartmentID FROM Employees AS main
+ WHERE Salary > (SELECT AVG(Salary) FROM Employees
+					WHERE DepartmentID = main.DepartmentID
+					GROUP BY DepartmentID)
+ ORDER BY DepartmentID
+
+
+
 
