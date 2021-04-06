@@ -13,10 +13,11 @@ namespace Bakery.Models.Drinks.Entities
         private decimal price;
         private string brand;
 
-        public Drink(string name, int portion,  string brand)
+        public Drink(string name, int portion,decimal price,  string brand)
         {
             Name = name;
-            Portion = portion;        
+            Portion = portion;
+            Price = price;
             Brand = brand;
         }
 

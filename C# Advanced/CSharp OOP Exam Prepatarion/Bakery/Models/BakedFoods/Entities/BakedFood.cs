@@ -12,9 +12,10 @@ namespace Bakery.Models.BakedFoods.Entities
         private int portion;
         private decimal price;
 
-        public BakedFood(string name, decimal price)
+        public BakedFood(string name, int portion, decimal price)
         {
             Name = name;       
+            Portion = portion;
             Price = price;
         }
 

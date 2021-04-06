@@ -6,10 +6,13 @@ namespace Bakery.Models.BakedFoods.Entities
 {
     public class Bread : BakedFood
     {
-        public Bread(string name, decimal price) : base(name, price)
+
+        private const int portion = 200;
+        public Bread(string name,  decimal price) 
+            : base(name, portion, price)
         {
         }
 
-        public override int Portion { get => 200; }
+       
     }
 }

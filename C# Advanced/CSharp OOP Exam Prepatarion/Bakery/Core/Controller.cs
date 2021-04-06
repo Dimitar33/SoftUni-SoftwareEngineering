@@ -3,8 +3,9 @@ using Bakery.Models.BakedFoods.Contracts;
 using Bakery.Models.BakedFoods.Entities;
 using Bakery.Models.Drinks.Contracts;
 using Bakery.Models.Drinks.Entities;
+using Bakery.Models.Tables;
 using Bakery.Models.Tables.Contracts;
-using Bakery.Models.Tables.Entities;
+using Bakery.Utilities.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,22 @@ namespace Bakery.Core
         private List<IBakedFood> bakedFoods;
         private List<IDrink> drinks;
         private List<ITable> tables;
+
+        public Controller()
+        {
+            bakedFoods = new List<IBakedFood>();
+            drinks = new List<IDrink>();
+            tables = new List<ITable>();
+        }
         public decimal TotalIncome { get; private set; }
         public string AddDrink(string type, string name, int portion, string brand)
         {
-            Drink drink;
+            Drink drink = null;
             if (type == "Tea")
             {
                 drink = new Tea(name, portion, brand);
             }
-            else
+            else if (type == "Water")
             {
                 drink = new Water(name, portion, brand);
             }
@@ -35,27 +43,31 @@ namespace Bakery.Core
 
         public string AddFood(string type, string name, decimal price)
         {
-            BakedFood food;
+            BakedFood food = null;
+
             if (type == "Bread")
             {
                 food = new Bread(name, price);
             }
-            else
+            else if (type == "Cake")
             {
                 food = new Cake(name, price);
             }
+
             bakedFoods.Add(food);
             return $"Added {food.Name} ({type}) to the menu";
+
+
         }
 
         public string AddTable(string type, int tableNumber, int capacity)
         {
-            Table table;
+            Table table = null;
             if (type == "InsideTable")
             {
                 table = new InsideTable(tableNumber, capacity);
             }
-            else
+            else if (type == "OutsideTable")
             {
                 table = new OutsideTable(tableNumber, capacity);
             }
@@ -73,25 +85,29 @@ namespace Bakery.Core
             {
                 sb.AppendLine(item.GetFreeTableInfo());
             }
-            return sb.ToString().Trim();
+            return sb.ToString().TrimEnd();
         }
 
         public string GetTotalIncome()
         {
             return $"Total income: {TotalIncome:f2}lv";
-        
+
         }
 
         public string LeaveTable(int tableNumber)
         {
             var table = tables.FirstOrDefault(x => x.TableNumber == tableNumber);
-            table.GetBill();
-            table.Clear();
+
+            if (table == null)
+            {
+                throw new ArgumentException(string.Format(OutputMessages.WrongTableNumber, tableNumber));
+            }
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Table: {tableNumber}");
             sb.AppendLine($"Bill: {table.GetBill():f2}");
             TotalIncome += table.GetBill();
-            return sb.ToString().Trim();
+            table.Clear();
+            return sb.ToString().TrimEnd();
         }
 
         public string OrderDrink(int tableNumber, string drinkName, string drinkBrand)
@@ -130,7 +146,7 @@ namespace Bakery.Core
 
         public string ReserveTable(int numberOfPeople)
         {
-            var freeTable = tables.FirstOrDefault(x => x.IsReserved == false && x.NumberOfPeople >= numberOfPeople);
+            var freeTable = tables.FirstOrDefault(x => x.IsReserved == false && x.Capacity >= numberOfPeople);
 
             if (freeTable == null)
             {
