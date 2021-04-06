@@ -57,7 +57,11 @@ namespace Computers.Tests
 
         }
 
-       
+       [Test]
+       public void RemoveNonExistentComp()
+        {
+            Assert.Throws<ArgumentException>(() => cm.RemoveComputer("nqma", "comp"));
+        }
 
         [Test]
         public void GetCompNoCompWithThisManufacturer()
@@ -158,6 +162,6 @@ namespace Computers.Tests
             cm.GetComputer("Assus", null));
         }
 
-        // 80/100 judge
+       
     }
 }
