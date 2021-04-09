@@ -13,7 +13,7 @@ namespace EasterRaces.Core.Entities
 {
     public class ChampionshipController : IChampionshipController
     {
-        DriverRepository drRepo = new DriverRepository();
+         DriverRepository drRepo = new DriverRepository();
         CarRepository carRepo = new CarRepository();
         RaceRepository raceRepo = new RaceRepository();
 

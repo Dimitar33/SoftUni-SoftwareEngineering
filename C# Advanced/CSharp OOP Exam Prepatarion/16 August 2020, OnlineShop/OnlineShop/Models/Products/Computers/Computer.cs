@@ -14,13 +14,18 @@ namespace OnlineShop.Models.Products.Computers
         private readonly List<IPeripheral> peripherals;
 
         protected Computer(int id, string manufacturer, string model, decimal price, double overallPerformance)
-            : base (id, manufacturer, model, price, overallPerformance)
-        {     
+            : base(id, manufacturer, model, price, overallPerformance)
+        {
+            components = new List<IComponent>();
+            peripherals = new List<IPeripheral>();
         }
 
+        public override decimal Price => components.Sum(x => x.Price) + peripherals.Sum(x => x.Price) + base.Price;
+
+        public override double OverallPerformance => components.Average(x => x.OverallPerformance) + base.OverallPerformance;
         public IReadOnlyCollection<IComponent> Components => components;
 
-        public IReadOnlyCollection<IPeripheral> Peripherals => peripherals;  
+        public IReadOnlyCollection<IPeripheral> Peripherals => peripherals;
 
         public void AddComponent(IComponent component)
         {
@@ -73,18 +78,26 @@ namespace OnlineShop.Models.Products.Computers
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"Overall Performance: {OverallPerformance}. Price: {Price} - {typeof(Product).Name}: {Manufacturer} {Model} (Id: {Id})");
+            sb.AppendLine($"Overall Performance: {OverallPerformance:f2}. Price: {Price :f2} - {GetType().Name}: {Manufacturer} {Model} (Id: {Id})");
 
             sb.AppendLine($" Components ({Components.Count}):");
             foreach (var item in Components)
             {
-                sb.AppendLine(item.ToString());
+                sb.AppendLine("  " + item.ToString().Trim());
             }
 
-            sb.AppendLine($" Peripherals ({Peripherals.Count}); Average Overall Performance ({Peripherals.Average(x => x.OverallPerformance)}):");
+            double periperialPerformance = 0;
+
+            if (peripherals.Count > 0)
+            {
+                periperialPerformance = peripherals.Average(x => x.OverallPerformance);
+            }
+
+            sb.AppendLine($" Peripherals ({Peripherals.Count}); Average Overall Performance ({periperialPerformance :f2}):");
+
             foreach (var item in Peripherals)
             {
-                sb.AppendLine(item.ToString());
+                sb.AppendLine("  " + item.ToString().Trim());
             }
 
             return sb.ToString().TrimEnd();

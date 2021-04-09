@@ -16,7 +16,7 @@ namespace OnlineShop.Models.Products.Components
 
         public override string ToString()
         {
-            return $"Overall Performance: {OverallPerformance}. Price: {Price} - {typeof(Component).Name}: {Manufacturer} {Model} (Id: {Id}) Generation: {Generation}"
+            return $"Overall Performance: {OverallPerformance :f2}. Price: {Price :f2} - {GetType().Name}: {Manufacturer} {Model} (Id: {Id}) Generation: {Generation}"
 ;
         }
     }

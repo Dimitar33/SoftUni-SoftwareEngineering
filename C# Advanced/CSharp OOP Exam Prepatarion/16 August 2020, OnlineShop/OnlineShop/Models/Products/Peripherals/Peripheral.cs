@@ -16,7 +16,7 @@ namespace OnlineShop.Models.Products.Peripherals
 
         public override string ToString()
         {
-            return $"Overall Performance: {OverallPerformance}. Price: {Price} - {typeof(Peripheral).Name}: {Manufacturer} {Model} (Id: {Id}) Connection Type: {ConnectionType}"
+            return $"Overall Performance: {OverallPerformance :f2}. Price: {Price :f2} - {GetType().Name}: {Manufacturer} {Model} (Id: {Id}) Connection Type: {ConnectionType}"
 ;
         }
     }
