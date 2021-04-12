@@ -498,21 +498,18 @@ ORDER BY Salary DESC
 
 				-- 22. Increase Employees Salary
 
-USE SoftUni
 UPDATE Employees
 SET Salary *= 1.1
 SELECT Salary FROM Employees
-ORDER BY Salary DESC 
+
 
 				-- 23. Decrease Tax Rate
 
-USE Hotel
 UPDATE Payments
-SET TaxRate = 0.97;
+SET TaxRate *= 0.97;
 SELECT TaxRate FROM Payments
 
 				-- 24. Delete All Records
 
-USE Hotel
 DELETE  Occupancies
 SELECT * FROM Occupancies

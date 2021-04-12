@@ -13,7 +13,7 @@ SELECT FirstName, LastName FROM Employees
 				-- 3. Find First Names of All Employees
 
 SELECT FirstName FROM Employees
- WHERE DepartmentID IN (3, 10) AND HireDate BETWEEN '1995' AND '2005'
+ WHERE DepartmentID IN (3, 10) AND HireDate BETWEEN '1995' AND '2006'
 
 				-- 4. Find All Employees Except Engineers
 
@@ -91,7 +91,7 @@ SELECT PeakName, RiverName,
 
 				-- 14. Games from 2011 and 2012 year
 
-SELECT TOP(50) [Name], [Start] FROM Games
+SELECT TOP(50) [Name],CONVERT(VARCHAR, [Start], 23) AS [Start] FROM Games
  WHERE DATEPART(YEAR, [Start]) BETWEEN 2011 AND 2012
  ORDER BY [Start], [Name]
 
@@ -107,9 +107,6 @@ SELECT Username, IPAddress FROM Users
  ORDER BY Username
 
 				-- 17. Show All Games with Duration and Part of the Day
-
-SELECT * FROM Games
- ORDER BY [Name]
 
 SELECT [Name] ,
  CASE 

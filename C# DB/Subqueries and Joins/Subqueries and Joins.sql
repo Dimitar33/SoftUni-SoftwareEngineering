@@ -24,7 +24,7 @@ SELECT EmployeeID, FirstName, LastName, d.[Name] AS DepartmentName
 
 				-- 4. Employee Departments
 				
-SELECT EmployeeID, FirstName, Salary, d.[Name] AS DepartmentName 
+SELECT TOP(5) EmployeeID, FirstName, Salary, d.[Name] AS DepartmentName 
   FROM Employees AS e
   JOIN Departments AS d ON d.DepartmentID = e.DepartmentID
  WHERE Salary > 15000
@@ -76,7 +76,7 @@ SELECT e.EmployeeID, e.FirstName, e.ManagerID, m.FirstName AS ManagerName
   JOIN Employees AS m ON e.ManagerID = m.EmployeeID
  WHERE e.ManagerID IN (3, 7)
  ORDER BY e.EmployeeID
- SELECT * FROM Employees
+
 				-- 10. Employee Summary
 
 SELECT TOP (50) e.EmployeeID, e.FirstName + ' ' + e.LastName AS EmployeeName, 

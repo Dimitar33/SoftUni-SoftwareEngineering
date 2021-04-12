@@ -20,7 +20,7 @@ SELECT FirstName, MiddleName, LastName FROM Employees
 
 			-- 6. Find Email Address of Each Employee
 
-SELECT FirstName, LastName, FirstName + ' ' + LastName + '@softuni.bg' AS [Full Email Address]
+SELECT FirstName + '.' + LastName + '@softuni.bg' AS [Full Email Address]
   FROM Employees
 
 			-- 7. Find All Different Employee’s Salaries
@@ -65,13 +65,15 @@ SELECT * FROM Employees
 
 			-- 16. Create View Employees with Salaries
 
-CREATE VIEW V_EmployeesSalaries AS
+CREATE VIEW V_EmployeesSalaries 
+AS
 SELECT FirstName, LastName, Salary FROM Employees 
 
 			-- 17. Create View Employees with Job Titles
 
-CREATE VIEW V_EmployeeNameJobTitle AS
-SELECT FirstName +' '+ ISNULL(MiddleName, ' ') + ' '+ LastName AS [Full Name], JobTitle FROM Employees 
+CREATE VIEW V_EmployeeNameJobTitle 
+AS
+SELECT FirstName +' '+ ISNULL(MiddleName, '') + ' '+ LastName AS [Full Name], JobTitle FROM Employees 
 
 			-- 18. Distinct Job Titles
 
@@ -91,8 +93,7 @@ SELECT TOP(7) FirstName, LastName, HireDate FROM Employees
 
 UPDATE Employees
 SET Salary *= 1.12
-WHERE DepartmentID IN (1, 2, 11, 4, 5)
-
+WHERE DepartmentID IN (1, 2, 4, 11)
 SELECT Salary FROM Employees
 
 			-- 22. All Mountain Peaks
@@ -102,7 +103,7 @@ SELECT PeakName FROM Peaks
 
 			-- 23. Biggest Countries by Population
 
-SELECT CountryName, [Population] FROM Countries
+SELECT TOP(30) CountryName, [Population] FROM Countries
  WHERE ContinentCode = 'EU'
  ORDER BY Population DESC, CountryName
 

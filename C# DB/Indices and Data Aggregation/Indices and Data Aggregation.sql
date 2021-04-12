@@ -116,8 +116,8 @@ SELECT DepartmentID, AVG(Salary) AS AverageSalary FROM NewTable
 				-- 16. Employees Maximum Salaries
 
 SELECT DepartmentID, MAX(Salary) AS MaxSalary FROM Employees
- WHERE Salary NOT BETWEEN 30000 AND 70000
  GROUP BY DepartmentID
+ HAVING  MAX(Salary) NOT BETWEEN 30000 AND 70000
 
 				-- 17. Employees Count Salaries
 
