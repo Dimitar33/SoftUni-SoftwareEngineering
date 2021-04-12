@@ -7,25 +7,26 @@ namespace ClassroomProject
 {
     public class Classroom
     {
+        private List<Student> students;
         public Classroom(int capacity)
         {
             Capacity = capacity;
-            Students = new List<Student>();
+            students = new List<Student>();
         }
 
         public int Capacity { get; }
-        public int Count { get => Students.Count; }
-        public List<Student> Students { get;  }
+        public int Count => Students.Count;
+        public List<Student> Students => students;
 
         public string RegisterStudent(Student student)
         {
-            if (Count < Capacity)
+            if (Count == Capacity)
             {
-                Students.Add(student);
-                return $"Added student {student.FirstName} {student.LastName}";
+                return "No seats in the classroom";
             }
 
-            return "No seats in the classroom";
+            students.Add(student);
+            return $"Added student {student.FirstName} {student.LastName}";
 
         }
 
@@ -37,7 +38,7 @@ namespace ClassroomProject
             {
                 return "Student not found";
             }
-
+            students.Remove(student);
             return $"Dismissed student {student.FirstName} {student.LastName}";
 
         }

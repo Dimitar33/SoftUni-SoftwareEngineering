@@ -37,7 +37,7 @@
                                             // Get Student
             Console.WriteLine(classroom.GetStudent("Dean", "Winchester"));
             // Student: First Name = Dean, Last Name = Winchester, Subject = Music
-            Console.WriteLine(classroom.GetStudentsCount());
+           
         }
     }
 }
