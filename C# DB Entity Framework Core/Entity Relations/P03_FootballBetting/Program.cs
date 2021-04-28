@@ -11,7 +11,7 @@ namespace P03_FootballBetting
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
-            // 75/100 judge
+          
            
         }
     }

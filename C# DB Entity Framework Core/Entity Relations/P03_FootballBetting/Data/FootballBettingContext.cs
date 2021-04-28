@@ -22,7 +22,7 @@ namespace P03_FootballBetting.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Game> Games { get; set; }
         public DbSet<Player> Players { get; set; }
-        public DbSet<PlayerStatistic> playerStatistics { get; set; }
+        public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Town> Towns { get; set; }
