@@ -1,6 +1,7 @@
 ﻿namespace MusicHub
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using Data;
@@ -13,7 +14,7 @@
             MusicHubDbContext context =
                 new MusicHubDbContext();
 
-           DbInitializer.ResetDatabase(context);
+            DbInitializer.ResetDatabase(context);
 
             Console.WriteLine(ExportAlbumsInfo(context, 9));
 
@@ -30,7 +31,7 @@
                 .Select(x => new
                 {
                     AlbumName = x.Name,
-                    x.ReleaseDate,
+                    ReleaseDate = x.ReleaseDate.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture),
                     ProducerName = x.Producer.Name,
                     Songs = x.Songs.Select(x => new
                     {
@@ -62,7 +63,7 @@
 
                     sb.AppendLine($"---#{count}");
                     sb.AppendLine($"---SongName: {song.SongName}");
-                    sb.AppendLine($"---Price: {song.Price}");
+                    sb.AppendLine($"---Price: {song.Price:f2}");
                     sb.AppendLine($"---Writer: {song.WriterName}");
                 }
                 sb.AppendLine($"-AlbumPrice: {item.AlbumPrice:f2}");
@@ -77,11 +78,11 @@
             var songs = context.Songs
                 .ToList()
                 .Where(x => x.Duration.TotalSeconds > duration)
-                .Select(x => new 
+                .Select(x => new
                 {
                     SongName = x.Name,
                     WriterName = x.Writer.Name,
-                    Performer = x.SongPerformers.Select(x => 
+                    Performer = x.SongPerformers.Select(x =>
                     x.Performer.FirstName + " " + x.Performer.LastName)
                     .FirstOrDefault(),
                     AlbumProducer = x.Album.Producer.Name,
