@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ProductShop.Data;
 using ProductShop.DTOs;
@@ -12,7 +13,7 @@ namespace ProductShop
 {
     public class StartUp
     {
-
+        static IMapper mapper;
         public static void Main(string[] args)
         {
             var contex = new ProductShopContext();
@@ -29,7 +30,7 @@ namespace ProductShop
             //var result2 = ImportCategories(contex, inputJsonCategories);
             //var result3 = ImportCategoryProducts(contex, inputJsonCategoryProducts);
 
-            var result = GetCategoriesByProductsCount(contex);
+            var result = GetUsersWithProducts(contex);
 
             Console.WriteLine(result);
         }
@@ -38,17 +39,17 @@ namespace ProductShop
         {
             MapperConfiguration config = new MapperConfiguration(x => { x.AddProfile<ProductShopProfile>(); });
 
-            IMapper mapper = config.CreateMapper();
+             mapper = config.CreateMapper();
         }
 
         // 01. Import Users
         public static string ImportUsers(ProductShopContext context, string inputJson)
         {
-            //InicialiseMapper();
+            InicialiseMapper();
 
-            var users = JsonConvert.DeserializeObject<IEnumerable<User>>(inputJson);
+            var dtoUsers = JsonConvert.DeserializeObject<IEnumerable<User>>(inputJson);
 
-            //var users = Mapper.Map<IEnumerable<User>>(dtoUsers);
+            var users = Mapper.Map<IEnumerable<User>>(dtoUsers);
 
             context.Users.AddRange(users);
 
@@ -63,9 +64,9 @@ namespace ProductShop
         {
             InicialiseMapper();
 
-            var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(inputJson);
+            var dtoProducts = JsonConvert.DeserializeObject<IEnumerable<Product>>(inputJson);
 
-            // var products = Mapper.Map<IEnumerable<Product>>(dtoProducts);
+             var products = Mapper.Map<IEnumerable<Product>>(dtoProducts);
 
             context.Products.AddRange(products);
 
@@ -81,10 +82,10 @@ namespace ProductShop
         {
             InicialiseMapper();
 
-            var categories = JsonConvert.DeserializeObject<IEnumerable<Category>>(inputJson)
+            var dtoCategories = JsonConvert.DeserializeObject<IEnumerable<Category>>(inputJson)
                 .Where(x => x.Name != null);
 
-            // var categories = Mapper.Map<IEnumerable<Category>>(dtoCategories);
+             var categories = Mapper.Map<IEnumerable<Category>>(dtoCategories);
 
             context.Categories.AddRange(categories);
             context.SaveChanges();
@@ -96,7 +97,11 @@ namespace ProductShop
 
         public static string ImportCategoryProducts(ProductShopContext context, string inputJson)
         {
+           // InicialiseMapper();
+
             var categoryProducts = JsonConvert.DeserializeObject<IEnumerable<CategoryProduct>>(inputJson);
+
+           // var categoryProducts = Mapper.Map<IEnumerable<CategoryProduct>>(dtoCategoryProducts);
 
             context.CategoryProducts.AddRange(categoryProducts);
 
@@ -170,6 +175,48 @@ namespace ProductShop
             var json = JsonConvert.SerializeObject(categories, Formatting.Indented);
 
             return json;
+        }
+
+        // 08. Export Users and Products
+
+        public static string GetUsersWithProducts(ProductShopContext context)
+        {
+            var users = context.Users
+                .ToArray()
+                .Where(x => x.ProductsSold.Any(c => c.BuyerId != null))
+                .Select(x => new
+                {
+                    firstName = x.FirstName,
+                    lastName = x.LastName,
+                    age = x.Age,
+                    soldProducts = new
+                    {
+                        count = x.ProductsSold.Where(c => c.BuyerId != null).Count(),
+                        products = x.ProductsSold
+                        .Where(c => c.BuyerId != null)
+                        .Select(p => new
+                        {
+                            name = p.Name,
+                            price = p.Price
+                        })
+                    }
+                })
+                .OrderByDescending(x => x.soldProducts.count)
+                .ToArray();
+
+            var result = new
+            {
+                usersCount = users.Count(),
+                users = users
+            };
+
+            var jsonResult = JsonConvert.SerializeObject(result, new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+
+            return jsonResult;
         }
     }
 }
