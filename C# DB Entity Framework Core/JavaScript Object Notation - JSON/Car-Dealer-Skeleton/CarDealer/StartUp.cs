@@ -31,7 +31,7 @@ namespace CarDealer
             //ImportCustomers(context, inputJsonCustomers);
             //ImportSales(context, inputJsonSales);
 
-            Console.WriteLine(GetLocalSuppliers(context));
+            Console.WriteLine(GetSalesWithAppliedDiscount(context));
 
         }
 
@@ -49,12 +49,12 @@ namespace CarDealer
 
         public static string ImportSuppliers(CarDealerContext context, string inputJson)
         {
-           // InicializeAutoMapper();
+            // InicializeAutoMapper();
 
             var suppliers =
                 JsonConvert.DeserializeObject<IEnumerable<Supplier>>(inputJson);
 
-           // var suppliers = Mapper.Map<IEnumerable<Supplier>>(dtoSupliers);
+            // var suppliers = Mapper.Map<IEnumerable<Supplier>>(dtoSupliers);
 
             context.Suppliers.AddRange(suppliers);
             context.SaveChanges();
@@ -66,7 +66,7 @@ namespace CarDealer
 
         public static string ImportParts(CarDealerContext context, string inputJson)
         {
-           // InicializeAutoMapper();
+            // InicializeAutoMapper();
 
             var suplyers = context.Suppliers.Select(x => x.Id).ToArray();
 
@@ -74,7 +74,7 @@ namespace CarDealer
                 JsonConvert.DeserializeObject<IEnumerable<Part>>(inputJson)
                 .Where(x => suplyers.Contains(x.SupplierId));
 
-           // var parts = mapper.Map<IEnumerable<Part>>(dtoParts);
+            // var parts = mapper.Map<IEnumerable<Part>>(dtoParts);
 
             context.Parts.AddRange(parts);
             context.SaveChanges();
@@ -103,7 +103,7 @@ namespace CarDealer
                 };
                 foreach (var part in car.partsId.Distinct())
                 {
-                    currentCar.PartCars.Add(new PartCar { PartId = part});
+                    currentCar.PartCars.Add(new PartCar { PartId = part });
                 }
                 carsList.Add(currentCar);
             }
@@ -118,12 +118,12 @@ namespace CarDealer
 
         public static string ImportCustomers(CarDealerContext context, string inputJson)
         {
-           // InicializeAutoMapper();
+            // InicializeAutoMapper();
 
             var customers =
                 JsonConvert.DeserializeObject<IEnumerable<Customer>>(inputJson);
 
-           // var customers = mapper.Map<IEnumerable<Customer>>(dtoCustomers);
+            // var customers = mapper.Map<IEnumerable<Customer>>(dtoCustomers);
 
             context.Customers.AddRange(customers);
             context.SaveChanges();
@@ -135,12 +135,12 @@ namespace CarDealer
 
         public static string ImportSales(CarDealerContext context, string inputJson)
         {
-           // InicializeAutoMapper();
+            // InicializeAutoMapper();
 
-            var sales = 
+            var sales =
                 JsonConvert.DeserializeObject<IEnumerable<Sale>>(inputJson);
 
-           // var sales = mapper.Map<IEnumerable<Sale>>(dtoSales);
+            // var sales = mapper.Map<IEnumerable<Sale>>(dtoSales);
 
             context.Sales.AddRange(sales);
             context.SaveChanges();
@@ -158,10 +158,10 @@ namespace CarDealer
                 .Select(x => new
                 {
                     x.Name,
-                    BirthDate =  x.BirthDate.ToString("dd/MM/yyyy"),
+                    BirthDate = x.BirthDate.ToString("dd/MM/yyyy"),
                     x.IsYoungDriver
                 })
-                
+
                 .ToList();
 
             var jsonResult = JsonConvert.SerializeObject(customers, Formatting.Indented);
@@ -207,6 +207,80 @@ namespace CarDealer
                 .ToList();
 
             var jsonResult = JsonConvert.SerializeObject(suplyers, Formatting.Indented);
+
+            return jsonResult;
+        }
+
+        // 17. Export Cars With Their List Of Parts
+
+        public static string GetCarsWithTheirListOfParts(CarDealerContext context)
+        {
+            var cars = context.Cars
+                .Select(x => new
+                {
+                    car = new
+                    {
+                        x.Make,
+                        x.Model,
+                        x.TravelledDistance,
+                    },
+                    parts = x.PartCars.Select(p => new
+
+                    {
+                        Name = p.Part.Name,
+                        Price = p.Part.Price.ToString("F2")
+                    })
+                }).ToList();
+
+            var jsonResult = JsonConvert.SerializeObject(cars, Formatting.Indented);
+
+
+            return jsonResult;
+        }
+
+        // 18. Export Total Sales By Customer
+
+        public static string GetTotalSalesByCustomer(CarDealerContext context)
+        {
+
+            var buyers = context.Customers
+                .Where(x => x.Sales.Count > 0)
+                .Select(c => new
+                {
+                    fullName = c.Name,
+                    boughtCars = c.Sales.Count,
+                    spentMoney = c.Sales.Sum(x => x.Car.PartCars.Sum(p => p.Part.Price))
+                })
+                .OrderByDescending(x => x.spentMoney)
+                .ToArray();
+
+            string jsonResult = JsonConvert.SerializeObject(buyers, Formatting.Indented);
+
+            return jsonResult;
+        }
+
+        // 19. Export Sales With Applied Discount
+
+        public static string GetSalesWithAppliedDiscount(CarDealerContext context)
+        {
+            var sales = context.Sales
+              .Take(10)
+              .Select(x => new
+              {
+                  car = new
+                  {
+                      Make = x.Car.Make,
+                      Model = x.Car.Model,
+                      TravelledDistance = x.Car.TravelledDistance
+                  },
+                  customerName = x.Customer.Name,
+                  Discount = x.Discount.ToString("F2"),
+                  price = x.Car.PartCars.Sum(p => p.Part.Price).ToString("F2"),
+                  priceWithDiscount = (x.Car.PartCars.Sum(p => p.Part.Price) * (1 - x.Discount / 100)).ToString("F2")
+              }).ToArray();
+
+            string jsonResult = JsonConvert.SerializeObject(sales, Formatting.Indented);
+
 
             return jsonResult;
         }
