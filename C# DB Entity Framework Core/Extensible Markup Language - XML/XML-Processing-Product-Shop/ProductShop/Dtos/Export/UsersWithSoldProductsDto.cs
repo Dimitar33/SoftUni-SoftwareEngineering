@@ -14,7 +14,7 @@ namespace ProductShop.Dtos.Export
         [XmlElement("lastName")]
         public string LastName { get; set; }
 
-        [XmlElement("SoldProducts")]
-        public MapingDto SoldProducts { get; set; }
+        [XmlArray("soldProducts")]
+        public SoldProductsDto[] prducts { get; set; }
     }
 }

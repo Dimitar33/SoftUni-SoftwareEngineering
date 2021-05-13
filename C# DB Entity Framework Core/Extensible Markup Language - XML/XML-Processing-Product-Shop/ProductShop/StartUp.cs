@@ -27,7 +27,7 @@ namespace ProductShop
             //System.Console.WriteLine(ImportCategories(context, categoriesXML));
             //System.Console.WriteLine(ImportCategoryProducts(context, categoriesProductsXML));
 
-            Console.WriteLine(GetUsersWithProducts(context));
+            Console.WriteLine(GetSoldProducts(context));
         }
 
         // 01. Import Users
@@ -173,14 +173,13 @@ namespace ProductShop
                 {
                     FirstName = x.FirstName,
                     LastName = x.LastName,
-                    SoldProducts = new MapingDto
+
+                    prducts = x.ProductsSold.Select(p => new SoldProductsDto
                     {
-                        prducts = x.ProductsSold.Select(p => new SoldProductsDto
-                        {
-                            Name = p.Name,
-                            Price = p.Price
-                        }).ToArray()
-                    }
+                        Name = p.Name,
+                        Price = p.Price
+                    }).ToArray()
+
                 }).ToArray();
 
             var serializer = new XmlSerializer(typeof(UsersWithSoldProductsDto[]),
@@ -243,7 +242,7 @@ namespace ProductShop
                     LastName = x.LastName,
                     Age = x.Age,
 
-                    soldProducts =  new SoldProductsCountDto
+                    soldProducts = new SoldProductsCountDto
                     {
                         Count = x.ProductsSold.Count,
                         Products = x.ProductsSold.Select(ps => new SoldProductsDto

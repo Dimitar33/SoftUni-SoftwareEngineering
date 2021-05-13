@@ -12,7 +12,7 @@ namespace ProductShop.Dtos.Export
         [XmlElement("count")]
         public int UserCount { get; set; }
 
-        [XmlElement("users")]
+        [XmlArray("users")]
         public UsersAndProductsDto[] Users { get; set; }
     }
 }

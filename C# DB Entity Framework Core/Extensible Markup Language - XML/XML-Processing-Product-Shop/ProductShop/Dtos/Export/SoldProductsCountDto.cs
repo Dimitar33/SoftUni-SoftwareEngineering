@@ -11,7 +11,7 @@ namespace ProductShop.Dtos.Export
         [XmlElement("count")]
         public int Count { get; set; }
 
-        [XmlElement("products")]
+        [XmlArray("products")]
         public SoldProductsDto[] Products { get; set; }
     }
 }
