@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace MyWebServer.Server.Http
 {
-    public class HttpResponse
+    public abstract class HttpResponse
     {
+        public HttpResponse(HttpStatusCode statusCode)
+        {
+            StatusCode = statusCode;
+
+            Headers.Add("Server:", "My Web Server");
+            Headers.Add("Date:", $"{DateTime.UtcNow:R}");
+        }
         public HttpStatusCode StatusCode { get; init; }
 
         public HttpHeadersCollection Headers { get; } = new HttpHeadersCollection();

@@ -10,12 +10,10 @@ namespace MyWebServer
     public class StartUp
     {
         // localhost 127.0.0.1
-        public static async Task Main()
-        {
-            var server = new HttpServer("127.0.0.1", 9090);
+        public static async Task Main()       
+           => await new HttpServer("127.0.0.1", 9090, routes => routes.Map).Start();
 
-            await server.Start();
-          
-        }
+            
+        
     }
 }

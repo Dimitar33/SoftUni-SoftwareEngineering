@@ -18,12 +18,12 @@ namespace MyWebServer.Server
             this.ipAdress = IPAddress.Parse(ipAdress);
             this.port = port;
 
-             this.serverListener = new TcpListener(this.ipAdress, port);
+            this.serverListener = new TcpListener(this.ipAdress, port);
         }
 
         public async Task Start()
         {
-            
+
             this.serverListener.Start();
 
             Console.WriteLine($"Server started on port {port}");
@@ -74,20 +74,30 @@ Content-Type: text/html; charset=UTF-8
             await stream.WriteAsync(responseBytes);
         }
 
-        private  async Task<string> ReadRequest(NetworkStream stream)
+        private async Task<string> ReadRequest(NetworkStream stream)
         {
             byte[] buffer = new byte[1024];
 
             StringBuilder requestBuilder = new StringBuilder();
 
-            while (stream.DataAvailable)
+            int totalBytes = 0;
+        
+            do
             {
                 int bytesRead = await stream.ReadAsync(buffer, 0, 1024);
 
-                requestBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
-            }
+                totalBytes += bytesRead;
 
-            return requestBuilder.ToString();       
+                if (totalBytes > 10 * 1024)
+                {
+                    throw new InvalidOperationException("File to big!");
+                }
+
+                requestBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
+
+            } while (stream.DataAvailable);
+
+            return requestBuilder.ToString();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace MyWebServer.Server.Http
         public string Body { get; private set; }
 
         public static HttpRequest Parse(string request)
+        
         {
             string[] lines = request.Split(NewLine);
 
@@ -50,20 +51,16 @@ namespace MyWebServer.Server.Http
                     break;
                 }
 
-                int indexOfColon = item.IndexOf(":");
+                var headerParts = item.Split(":", 2);
 
-                if (indexOfColon < 0)
+                if (headerParts.Length != 2)
                 {
                     throw new InvalidOperationException("Invalid request");
                 }
 
-                HttpHeader header = new HttpHeader
-                {
-                    Name = item.Substring(0, indexOfColon),
-                    Value = item.Substring(indexOfColon + 1).Trim()
-                };
+               // HttpHeader header = new HttpHeader(headerParts[0], headerParts[1].Trim());            
 
-                headerCollection.Add(header);
+                headerCollection.Add(headerParts[0], headerParts[1].Trim());
 
             }
 

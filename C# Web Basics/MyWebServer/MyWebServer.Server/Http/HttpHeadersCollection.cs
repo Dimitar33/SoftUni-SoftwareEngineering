@@ -16,9 +16,11 @@ namespace MyWebServer.Server.Http
         }
 
         public int Count => headers.Count;
-        public void Add(HttpHeader header)
+        public void Add(string name, string value)
         {
-            this.headers.Add(header.Name, header);
+            var header = new HttpHeader(name, value);
+
+            this.headers.Add(name, header);
         }
     }
 }
