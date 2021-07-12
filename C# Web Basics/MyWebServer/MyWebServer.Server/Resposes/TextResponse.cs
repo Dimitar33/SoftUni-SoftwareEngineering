@@ -10,7 +10,7 @@ namespace MyWebServer.Server.Resposes
 {
     public class TextResponse : HttpResponse
     {
-        public TextResponse(HttpStatusCode statusCode, string text)
+        public TextResponse(string text)
             : base(HttpStatusCode.OK)
         {
             Guard.AgainstNull(text);

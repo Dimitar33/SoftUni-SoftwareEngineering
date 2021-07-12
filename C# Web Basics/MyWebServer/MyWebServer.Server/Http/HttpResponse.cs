@@ -20,5 +20,17 @@ namespace MyWebServer.Server.Http
         public HttpHeadersCollection Headers { get; } = new HttpHeadersCollection();
 
         public string Content { get; init; }
+
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.AppendLine($"HTTP/1.1 {(int)StatusCode} {StatusCode}");
+
+            foreach (var header in Headers)
+            {
+
+            }
+        }
     }
 }
