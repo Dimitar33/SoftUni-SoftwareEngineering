@@ -1,0 +1,65 @@
+﻿@model AddDogViewModel
+
+@{
+    ViewData["Title"] = "Add Dog";
+}
+
+
+<form method="post" class="cal-sm-6">
+    <div class="form-group">
+        <label asp-for="Breed"></label>
+        <select asp-for="Breed" class="form-control" >
+            <option disabled selected> -- select a breed -- </option>
+            <option value="Affenpinscher">Affenpinscher</option>
+            <option value="Basset Hound">Basset Hound</option>
+            <option value="Bloodhound">Bloodhound</option>
+            <option value="Boxer">Boxer</option>
+            <option value="Beagle">Beagle</option>
+            <option value="Bulldog">Bulldog</option>
+            <option value="Bull Terrier">Bull Terrier</option>
+            <option value="Cocker Spaniel">Cocker Spaniel</option>
+            <option value="Chihuahua">Chihuahua</option>
+            <option value="Dachshund">Dachshund</option>
+            <option value="Dalmatian">Dalmatian</option>
+            <option value="Doberman">Doberman</option>
+            <option value="German Shepherd">German Shepherd</option>
+            <option value="Golden Retriever">Golden Retriever</option>
+            <option value="Labrador">Labrador</option>
+            <option value="Mastiff">Mastiff</option>
+            <option value="Pomeranian">Pomeranian</option>
+            <option value="Poodle">Poodle</option>
+            <option value="Pug">Pug</option>
+            <option value="Rottweiler">Rottweiler</option>
+            <option value="Siberian Huskie">Siberian Huskie</option>
+            <option value="Yorkshire Terrier">Yorkshire Terrier</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input  asp-for="Name" class="form-control" type="text" placeholder="Pet's name here…">
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender"></label>
+        <select asp-for="Gender" class="form-control" >
+            <option disabled selected> -- select gender -- </option>
+            <option>Male</option>
+            <option>Female</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" type="text" placeholder="Pet's age here…">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PictureUrl">Picture Url</label>
+        <input asp-for="PictureUrl" class="form-control" type="text" placeholder="Pet's picture url here…">
+    </div>
+    <div class="form-group">
+        <label asp-for="Comment"></label>
+        <textarea asp-for="Comment" class="form-control" rows="3"></textarea>
+    </div>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
