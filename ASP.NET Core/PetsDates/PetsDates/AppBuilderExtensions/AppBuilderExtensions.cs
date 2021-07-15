@@ -25,7 +25,7 @@ namespace PetsDates.AppBuilderExtensions
 
         public static void SeedCatBreeds(PetsDatesDbContext data)
         {
-            if (!data.CatBreeds.Any() && !data.DogBreeds.Any())
+            if (data.CatBreeds.Any())
             {
                 return;
             }
@@ -61,30 +61,34 @@ namespace PetsDates.AppBuilderExtensions
 
         public static void SeedDogBreeds(PetsDatesDbContext data)
         {
+            if (data.DogBreeds.Any())
+            {
+                return;
+            }
             data.DogBreeds.AddRange(new[]
             {
-                new DogBreed{Breed = "Labrador"},
+                new DogBreed{Breed = "Affenpinscher"},
+                new DogBreed{Breed = "Basset Hound"},
+                new DogBreed{Breed = "Beagle"},
+                new DogBreed{Breed = "Bloodhound"},
+                new DogBreed{Breed = "Boxer"},
+                new DogBreed{Breed = "Bull Terrier"},
                 new DogBreed{Breed = "Bulldog"},
+                new DogBreed{Breed = "Chihuahua"},              
+                new DogBreed{Breed = "Cocker Spaniel"},
+                new DogBreed{Breed = "Dachshund"},
+                new DogBreed{Breed = "Dalmatian"},
+                new DogBreed{Breed = "Doberman"},
                 new DogBreed{Breed = "German Shepherd"},
                 new DogBreed{Breed = "Golden Retriever"},
-                new DogBreed{Breed = "Poodle"},
-                new DogBreed{Breed = "Beagle"},
-                new DogBreed{Breed = "Rottweiler"},
-                new DogBreed{Breed = "Dachshund"},
-                new DogBreed{Breed = "Yorkshire Terrier"},
-                new DogBreed{Breed = "Boxer"},
-                new DogBreed{Breed = "Siberian Huskie"},
-                new DogBreed{Breed = "Doberman"},
-                new DogBreed{Breed = "Pomeranian"},
-                new DogBreed{Breed = "Pug"},
-                new DogBreed{Breed = "Cocker Spaniel"},
+                new DogBreed{Breed = "Labrador"},
                 new DogBreed{Breed = "Mastiff"},
-                new DogBreed{Breed = "Chihuahua"},
-                new DogBreed{Breed = "Basset Hound"},
-                new DogBreed{Breed = "Bloodhound"},
-                new DogBreed{Breed = "Dalmatian"},
-                new DogBreed{Breed = "Bull Terrier"},
-                new DogBreed{Breed = "Affenpinscher"},
+                new DogBreed{Breed = "Pomeranian"},
+                new DogBreed{Breed = "Poodle"},
+                new DogBreed{Breed = "Pug"},
+                new DogBreed{Breed = "Rottweiler"},
+                new DogBreed{Breed = "Siberian Huskie"},
+                new DogBreed{Breed = "Yorkshire Terrier"}                           
             });
 
             data.SaveChanges();

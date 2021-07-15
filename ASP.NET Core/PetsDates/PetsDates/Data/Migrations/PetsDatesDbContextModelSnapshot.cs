@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using PetsDates.Data;
 
 namespace PetsDates.Data.Migrations
 {
@@ -122,7 +123,7 @@ namespace PetsDates.Data.Migrations
             modelBuilder.Entity("PetsDates.Data.Models.Dog", b =>
                 {
                     b.HasOne("PetsDates.Data.Models.DogBreed", "Breed")
-                        .WithMany("Cats")
+                        .WithMany("Dogs")
                         .HasForeignKey("DogBreedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -137,7 +138,7 @@ namespace PetsDates.Data.Migrations
 
             modelBuilder.Entity("PetsDates.Data.Models.DogBreed", b =>
                 {
-                    b.Navigation("Cats");
+                    b.Navigation("Dogs");
                 });
 #pragma warning restore 612, 618
         }

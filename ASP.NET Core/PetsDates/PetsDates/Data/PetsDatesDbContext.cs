@@ -8,8 +8,11 @@ using System.Text;
 namespace PetsDates.Data
 {
     public class PetsDatesDbContext : DbContext
-    {
-       // public DbSet<User> Users { get; set; } // might be identity problem
+    {  
+        public PetsDatesDbContext(DbContextOptions<PetsDatesDbContext> options)
+           : base(options)
+        {
+        }
 
         public DbSet<Cat> Cats { get; set; }
         public DbSet<CatBreed> CatBreeds { get; set; }
@@ -17,9 +20,5 @@ namespace PetsDates.Data
         public DbSet<DogBreed> DogBreeds { get; set; }
         public DbSet<Pet> Pets { get; set; }
 
-        public PetsDatesDbContext(DbContextOptions<PetsDatesDbContext> options)
-            : base(options)
-        {
-        }
     }
 }

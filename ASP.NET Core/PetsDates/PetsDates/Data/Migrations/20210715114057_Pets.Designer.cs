@@ -9,7 +9,7 @@ using PetsDates.Data;
 namespace PetsDates.Data.Migrations
 {
     [DbContext(typeof(PetsDatesDbContext))]
-    [Migration("20210714080435_Pets")]
+    [Migration("20210715114057_Pets")]
     partial class Pets
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,7 +125,7 @@ namespace PetsDates.Data.Migrations
             modelBuilder.Entity("PetsDates.Data.Models.Dog", b =>
                 {
                     b.HasOne("PetsDates.Data.Models.DogBreed", "Breed")
-                        .WithMany("Cats")
+                        .WithMany("Dogs")
                         .HasForeignKey("DogBreedId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -140,7 +140,7 @@ namespace PetsDates.Data.Migrations
 
             modelBuilder.Entity("PetsDates.Data.Models.DogBreed", b =>
                 {
-                    b.Navigation("Cats");
+                    b.Navigation("Dogs");
                 });
 #pragma warning restore 612, 618
         }

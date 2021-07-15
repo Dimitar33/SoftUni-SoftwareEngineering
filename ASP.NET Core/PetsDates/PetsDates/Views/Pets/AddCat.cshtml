@@ -14,37 +14,21 @@
             <form method="post" >
                 <h2>Add Cat</h2>
                 <div class="form-group">
-                    <label asp-for="Breed"></label>
-                    <select asp-for="Breed" class="form-control">
-                        <option disabled selected> -- select breed -- </option>
-                        <option value="Abyssinian">Abyssinian</option>
-                        <option value="Balinese-Javanese">Balinese-Javanese</option>
-                        <option value="Bengal">Bengal</option>
-                        <option value="Birman">Birman</option>
-                        <option value="Bombay">Bombay</option>
-                        <option value="Burmese">Burmese</option>
-                        <option value="Chartreux">Chartreux</option>
-                        <option value="Cornish Rex">Cornish Rex</option>
-                        <option value="Devon Rex">Devon Rex</option>
-                        <option value="Egyptian Mau">Egyptian Mau</option>
-                        <option value="Havana Brown">Havana Brown</option>
-                        <option value="Himalayan">Himalayan</option>
-                        <option value="Maine Coon">Maine Coon</option>
-                        <option value="Manx">Manx</option>
-                        <option value="Oriental">Oriental</option>
-                        <option value="Persian">Persian</option>
-                        <option value="Peterbald">Peterbald</option>
-                        <option value="Ragdoll">Ragdoll</option>
-                        <option value="Scottish">Scottish</option>
-                        <option value="Siamese">Siamese</option>
-                        <option value="Siberian">Siberian</option>
-                        <option value="Sphynx">Sphynx</option>
-
+                    <label asp-for="BreedId">Breed</label>
+                    <select asp-for="BreedId" class="form-control">
+                        <option disable selected> -- select breed -- </option>
+                      @foreach (var breed in Model.Breeds)
+                      {
+                          <option value="@breed.Id">@breed.Breed</option>
+                      }
+                     
                     </select>
+                    <span asp-validation-for="BreedId" class="small text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Name"></label>
                     <input asp-for="Name" class="form-control" type="text" placeholder="Pet's name here…">
+                    <span asp-validation-for="Name" class="small text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Gender"></label>
@@ -52,17 +36,19 @@
                         <option disabled selected> -- select gender -- </option>
                         <option>Male</option>
                         <option>Female</option>
-
                     </select>
+                    <span asp-validation-for="Gender" class="small text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Age"></label>
                     <input asp-for="Age" class="form-control" type="text" placeholder="Pet's age here…">
+                    <span asp-validation-for="Age" class="small text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="PictureUrl">Picture Url</label>
                     <input asp-for="PictureUrl" class="form-control" type="text" placeholder="Pet's picture url here…">
+                    <span asp-validation-for="PictureUrl" class="small text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Comment">Comment</label>
