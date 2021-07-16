@@ -12,7 +12,7 @@ namespace PetsDates.Data.Models
         public string Name { get; set; }
 
         [Required]
-        public int? Age { get; set; }
+        public double? Age { get; set; }
 
         [Required]
         public string Gender { get; set; }

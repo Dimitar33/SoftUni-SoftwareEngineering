@@ -1,0 +1,8 @@
+﻿@model AllPetsQueryModel
+
+@foreach (var pet in Model.AllPets)
+{
+    <div class="card">
+        <img src="@pet.Picture" alt="Pet" />
+    </div>
+}
