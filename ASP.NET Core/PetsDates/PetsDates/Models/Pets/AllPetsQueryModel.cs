@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PetsDates.Models.Pets
 {
     public class AllPetsQueryModel
     {
+        public string Breed { get; set; }
+        public string Gender { get; set; }
+        public string SearchTerm { get; set; }
+        public PetSorting Sorting { get; set; }
         public IEnumerable<PetsListingViewModel> AllPets { get; set; } 
             = new List<PetsListingViewModel>();
+
+        public IEnumerable<PetBreedViewModel> Breeds { get; set; }
+            = new List<PetBreedViewModel>();
     }
 }

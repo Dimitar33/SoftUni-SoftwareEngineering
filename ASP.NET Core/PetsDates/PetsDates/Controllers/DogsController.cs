@@ -17,9 +17,23 @@ namespace PetsDates.Controllers
             this.data = data;
         }
 
-        public IActionResult AllDogs()
+        public IActionResult AllDogs([FromQuery]AllPetsQueryModel query)
         {
-            return View();
+            var dogsQuery = data.Dogs.AsQueryable();
+
+            var dogs = dogsQuery.Select(x => new PetsListingViewModel
+            {
+                Id = x.Id,
+                Breed = x.Breed.Breed,
+                Gender = x.Gender,
+                Name = x.Name,
+                Age = x.Age,
+                Picture = x.PictureUrl
+            });
+
+            query.AllPets = dogs;
+
+            return View(query);
         }
 
         public IActionResult AddDog()

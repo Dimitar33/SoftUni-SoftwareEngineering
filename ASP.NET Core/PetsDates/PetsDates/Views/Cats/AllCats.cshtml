@@ -1,22 +1,57 @@
-﻿
-@model AllPetsQueryModel
-asdasdasdasdasd
+﻿@model AllPetsQueryModel
+
+
+<form method="get">
+    <div class="row">
+
+        <div class="form-group col-3">
+            <label asp-for="Breed"></label>
+            <select asp-for="Breed" class="form-control">
+                <option value=""> All </option>
+                @foreach (var breed in Model.Breeds)
+                {
+                    <option value="@breed.Id">@breed.Breed</option>
+                }
+            </select>
+        </div>
+        @*<div class=" form-group col-3">
+            <label>Gender</label>
+            <select class="form-control">
+                <option > All </option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>*@
+        <div class="form-group col-3">
+            <label asp-for="Sorting"></label>
+            <select asp-for="Sorting" class="form-control">
+                <option value="0">DateCreated</option>
+                <option value="1">Age</option>
+                <option value="2">Gender</option>
+            </select>
+        </div>
+        <div class="form-group col-3">
+            <label asp-for="SearchTerm">Search</label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="Search" />
+        </div>
+    </div>
+</form>
+
 
 <div class="row">
     @foreach (var pet in Model.AllPets)
     {
-
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="card mb-2">
-                <img class="card-img-top" src="@pet.Picture" alt="@pet.Breed - @pet.Gender" />
+                <img class="card-img-top" src="@pet.Picture" alt="@pet.Breed @pet.Gender" />
                 <div class="card-body text-center">
                     <h5 class="card-text">
-                        @pet.Breed @pet.Gender @pet.Age 
+                        @pet.Breed @pet.Gender @pet.Age
                     </h5>
                     <a asp-controller="Cats"
                        asp-action="Details"
                        asp-route-id="@pet.Id" class="btn">
-                       More Info
+                        See More
                     </a>
                 </div>
             </div>

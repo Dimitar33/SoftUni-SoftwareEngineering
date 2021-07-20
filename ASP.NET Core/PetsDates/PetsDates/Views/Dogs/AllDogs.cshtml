@@ -1,8 +1,22 @@
 ﻿@model AllPetsQueryModel
 
-@foreach (var pet in Model.AllPets)
-{
-    <div class="card">
-        <img src="@pet.Picture" alt="Pet" />
-    </div>
-}
+<div class="row">
+    @foreach (var pet in Model.AllPets)
+    {
+    <div class="col-4">
+        <div class="card mb-2">
+            <img src="@pet.Picture" alt="@pet.Breed - @pet.Age" />
+            <div class="card-body">
+                <h5 class="text-center">
+                    @pet.Breed @pet.Gender @pet.Age
+                </h5>
+                <a asp-controller="Dog"
+                   asp-action="AllDogs"
+                   asp-route-id="@pet.Picture">
+                   See More
+                </a>
+            </div>
+        </div>
+    </div>      
+    }
+</div>

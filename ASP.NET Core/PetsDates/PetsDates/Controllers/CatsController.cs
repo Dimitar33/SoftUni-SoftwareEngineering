@@ -21,6 +21,28 @@ namespace PetsDates.Controllers
         {
             var catsQueary = data.Cats.AsQueryable();
 
+            if (!string.IsNullOrWhiteSpace(query.Breed))
+            {
+                catsQueary = catsQueary.Where(x => 
+                     x.Breed.Breed == query.Breed);
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Gender))
+            {
+                catsQueary = catsQueary.Where(x => x.Gender == query.Gender);
+            }
+            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+            {
+                catsQueary = catsQueary.Where(x =>
+                (x.Breed.Breed + " " + x.Gender).ToLower().Contains(query.SearchTerm.ToLower()));
+            }
+            catsQueary = query.Sorting switch
+            {
+                PetSorting.Age => catsQueary.OrderByDescending(x => x.Age),
+                PetSorting.Gender => catsQueary.OrderBy(x => x.Gender),
+                PetSorting.DateCreated => catsQueary.OrderByDescending(x => x.Id)
+            };
+
             var cats
                 = catsQueary.Select(x => new PetsListingViewModel
             {
@@ -32,6 +54,7 @@ namespace PetsDates.Controllers
                 Picture = x.PictureUrl
             }).ToList();
 
+            query.Breeds = GetCatBreeds().OrderBy(x => x.Breed);
             query.AllPets = cats;
 
             return View(query);
