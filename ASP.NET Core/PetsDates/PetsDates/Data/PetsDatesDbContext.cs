@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PetsDates.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PetsDates.Data
 {

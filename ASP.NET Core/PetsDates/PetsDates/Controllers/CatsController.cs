@@ -44,8 +44,12 @@ namespace PetsDates.Controllers
                 PetSorting.DateCreated => catsQueary.OrderByDescending(x => x.Id)
             };
 
-            var cats
-                = catsQueary.Select(x => new PetsListingViewModel
+            var catsCount = catsQueary.Count();
+
+            var cats = catsQueary
+                .Skip((query.CurrentPage - 1) * AllPetsQueryModel.PetsPerPage)
+                .Take(AllPetsQueryModel.PetsPerPage)
+                .Select(x => new PetsListingViewModel
             {
                 Id = x.Id,
                 Breed = x.Breed.Breed,
@@ -55,6 +59,7 @@ namespace PetsDates.Controllers
                 Picture = x.PictureUrl
             }).ToList();
 
+            query.AllCatsCount = catsCount;
             query.Breeds = GetCatBreeds().OrderBy(x => x.Breed);
             query.AllPets = cats;
 
