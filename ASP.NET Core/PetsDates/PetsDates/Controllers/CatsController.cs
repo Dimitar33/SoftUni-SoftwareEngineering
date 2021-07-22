@@ -31,15 +31,16 @@ namespace PetsDates.Controllers
             {
                 catsQueary = catsQueary.Where(x => x.Gender == query.Gender);
             }
+
             if (!string.IsNullOrWhiteSpace(query.SearchTerm))
             {
                 catsQueary = catsQueary.Where(x =>
-                (x.Breed.Breed + " " + x.Gender).ToLower().Contains(query.SearchTerm.ToLower()));
+                (x.Breed.Breed + " " + x.Gender).ToLower().Contains(query.SearchTerm.ToLower()) || 
+                x.Comment.ToLower().Contains(query.SearchTerm.ToLower()));
             }
             catsQueary = query.Sorting switch
             {
-                PetSorting.Age => catsQueary.OrderByDescending(x => x.Age),
-                PetSorting.Gender => catsQueary.OrderBy(x => x.Gender),
+                PetSorting.Age => catsQueary.OrderBy(x => x.Age),
                 PetSorting.DateCreated => catsQueary.OrderByDescending(x => x.Id)
             };
 

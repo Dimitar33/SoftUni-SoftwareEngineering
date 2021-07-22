@@ -21,6 +21,32 @@ namespace PetsDates.Controllers
         {
             var dogsQuery = data.Dogs.AsQueryable();
 
+            if (!string.IsNullOrWhiteSpace(query.Breed))
+            {
+                dogsQuery = dogsQuery.Where(x => x.Breed.Breed == query.Breed);
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.Gender))
+            {
+                dogsQuery = dogsQuery.Where(x => x.Gender == query.Gender);
+            }
+
+            dogsQuery = query.Sorting switch
+            {
+                PetSorting.DateCreated => dogsQuery
+                        .OrderByDescending(x => x.Id),
+                PetSorting.Age => dogsQuery.OrderBy(x => x.Age)
+            };
+
+            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
+            {
+                dogsQuery = dogsQuery.Where(x =>
+                (x.Breed.Breed + " " + x.Gender + " " + x.Age)
+                .ToLower()
+                .Contains(query.SearchTerm.ToLower()) || 
+                x.Comment.ToLower().Contains(query.SearchTerm.ToLower()));
+            }
+
             var dogs = dogsQuery.Select(x => new PetsListingViewModel
             {
                 Id = x.Id,
@@ -31,6 +57,7 @@ namespace PetsDates.Controllers
                 Picture = x.PictureUrl
             });
 
+            query.Breeds = GetDogBreeds().OrderBy(x => x.Breed);
             query.AllPets = dogs;
 
             return View(query);
