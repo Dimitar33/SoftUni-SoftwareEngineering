@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetsDates.Data;
 using PetsDates.Data.Models;
-using PetsDates.Models.Dogs;
 using PetsDates.Models.Pets;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +46,12 @@ namespace PetsDates.Controllers
                 x.Comment.ToLower().Contains(query.SearchTerm.ToLower()));
             }
 
-            var dogs = dogsQuery.Select(x => new PetsListingViewModel
+            var dogsCount = dogsQuery.Count();
+
+            var dogs = dogsQuery
+                .Skip((query.CurrentPage - 1) * AllPetsQueryModel.PetsPerPage)
+                .Take(AllPetsQueryModel.PetsPerPage)
+                .Select(x => new PetsListingViewModel
             {
                 Id = x.Id,
                 Breed = x.Breed.Breed,
@@ -57,6 +61,8 @@ namespace PetsDates.Controllers
                 Picture = x.PictureUrl
             });
 
+
+            query.AllDogsCount = dogsCount;
             query.Breeds = GetDogBreeds().OrderBy(x => x.Breed);
             query.AllPets = dogs;
 

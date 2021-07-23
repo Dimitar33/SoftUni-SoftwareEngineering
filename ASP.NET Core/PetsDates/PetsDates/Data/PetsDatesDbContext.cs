@@ -1,15 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PetsDates.Data.Models;
 
 namespace PetsDates.Data
 {
-    public class PetsDatesDbContext : DbContext
+    public class PetsDatesDbContext : IdentityDbContext<User>
     {  
         public PetsDatesDbContext(DbContextOptions<PetsDatesDbContext> options)
            : base(options)
         {
         }
-
+       
         public DbSet<Cat> Cats { get; set; }
         public DbSet<CatBreed> CatBreeds { get; set; }
         public DbSet<Dog> Dogs { get; set; }

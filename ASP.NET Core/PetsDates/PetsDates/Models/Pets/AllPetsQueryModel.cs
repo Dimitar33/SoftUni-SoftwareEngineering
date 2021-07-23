@@ -11,7 +11,7 @@ namespace PetsDates.Models.Pets
         public string SearchTerm { get; set; }
         public PetSorting Sorting { get; set; }
         public int AllCatsCount { get; set; }
-        public int AllDogs{ get; set; }
+        public int AllDogsCount{ get; set; }
         public IEnumerable<PetsListingViewModel> AllPets { get; set; } 
             = new List<PetsListingViewModel>();
 
