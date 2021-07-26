@@ -17,9 +17,9 @@ namespace PetsDates.Data.Models
         [MaxLength(UserNameMaxLenght)]
         public string SecondName { get; set; }
 
-     
+        public string Password { get; set; }
 
-  
+
 
         public ICollection<Pet> Pets { get; set; } = new List<Pet>();
     }
