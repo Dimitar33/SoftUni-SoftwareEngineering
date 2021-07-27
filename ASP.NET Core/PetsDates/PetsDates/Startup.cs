@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PetsDates.AppBuilderExtensions;
 using PetsDates.Data;
-
+using PetsDates.Data.Models;
 
 namespace PetsDates
 {
@@ -23,13 +24,19 @@ namespace PetsDates
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<PetsDatesDbContext>(options =>
+            services
+                .AddDbContext<PetsDatesDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")))
                 .AddDatabaseDeveloperPageExceptionFilter()
-                .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PetsDatesDbContext>();
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
