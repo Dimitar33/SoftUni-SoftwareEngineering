@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetsDates.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using static PetsDates.Data.DataConstants;
@@ -31,5 +32,7 @@ namespace PetsDates.Models.Pets
 
         public IEnumerable<PetBreedViewModel> Breeds { get; set; }
             = new List<PetBreedViewModel>();
+
+
     }
 }

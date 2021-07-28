@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Models.Pets;
@@ -69,6 +70,7 @@ namespace PetsDates.Controllers
             return View(query);
         }
 
+        [Authorize]
         public IActionResult AddDog()
         {
             return View(new AddPetViewModel
@@ -78,6 +80,7 @@ namespace PetsDates.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddDog(AddPetViewModel dog)
         {
             if (!ModelState.IsValid)

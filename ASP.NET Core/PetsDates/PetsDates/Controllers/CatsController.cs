@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Models.Pets;
@@ -66,7 +67,7 @@ namespace PetsDates.Controllers
             return View(query);
         }
 
-
+        [Authorize]
         public IActionResult AddCat()
         {
             return View(new AddPetViewModel
@@ -76,6 +77,7 @@ namespace PetsDates.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult AddCat(AddPetViewModel cat)
         {
             if (!ModelState.IsValid)
@@ -92,7 +94,7 @@ namespace PetsDates.Controllers
                 Age = cat.Age,
                 Gender = cat.Gender,
                 PictureUrl = cat.PictureUrl,
-                Comment = cat.Comment,
+                Comment = cat.Comment,                
             };
 
             data.Cats.Add(curentCat);

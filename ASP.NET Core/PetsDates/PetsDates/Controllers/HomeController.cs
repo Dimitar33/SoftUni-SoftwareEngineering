@@ -52,17 +52,23 @@ namespace PetsDates.Controllers
 
             for (int i = 0; i < count; i++)
             {
-                pets.Add(cats[i]);
-                pets.Add(dogs[i]);
+                if (i < cats.Count())
+                {
+                    pets.Add(cats[i]);
+                }
+                if (i < dogs.Count())
+                {
+                    pets.Add(dogs[i]);
+                }
             }
 
-            return View( new IndexViewModel
+            return View(new IndexViewModel
             {
                 Pets = pets
             });
         }
 
-      
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

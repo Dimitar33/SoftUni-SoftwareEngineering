@@ -29,7 +29,13 @@ namespace PetsDates
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")))
                 .AddDatabaseDeveloperPageExceptionFilter()
-                .AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultIdentity<User>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PetsDatesDbContext>();
 
@@ -42,7 +48,7 @@ namespace PetsDates
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-             app.PrepareDatabase();
+            app.PrepareDatabase();
 
             if (env.IsDevelopment())
             {
@@ -67,7 +73,7 @@ namespace PetsDates
                 endpoints.MapRazorPages();
             });
 
-           
+
         }
     }
 }

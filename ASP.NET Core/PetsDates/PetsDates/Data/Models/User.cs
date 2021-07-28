@@ -15,12 +15,10 @@ namespace PetsDates.Data.Models
 
         [Required]
         [MaxLength(UserNameMaxLenght)]
-        public string SecondName { get; set; }
+        public string LastName { get; set; }
+
+        public IEnumerable<Pet> Pets { get; set; } = new List<Pet>();
 
 
-
-
-
-        public ICollection<Pet> Pets { get; set; } = new List<Pet>();
     }
 }
