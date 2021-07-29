@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using PetsDates.Services.Pets;
+using System.Collections.Generic;
 
 namespace PetsDates.Models.Pets
 {
@@ -12,10 +13,10 @@ namespace PetsDates.Models.Pets
         public PetSorting Sorting { get; set; }
         public int AllCatsCount { get; set; }
         public int AllDogsCount{ get; set; }
-        public IEnumerable<PetsListingViewModel> AllPets { get; set; } 
-            = new List<PetsListingViewModel>();
+        public IEnumerable<PetsListingServiceModel> AllPets { get; set; } 
+            = new List<PetsListingServiceModel>();
 
-        public IEnumerable<PetBreedViewModel> Breeds { get; set; }
-            = new List<PetBreedViewModel>();
+        public IEnumerable<PetsBreedServiceModel> Breeds { get; set; }
+            = new List<PetsBreedServiceModel>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using PetsDates.Data.Models;
+using PetsDates.Services.Pets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -30,8 +31,8 @@ namespace PetsDates.Models.Pets
 
         public int BreedId { get; set; }
 
-        public IEnumerable<PetBreedViewModel> Breeds { get; set; }
-            = new List<PetBreedViewModel>();
+        public IEnumerable<PetsBreedServiceModel> Breeds { get; set; }
+            = new List<PetsBreedServiceModel>();
 
 
     }

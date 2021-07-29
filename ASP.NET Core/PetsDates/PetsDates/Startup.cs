@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using PetsDates.AppBuilderExtensions;
 using PetsDates.Data;
 using PetsDates.Data.Models;
+using PetsDates.Services.Pets;
 
 namespace PetsDates
 {
@@ -28,8 +29,9 @@ namespace PetsDates
                 .AddDbContext<PetsDatesDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")))
-                .AddDatabaseDeveloperPageExceptionFilter()
-                .AddDefaultIdentity<User>(options =>
+                .AddDatabaseDeveloperPageExceptionFilter();
+                
+                services.AddDefaultIdentity<User>(options =>
                 {
                     options.SignIn.RequireConfirmedAccount = false;
                     options.Password.RequireDigit = false;
@@ -38,6 +40,8 @@ namespace PetsDates
                 })
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PetsDatesDbContext>();
+
+            services.AddTransient<IPetsServices, PetsServices>();
 
             services.AddControllersWithViews(options =>
             {

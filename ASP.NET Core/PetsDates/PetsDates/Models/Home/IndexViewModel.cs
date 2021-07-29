@@ -1,11 +1,12 @@
 ﻿using PetsDates.Models.Pets;
+using PetsDates.Services.Pets;
 using System.Collections.Generic;
 
 namespace PetsDates.Models.Home
 {
     public class IndexViewModel
     {
-        public List<PetsListingViewModel> Pets { get; set; }
-        = new List<PetsListingViewModel>();
+        public List<PetsListingServiceModel> Pets { get; set; }
+        = new List<PetsListingServiceModel>();
     }
 }

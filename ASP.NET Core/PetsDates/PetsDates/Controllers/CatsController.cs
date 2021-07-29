@@ -3,66 +3,35 @@ using Microsoft.AspNetCore.Mvc;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Models.Pets;
-using System.Collections.Generic;
+using PetsDates.Services.Pets;
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using System.Security.Claims;
 
 namespace PetsDates.Controllers
 {
     public class CatsController : Controller
     {
+        private readonly IPetsServices petServices;
 
-        private readonly PetsDatesDbContext data;
-
-        public CatsController(PetsDatesDbContext data)
-        {
-            this.data = data;
+        public CatsController( IPetsServices petServices)
+        {     
+            this.petServices = petServices;
         }
 
         public IActionResult AllCats([FromQuery]AllPetsQueryModel query)
         {
-            var catsQueary = data.Cats.AsQueryable();
+            var catsQuery = petServices.AllCats(
+                query.Breed, 
+                query.Gender, 
+                query.SearchTerm, 
+                query.Sorting, 
+                query.CurrentPage, 
+                AllPetsQueryModel.PetsPerPage);
 
-            if (!string.IsNullOrWhiteSpace(query.Breed))
-            {
-                catsQueary = catsQueary.Where(x => 
-                     x.Breed.Breed == query.Breed);
-            }
-
-            if (!string.IsNullOrWhiteSpace(query.Gender))
-            {
-                catsQueary = catsQueary.Where(x => x.Gender == query.Gender);
-            }
-
-            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-            {
-                catsQueary = catsQueary.Where(x =>
-                (x.Breed.Breed + " " + x.Gender).ToLower().Contains(query.SearchTerm.ToLower()) || 
-                x.Comment.ToLower().Contains(query.SearchTerm.ToLower()));
-            }
-            catsQueary = query.Sorting switch
-            {
-                PetSorting.Age => catsQueary.OrderBy(x => x.Age),
-                PetSorting.DateCreated => catsQueary.OrderByDescending(x => x.Id)
-            };
-
-            var catsCount = catsQueary.Count();
-
-            var cats = catsQueary
-                .Skip((query.CurrentPage - 1) * AllPetsQueryModel.PetsPerPage)
-                .Take(AllPetsQueryModel.PetsPerPage)
-                .Select(x => new PetsListingViewModel
-            {
-                Id = x.Id,
-                Breed = x.Breed.Breed,
-                Name = x.Name,
-                Age = x.Age,
-                Gender = x.Gender,
-                Picture = x.PictureUrl
-            }).ToList();
-
-            query.AllCatsCount = catsCount;
-            query.Breeds = GetCatBreeds().OrderBy(x => x.Breed);
-            query.AllPets = cats;
+            query.AllCatsCount = catsQuery.TotalPets;
+            query.Breeds = petServices.GetCatBreeds().ToList();
+            query.AllPets = catsQuery.Pets;
 
             return View(query);
         }
@@ -72,7 +41,7 @@ namespace PetsDates.Controllers
         {
             return View(new AddPetViewModel
             {
-                Breeds = GetCatBreeds().OrderBy(x => x.Breed)
+                Breeds = petServices.GetCatBreeds()
             });
         }
 
@@ -82,35 +51,25 @@ namespace PetsDates.Controllers
         {
             if (!ModelState.IsValid)
             {
-                cat.Breeds = GetCatBreeds().OrderBy(x => x.Breed);
+                cat.Breeds = petServices.GetCatBreeds();
 
                 return View(cat);
             }
 
-            var curentCat = new Cat
-            {
-                CatBreedId = cat.BreedId,
-                Name = cat.Name,
-                Age = cat.Age,
-                Gender = cat.Gender,
-                PictureUrl = cat.PictureUrl,
-                Comment = cat.Comment,                
-            };
+            var ownerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            data.Cats.Add(curentCat);
-            data.SaveChanges();
+            this.petServices.AddCat(
+                cat.BreedId,
+                cat.Gender,
+                cat.Age,
+                cat.Name,
+                cat.PictureUrl,
+                cat.Comment,
+                ownerId);    
 
-            return RedirectToAction(nameof(AddCat));
+            return RedirectToAction(nameof(AllCats));
         }
 
-        private IEnumerable<PetBreedViewModel> GetCatBreeds()
-        {
-            return data.CatBreeds.Select(x => new PetBreedViewModel
-            {
-                Id = x.Id,
-                Breed = x.Breed
-
-            }).ToList();
-        }
+        
     }
 }

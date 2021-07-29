@@ -5,6 +5,5 @@ namespace PetsDates.Models.Pets
     {
         DateCreated = 0,
         Age = 1
-      
     }
 }

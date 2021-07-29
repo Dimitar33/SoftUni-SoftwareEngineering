@@ -3,6 +3,7 @@ using PetsDates.Data;
 using PetsDates.Models;
 using PetsDates.Models.Home;
 using PetsDates.Models.Pets;
+using PetsDates.Services.Pets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,7 +25,7 @@ namespace PetsDates.Controllers
             var cats = data.Cats
                 .OrderByDescending(x => x.Id)
                 .Take(5)
-                .Select(x => new PetsListingViewModel
+                .Select(x => new PetsListingServiceModel
                 {
                     Id = x.Id,
                     Breed = x.Breed.Breed,
@@ -37,7 +38,7 @@ namespace PetsDates.Controllers
             var dogs = data.Dogs
                 .OrderByDescending(x => x.Id)
                 .Take(5)
-                .Select(x => new PetsListingViewModel
+                .Select(x => new PetsListingServiceModel
                 {
                     Id = x.Id,
                     Breed = x.Breed.Breed,
@@ -47,7 +48,7 @@ namespace PetsDates.Controllers
                     Picture = x.PictureUrl
                 }).ToList();
 
-            var pets = new List<PetsListingViewModel>();
+            var pets = new List<PetsListingServiceModel>();
             var count = Math.Ceiling((double)(cats.Count() + dogs.Count()) / 2);
 
             for (int i = 0; i < count; i++)

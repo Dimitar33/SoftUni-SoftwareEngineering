@@ -3,69 +3,36 @@ using Microsoft.AspNetCore.Mvc;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Models.Pets;
+using PetsDates.Services.Pets;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 
 namespace PetsDates.Controllers
 {
     public class DogsController : Controller
     {
-        private readonly PetsDatesDbContext data;
+        private readonly IPetsServices petsServices;
 
-        public DogsController(PetsDatesDbContext data)
+        public DogsController(IPetsServices petsServices)
         {
-            this.data = data;
+            this.petsServices = petsServices;
         }
 
-        public IActionResult AllDogs([FromQuery]AllPetsQueryModel query)
+        public IActionResult AllDogs([FromQuery] AllPetsQueryModel query)
         {
-            var dogsQuery = data.Dogs.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(query.Breed))
-            {
-                dogsQuery = dogsQuery.Where(x => x.Breed.Breed == query.Breed);
-            }
+            var dogsQueri = petsServices.AllDogs(
+                query.Breed,
+                query.Gender,
+                query.SearchTerm,
+                query.Sorting,
+                query.CurrentPage,
+                AllPetsQueryModel.PetsPerPage);
 
-            if (!string.IsNullOrWhiteSpace(query.Gender))
-            {
-                dogsQuery = dogsQuery.Where(x => x.Gender == query.Gender);
-            }
-
-            dogsQuery = query.Sorting switch
-            {
-                PetSorting.DateCreated => dogsQuery
-                        .OrderByDescending(x => x.Id),
-                PetSorting.Age => dogsQuery.OrderBy(x => x.Age)
-            };
-
-            if (!string.IsNullOrWhiteSpace(query.SearchTerm))
-            {
-                dogsQuery = dogsQuery.Where(x =>
-                (x.Breed.Breed + " " + x.Gender + " " + x.Age)
-                .ToLower()
-                .Contains(query.SearchTerm.ToLower()) || 
-                x.Comment.ToLower().Contains(query.SearchTerm.ToLower()));
-            }
-
-            var dogsCount = dogsQuery.Count();
-
-            var dogs = dogsQuery
-                .Skip((query.CurrentPage - 1) * AllPetsQueryModel.PetsPerPage)
-                .Take(AllPetsQueryModel.PetsPerPage)
-                .Select(x => new PetsListingViewModel
-            {
-                Id = x.Id,
-                Breed = x.Breed.Breed,
-                Gender = x.Gender,
-                Name = x.Name,
-                Age = x.Age,
-                Picture = x.PictureUrl
-            });
-
-
-            query.AllDogsCount = dogsCount;
-            query.Breeds = GetDogBreeds().OrderBy(x => x.Breed);
-            query.AllPets = dogs;
+            query.AllDogsCount = dogsQueri.TotalPets;
+            query.Breeds = petsServices.GetDogBreeds();
+            query.AllPets = dogsQueri.Pets;
 
             return View(query);
         }
@@ -75,7 +42,7 @@ namespace PetsDates.Controllers
         {
             return View(new AddPetViewModel
             {
-                Breeds = GetDogBreeds().OrderBy(x => x.Breed)
+                Breeds = petsServices.GetDogBreeds()
             });
         }
 
@@ -85,35 +52,25 @@ namespace PetsDates.Controllers
         {
             if (!ModelState.IsValid)
             {
-                dog.Breeds = GetDogBreeds().OrderBy(x => x.Breed);
+                dog.Breeds = petsServices.GetDogBreeds();
 
                 return View(dog);
             }
 
-            var curentDog = new Dog
-            {
-                Name = dog.Name,
-                Age = dog.Age,
-                DogBreedId = dog.BreedId,
-                Gender = dog.Gender,
-                PictureUrl = dog.PictureUrl,
-                Comment = dog.Comment,
-            };
+            var ownerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            data.Dogs.Add(curentDog);
-            data.SaveChanges();
+            petsServices.AddDog(
+                dog.BreedId,
+                dog.Gender,
+                dog.Age,
+                dog.Name,
+                dog.PictureUrl,
+                dog.Comment,
+                ownerId);
 
             return RedirectToAction(nameof(AddDog));
         }
 
-        private IEnumerable<PetBreedViewModel> GetDogBreeds()
-        {
-            return data.DogBreeds.Select(x => new PetBreedViewModel
-            {
-                Id = x.Id,
-                Breed = x.Breed
 
-            }).ToList();
-        }
     }
 }
