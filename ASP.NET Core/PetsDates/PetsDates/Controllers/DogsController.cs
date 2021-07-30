@@ -1,37 +1,34 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PetsDates.Data;
-using PetsDates.Data.Models;
 using PetsDates.Models.Pets;
-using PetsDates.Services.Pets;
-using System.Collections.Generic;
-using System.Linq;
+using PetsDates.Services.Pets.DogsServices;
 using System.Security.Claims;
 
 namespace PetsDates.Controllers
 {
     public class DogsController : Controller
     {
-        private readonly IPetsServices petsServices;
+        private readonly IDogServices dogServices;
 
-        public DogsController(IPetsServices petsServices)
+        public DogsController(IDogServices petsServices)
         {
-            this.petsServices = petsServices;
+            this.dogServices = petsServices;
         }
 
         public IActionResult AllDogs([FromQuery] AllPetsQueryModel query)
         {
 
-            var dogsQueri = petsServices.AllDogs(
+            var dogsQueri = dogServices.AllDogs(
                 query.Breed,
                 query.Gender,
+                query.Purpose,
                 query.SearchTerm,
                 query.Sorting,
                 query.CurrentPage,
                 AllPetsQueryModel.PetsPerPage);
 
             query.AllDogsCount = dogsQueri.TotalPets;
-            query.Breeds = petsServices.GetDogBreeds();
+            query.Breeds = dogServices.GetDogBreeds();
             query.AllPets = dogsQueri.Pets;
 
             return View(query);
@@ -42,7 +39,7 @@ namespace PetsDates.Controllers
         {
             return View(new AddPetViewModel
             {
-                Breeds = petsServices.GetDogBreeds()
+                Breeds = dogServices.GetDogBreeds()
             });
         }
 
@@ -52,18 +49,20 @@ namespace PetsDates.Controllers
         {
             if (!ModelState.IsValid)
             {
-                dog.Breeds = petsServices.GetDogBreeds();
+                dog.Breeds = dogServices.GetDogBreeds();
 
                 return View(dog);
             }
 
             var ownerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            petsServices.AddDog(
+            dogServices.AddDog(
                 dog.BreedId,
                 dog.Gender,
                 dog.Age,
                 dog.Name,
+                dog.Purpose,
+                dog.Price,
                 dog.PictureUrl,
                 dog.Comment,
                 ownerId);

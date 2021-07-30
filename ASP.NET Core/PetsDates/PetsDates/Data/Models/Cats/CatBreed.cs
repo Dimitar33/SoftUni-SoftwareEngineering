@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace PetsDates.Data.Models
+namespace PetsDates.Data.Models.Cats
 {
     public class CatBreed
     {

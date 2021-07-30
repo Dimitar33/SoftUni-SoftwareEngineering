@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetsDates.Data.Migrations
 {
-    public partial class Users : Migration
+    public partial class Pets : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -190,6 +190,8 @@ namespace PetsDates.Data.Migrations
                     Age = table.Column<double>(type: "float", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Purpose = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),

@@ -24,10 +24,15 @@ namespace PetsDates.Models.Pets
         public string Gender { get; set; }
 
         [Required]
+        public int Purpose { get; set; }
+
+        [Required]
         [Url]
         public string PictureUrl { get; set; }
 
         public string Comment { get; set; }
+
+        public double? Price { get; set; }
 
         public int BreedId { get; set; }
 

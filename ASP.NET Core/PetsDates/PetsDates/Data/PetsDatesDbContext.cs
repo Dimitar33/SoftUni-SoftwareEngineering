@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PetsDates.Data.Models.Dogs;
+using PetsDates.Data.Models.Cats;
 using PetsDates.Data.Models;
 
 namespace PetsDates.Data

@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PetsDates.Data;
-using PetsDates.Data.Models;
+using PetsDates.Data.Models.Dogs;
+using PetsDates.Data.Models.Cats;
 using System.Linq;
 
 namespace PetsDates.AppBuilderExtensions

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Models.Pets;
-using PetsDates.Services.Pets;
+using PetsDates.Services.Pets.CatsServices;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
@@ -12,25 +12,26 @@ namespace PetsDates.Controllers
 {
     public class CatsController : Controller
     {
-        private readonly IPetsServices petServices;
+        private readonly ICatServices catServices;
 
-        public CatsController( IPetsServices petServices)
+        public CatsController(ICatServices petServices)
         {     
-            this.petServices = petServices;
+            this.catServices = petServices;
         }
 
         public IActionResult AllCats([FromQuery]AllPetsQueryModel query)
         {
-            var catsQuery = petServices.AllCats(
+            var catsQuery = catServices.AllCats(
                 query.Breed, 
                 query.Gender, 
+                query.Purpose,
                 query.SearchTerm, 
                 query.Sorting, 
                 query.CurrentPage, 
                 AllPetsQueryModel.PetsPerPage);
 
             query.AllCatsCount = catsQuery.TotalPets;
-            query.Breeds = petServices.GetCatBreeds().ToList();
+            query.Breeds = catServices.GetCatBreeds().ToList();
             query.AllPets = catsQuery.Pets;
 
             return View(query);
@@ -41,7 +42,7 @@ namespace PetsDates.Controllers
         {
             return View(new AddPetViewModel
             {
-                Breeds = petServices.GetCatBreeds()
+                Breeds = catServices.GetCatBreeds()
             });
         }
 
@@ -51,18 +52,20 @@ namespace PetsDates.Controllers
         {
             if (!ModelState.IsValid)
             {
-                cat.Breeds = petServices.GetCatBreeds();
+                cat.Breeds = catServices.GetCatBreeds();
 
                 return View(cat);
             }
 
             var ownerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            this.petServices.AddCat(
+            this.catServices.AddCat(
                 cat.BreedId,
                 cat.Gender,
                 cat.Age,
                 cat.Name,
+                cat.Purpose,
+                cat.Price,
                 cat.PictureUrl,
                 cat.Comment,
                 ownerId);    

@@ -10,6 +10,8 @@ using PetsDates.AppBuilderExtensions;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Services.Pets;
+using PetsDates.Services.Pets.CatsServices;
+using PetsDates.Services.Pets.DogsServices;
 
 namespace PetsDates
 {
@@ -41,7 +43,9 @@ namespace PetsDates
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PetsDatesDbContext>();
 
-            services.AddTransient<IPetsServices, PetsServices>();
+            services
+                .AddTransient<IDogServices, DogServices>()
+                .AddTransient<ICatServices, CatServices>();
 
             services.AddControllersWithViews(options =>
             {

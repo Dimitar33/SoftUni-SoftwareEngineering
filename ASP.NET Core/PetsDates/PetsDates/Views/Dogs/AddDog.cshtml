@@ -43,7 +43,21 @@
                     <input asp-for="Age" class="form-control" type="text" placeholder="Pet's age here…">
                     <span asp-validation-for="Age" class="small text-danger"></span>
                 </div>
-
+                <div class="form-group">
+                    <label asp-for="Purpose"></label>
+                    <select asp-for="Purpose" class="form-control">
+                        <option disabled selected> -- select purpose -- </option>
+                        <option value="1">Breeding</option>
+                        <option value="2">Adoption</option>
+                        <option value="3">Sell</option>
+                    </select>
+                    <span asp-validation-for="Purpose" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" type="text" placeholder="-- price is optional --">
+                    <span asp-validation-for="Price" class="small text-danger"></span>
+                </div>
                 <div class="form-group">
                     <label asp-for="PictureUrl">Picture Url</label>
                     <input asp-for="PictureUrl" class="form-control" type="text" placeholder="Pet's picture url here…">
@@ -60,3 +74,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

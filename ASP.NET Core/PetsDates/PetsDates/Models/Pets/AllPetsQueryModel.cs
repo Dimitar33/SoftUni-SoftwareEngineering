@@ -1,4 +1,5 @@
-﻿using PetsDates.Services.Pets;
+﻿using PetsDates.Data.Models;
+using PetsDates.Services.Pets;
 using System.Collections.Generic;
 
 namespace PetsDates.Models.Pets
@@ -10,6 +11,7 @@ namespace PetsDates.Models.Pets
         public string Breed { get; set; }
         public string Gender { get; set; }
         public string SearchTerm { get; set; }
+        public int Purpose { get; set; }
         public PetSorting Sorting { get; set; }
         public int AllCatsCount { get; set; }
         public int AllDogsCount{ get; set; }

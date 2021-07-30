@@ -154,7 +154,7 @@ namespace PetsDates.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.CatBreed", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Cats.CatBreed", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,7 +169,7 @@ namespace PetsDates.Data.Migrations
                     b.ToTable("CatBreeds");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.DogBreed", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Dogs.DogBreed", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -214,6 +214,12 @@ namespace PetsDates.Data.Migrations
                     b.Property<string>("PictureUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Purpose")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -302,7 +308,7 @@ namespace PetsDates.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.Cat", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Cats.Cat", b =>
                 {
                     b.HasBaseType("PetsDates.Data.Models.Pet");
 
@@ -314,7 +320,7 @@ namespace PetsDates.Data.Migrations
                     b.HasDiscriminator().HasValue("Cat");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.Dog", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Dogs.Dog", b =>
                 {
                     b.HasBaseType("PetsDates.Data.Models.Pet");
 
@@ -387,9 +393,9 @@ namespace PetsDates.Data.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.Cat", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Cats.Cat", b =>
                 {
-                    b.HasOne("PetsDates.Data.Models.CatBreed", "Breed")
+                    b.HasOne("PetsDates.Data.Models.Cats.CatBreed", "Breed")
                         .WithMany("Cats")
                         .HasForeignKey("CatBreedId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -398,9 +404,9 @@ namespace PetsDates.Data.Migrations
                     b.Navigation("Breed");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.Dog", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Dogs.Dog", b =>
                 {
-                    b.HasOne("PetsDates.Data.Models.DogBreed", "Breed")
+                    b.HasOne("PetsDates.Data.Models.Dogs.DogBreed", "Breed")
                         .WithMany("Dogs")
                         .HasForeignKey("DogBreedId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -409,12 +415,12 @@ namespace PetsDates.Data.Migrations
                     b.Navigation("Breed");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.CatBreed", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Cats.CatBreed", b =>
                 {
                     b.Navigation("Cats");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.DogBreed", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Dogs.DogBreed", b =>
                 {
                     b.Navigation("Dogs");
                 });

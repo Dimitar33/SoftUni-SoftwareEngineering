@@ -1,5 +1,5 @@
 ﻿
-namespace PetsDates.Data.Models
+namespace PetsDates.Data.Models.Cats
 {
     public class Cat : Pet
     {
