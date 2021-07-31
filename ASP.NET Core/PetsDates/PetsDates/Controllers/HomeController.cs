@@ -24,7 +24,7 @@ namespace PetsDates.Controllers
         {
             var cats = data.Cats
                 .OrderByDescending(x => x.Id)
-                .Take(5)
+                .Take(3)
                 .Select(x => new PetsListingServiceModel
                 {
                     Id = x.Id,
@@ -37,7 +37,7 @@ namespace PetsDates.Controllers
 
             var dogs = data.Dogs
                 .OrderByDescending(x => x.Id)
-                .Take(5)
+                .Take(3)
                 .Select(x => new PetsListingServiceModel
                 {
                     Id = x.Id,

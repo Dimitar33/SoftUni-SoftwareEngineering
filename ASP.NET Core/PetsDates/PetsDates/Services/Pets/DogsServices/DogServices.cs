@@ -39,21 +39,13 @@ namespace PetsDates.Services.Pets.DogsServices
                 dogsQueary = dogsQueary.Where(x => x.Gender == gender);
             }
 
-            if (purpose != 0)
-            {
-                if (purpose == 1)
-                {
-                    dogsQueary = dogsQueary.Where(p => p.Purpose == (PetPurpose)1);
-                }
-                else if (purpose == 2)
-                {
-                    dogsQueary = dogsQueary.Where(p => p.Purpose == (PetPurpose)2);
-                }
-                else if (purpose == 3)
-                {
-                    dogsQueary = dogsQueary.Where(p => p.Purpose == (PetPurpose)3);
-                }
-            }
+            dogsQueary = purpose switch
+            {           
+                1 => dogsQueary.Where(p => p.Purpose == (PetPurpose)1),
+                2 => dogsQueary.Where(p => p.Purpose == (PetPurpose)2),
+                3 => dogsQueary.Where(p => p.Purpose == (PetPurpose)3),
+                _ => dogsQueary
+            };
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
@@ -65,7 +57,8 @@ namespace PetsDates.Services.Pets.DogsServices
             {
                 PetSorting.Age => dogsQueary.OrderBy(x => x.Age),
                 PetSorting.DateCreated => dogsQueary.OrderByDescending(x => x.Id),
-                PetSorting.Price => dogsQueary.OrderBy(x => x.Price)
+                PetSorting.Price => dogsQueary.OrderBy(x => x.Price),
+                _ => dogsQueary
             };
 
             var dogsCount = dogsQueary.Count();
