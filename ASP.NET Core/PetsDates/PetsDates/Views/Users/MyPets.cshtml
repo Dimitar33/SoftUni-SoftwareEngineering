@@ -1,0 +1,25 @@
+﻿@model IEnumerable<PetsListingServiceModel>
+
+@{ 
+    ViewBag.Title = "My Pets";
+}
+
+@if (!Model.Any())
+{
+    <h2 class="text-center">You have not added pets yet</h2>
+}
+
+<div class="row">
+    @foreach (var pet in Model)
+    {   
+    <div class="col-4">
+        <div class="card mb-2">
+            <img src="@pet.Picture" alt="@pet.Breed @pet.Gender" />
+            <div class="card-body">
+                <h2 class="text-center">@pet.Breed @pet.Gender</h2>
+            </div>
+        </div>
+    </div>
+        
+    }
+</div>

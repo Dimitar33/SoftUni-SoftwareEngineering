@@ -22,6 +22,9 @@ namespace PetsDates.Data.Models
         public string PictureUrl { get; set; }
 
         [Required]
+        public Breed Breed { get; set; }
+
+        [Required]
         public PetPurpose Purpose { get; set; }
 
         public double? Price { get; set; }

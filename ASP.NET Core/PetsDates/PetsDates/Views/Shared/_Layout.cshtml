@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]Pets Dates</title>
+    <title>@ViewBag.Title Pets Dates</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -22,14 +22,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dogs" asp-action="AddDog">Add Dog</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Dogs" asp-action="AllDogs">All Dogs</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cats" asp-action="AddCat">Add Cat</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cats" asp-action="AllCats">All Cats</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Dogs" asp-action="AllDogs">All Dogs</a>
-                        </li>
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

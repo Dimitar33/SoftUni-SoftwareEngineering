@@ -28,7 +28,7 @@ namespace PetsDates.Controllers
                 .Select(x => new PetsListingServiceModel
                 {
                     Id = x.Id,
-                    Breed = x.Breed.Breed,
+                    Breed = x.Breed.Name,
                     Age = x.Age,
                     Gender = x.Gender,
                     Name = x.Name,
@@ -41,7 +41,7 @@ namespace PetsDates.Controllers
                 .Select(x => new PetsListingServiceModel
                 {
                     Id = x.Id,
-                    Breed = x.Breed.Breed,
+                    Breed = x.Breed.Name,
                     Age = x.Age,
                     Gender = x.Gender,
                     Name = x.Name,

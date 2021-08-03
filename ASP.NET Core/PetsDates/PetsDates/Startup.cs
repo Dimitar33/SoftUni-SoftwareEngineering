@@ -12,6 +12,7 @@ using PetsDates.Data.Models;
 using PetsDates.Services.Pets;
 using PetsDates.Services.Pets.CatsServices;
 using PetsDates.Services.Pets.DogsServices;
+using PetsDates.Services.UsersServices;
 
 namespace PetsDates
 {
@@ -45,7 +46,8 @@ namespace PetsDates
 
             services
                 .AddTransient<IDogServices, DogServices>()
-                .AddTransient<ICatServices, CatServices>();
+                .AddTransient<ICatServices, CatServices>()
+                .AddTransient<IUserServices, UserServices>();
 
             services.AddControllersWithViews(options =>
             {

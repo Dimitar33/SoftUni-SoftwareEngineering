@@ -2,10 +2,8 @@
 
 namespace PetsDates.Data.Models.Dogs
 {
-    public class DogBreed
+    public class DogBreed : Breed
     {
-        public int Id { get; set; }
-        public string Breed { get; set; }
         public IEnumerable<Dog> Dogs { get; set; } = new List<Dog>();
     }
 }

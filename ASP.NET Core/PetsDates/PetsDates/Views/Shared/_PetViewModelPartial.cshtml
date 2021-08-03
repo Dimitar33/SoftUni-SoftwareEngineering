@@ -1,0 +1,68 @@
+﻿@model AddPetViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="offset-3 col-6">
+            <h2>Add Dog</h2>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="BreedId">Breed</label>
+                    <select asp-for="BreedId" class="form-control">
+                        <option disable selected> -- select breed -- </option>
+                        @foreach (var breed in Model.Breeds)
+                        {
+                            <option value=@breed.Id>@breed.Breed</option>
+                        }
+                    </select>
+                    <span asp-validation-for="BreedId" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" type="text" placeholder="Pet's name here…">
+                    <span asp-validation-for="Name" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Gender"></label>
+                    <select asp-for="Gender" class="form-control">
+                        <option disabled selected> -- select gender -- </option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Age"></label>
+                    <input asp-for="Age" class="form-control" type="text" placeholder="Pet's age here…">
+                    <span asp-validation-for="Age" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Purpose"></label>
+                    <select asp-for="Purpose" class="form-control">
+                        <option disabled selected> -- select purpose -- </option>
+                        <option value="1">For Breeding</option>
+                        <option value="2">For Adoption</option>
+                        <option value="3">For Sale</option>
+                    </select>
+                    <span asp-validation-for="Purpose" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" type="text" placeholder="-- price is optional --">
+                    <span asp-validation-for="Price" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PictureUrl">Picture Url</label>
+                    <input asp-for="PictureUrl" class="form-control" type="text" placeholder="Pet's picture url here…">
+                    <span asp-validation-for="PictureUrl" class="small text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Comment"></label>
+                    <textarea asp-for="Comment" class="form-control" rows="3"></textarea>
+                </div>
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+
+        </div>
+    </div>
+</div>

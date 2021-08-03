@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PetsDates.Data;
-using PetsDates.Data.Models;
 using PetsDates.Models.Pets;
 using PetsDates.Services.Pets.CatsServices;
-using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
 

@@ -31,7 +31,7 @@ namespace PetsDates.Services.Pets.DogsServices
             if (!string.IsNullOrWhiteSpace(breed))
             {
                 dogsQueary = dogsQueary.Where(x =>
-                     x.Breed.Breed == breed);
+                     x.Breed.Name == breed);
             }
 
             if (!string.IsNullOrWhiteSpace(gender))
@@ -50,7 +50,7 @@ namespace PetsDates.Services.Pets.DogsServices
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 dogsQueary = dogsQueary.Where(x =>
-                (x.Breed.Breed + " " + x.Gender).ToLower().Contains(searchTerm.ToLower()) ||
+                (x.Breed.Name + " " + x.Gender).ToLower().Contains(searchTerm.ToLower()) ||
                 x.Comment.ToLower().Contains(searchTerm.ToLower()));
             }
             dogsQueary = sorting switch
@@ -69,7 +69,7 @@ namespace PetsDates.Services.Pets.DogsServices
                 .Select(x => new PetsListingServiceModel
                 {
                     Id = x.Id,
-                    Breed = x.Breed.Breed,
+                    Breed = x.Breed.Name,
                     Name = x.Name,
                     Purpose = x.Purpose,
                     Price = x.Price,
@@ -122,7 +122,7 @@ namespace PetsDates.Services.Pets.DogsServices
             return data.DogBreeds.Select(x => new PetsBreedServiceModel
             {
                 Id = x.Id,
-                Breed = x.Breed
+                Breed = x.Name
 
             }).ToList();
         }
