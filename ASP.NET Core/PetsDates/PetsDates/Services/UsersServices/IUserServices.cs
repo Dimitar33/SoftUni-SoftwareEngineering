@@ -1,5 +1,6 @@
 ﻿using PetsDates.Data.Models;
 using PetsDates.Services.Pets;
+using PetsDates.Services.Pets.PetsServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,8 @@ namespace PetsDates.Services.UsersServices
             double? age,
             string picture
             );
+
+        public Pet CatOrDog(int id);
     }
+
 }

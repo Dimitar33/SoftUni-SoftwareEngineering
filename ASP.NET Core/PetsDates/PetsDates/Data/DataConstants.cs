@@ -12,6 +12,6 @@ namespace PetsDates.Data
         public const int UserNameMaxLenght = 20 ;
         public const int UserNameMinLenght = 2 ;
       
-   
+        public const string Administrator = "admin";
     }
 }

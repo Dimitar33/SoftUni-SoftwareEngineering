@@ -1,19 +1,11 @@
 ﻿using PetsDates.Models.Pets;
+using PetsDates.Services.Pets.PetsServices;
 using System.Collections.Generic;
 
 namespace PetsDates.Services.Pets.DogsServices
 {
-    public interface IDogServices
+    public interface IDogServices : IPetServices
     {
-        PetsQueryServiceModel AllDogs(
-              string breed,
-              string gender,
-              int purpose,
-              string searchTerm,
-              PetSorting sorting,
-              int currentPage,
-              int petsPerPage);
-
         IEnumerable<PetsBreedServiceModel> GetDogBreeds();
 
 

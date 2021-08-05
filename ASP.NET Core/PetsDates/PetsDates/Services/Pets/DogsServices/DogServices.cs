@@ -1,90 +1,22 @@
-﻿using PetsDates.Data;
+﻿using PetDates.Services.Pets.PetServices;
+using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Data.Models.Dogs;
 using PetsDates.Models.Pets;
+
 using System.Collections.Generic;
 using System.Linq;
 
 namespace PetsDates.Services.Pets.DogsServices
 {
-    public class DogServices : IDogServices
+    public class DogServices : PetServices, IDogServices
     {
         private readonly PetsDatesDbContext data;
 
         public DogServices(PetsDatesDbContext data)
+            :base(data)
         {
             this.data = data;
-        }
-
-        public PetsQueryServiceModel AllDogs(
-           string breed,
-           string gender,
-           int purpose,
-           string searchTerm,
-           PetSorting sorting,
-           int currentPage,
-           int petsPerPage)
-        {
-
-            var dogsQueary = data.Dogs.AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(breed))
-            {
-                dogsQueary = dogsQueary.Where(x =>
-                     x.Breed.Name == breed);
-            }
-
-            if (!string.IsNullOrWhiteSpace(gender))
-            {
-                dogsQueary = dogsQueary.Where(x => x.Gender == gender);
-            }
-
-            dogsQueary = purpose switch
-            {           
-                1 => dogsQueary.Where(p => p.Purpose == (PetPurpose)1),
-                2 => dogsQueary.Where(p => p.Purpose == (PetPurpose)2),
-                3 => dogsQueary.Where(p => p.Purpose == (PetPurpose)3),
-                _ => dogsQueary
-            };
-
-            if (!string.IsNullOrWhiteSpace(searchTerm))
-            {
-                dogsQueary = dogsQueary.Where(x =>
-                (x.Breed.Name + " " + x.Gender).ToLower().Contains(searchTerm.ToLower()) ||
-                x.Comment.ToLower().Contains(searchTerm.ToLower()));
-            }
-            dogsQueary = sorting switch
-            {
-                PetSorting.Age => dogsQueary.OrderBy(x => x.Age),
-                PetSorting.DateCreated => dogsQueary.OrderByDescending(x => x.Id),
-                PetSorting.Price => dogsQueary.OrderBy(x => x.Price),
-                _ => dogsQueary
-            };
-
-            var dogsCount = dogsQueary.Count();
-
-            var dogs = dogsQueary
-                .Skip((currentPage - 1) * AllPetsQueryModel.PetsPerPage)
-                .Take(AllPetsQueryModel.PetsPerPage)
-                .Select(x => new PetsListingServiceModel
-                {
-                    Id = x.Id,
-                    Breed = x.Breed.Name,
-                    Name = x.Name,
-                    Purpose = x.Purpose,
-                    Price = x.Price,
-                    Age = x.Age,
-                    Gender = x.Gender,
-                    Picture = x.PictureUrl
-                }).ToList();
-
-            return new PetsQueryServiceModel
-            {
-                CurrentPage = currentPage,
-                PetsPerPage = petsPerPage,
-                TotalPets = dogsQueary.Count(),
-                Pets = dogs
-            };
         }
 
         public int AddDog(
@@ -124,7 +56,7 @@ namespace PetsDates.Services.Pets.DogsServices
                 Id = x.Id,
                 Breed = x.Name
 
-            }).ToList();
+            }).OrderBy(x => x.Breed).ToList();
         }
 
 

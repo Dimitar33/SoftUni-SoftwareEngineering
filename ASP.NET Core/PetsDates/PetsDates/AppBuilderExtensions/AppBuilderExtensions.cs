@@ -5,6 +5,11 @@ using PetsDates.Data;
 using PetsDates.Data.Models.Dogs;
 using PetsDates.Data.Models.Cats;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
+using System;
+using PetsDates.Data.Models;
+using System.Threading.Tasks;
+using static PetsDates.Data.DataConstants;
 
 namespace PetsDates.AppBuilderExtensions
 {
@@ -14,18 +19,56 @@ namespace PetsDates.AppBuilderExtensions
         {
             using var scope = app.ApplicationServices.CreateScope();
 
-            var data = scope.ServiceProvider.GetService<PetsDatesDbContext>();
+            var data = scope.ServiceProvider;
 
-            data.Database.Migrate();
+            DatabaseMigrate(data);
 
             SeedCatBreeds(data);
             SeedDogBreeds(data);
+            Roles(data);
 
             return app;
         }
 
-        public static void SeedCatBreeds(PetsDatesDbContext data)
+        private static void DatabaseMigrate(IServiceProvider service)
         {
+            var data = service.GetRequiredService<PetsDatesDbContext>();
+
+            data.Database.Migrate();
+        }
+        private static void Roles(IServiceProvider service)
+        {
+            var userManager = service.GetRequiredService<UserManager<User>>();
+            var roleManger = service.GetRequiredService<RoleManager<IdentityRole>>();
+
+            Task.Run(async () =>
+            {
+                if (!await roleManger.RoleExistsAsync(Administrator))
+                {
+                    var role = new IdentityRole { Name = Administrator };
+
+                    await roleManger.CreateAsync(role);
+
+                    var user = new User
+                    {
+                        UserName = "admin@asd.com",
+                        FirtsName = "admin",
+                        LastName = "admin",
+                        Email = "admin@asd.com"
+                    };
+
+                    var adminPass = "asdasd";
+
+                    await userManager.CreateAsync(user, adminPass);
+
+                    await userManager.AddToRoleAsync(user, role.Name);
+                }
+            }).GetAwaiter().GetResult();
+        }
+        private static void SeedCatBreeds(IServiceProvider service)
+        {
+            var data = service.GetRequiredService<PetsDatesDbContext>();
+
             if (data.CatBreeds.Any())
             {
                 return;
@@ -60,8 +103,10 @@ namespace PetsDates.AppBuilderExtensions
             data.SaveChanges();
         }
 
-        public static void SeedDogBreeds(PetsDatesDbContext data)
+        private static void SeedDogBreeds(IServiceProvider service)
         {
+            var data = service.GetRequiredService<PetsDatesDbContext>();
+
             if (data.DogBreeds.Any())
             {
                 return;
@@ -75,7 +120,7 @@ namespace PetsDates.AppBuilderExtensions
                 new DogBreed{Name = "Boxer"},
                 new DogBreed{Name = "Bull Terrier"},
                 new DogBreed{Name = "Bulldog"},
-                new DogBreed{Name = "Chihuahua"},              
+                new DogBreed{Name = "Chihuahua"},
                 new DogBreed{Name = "Cocker Spaniel"},
                 new DogBreed{Name = "Dachshund"},
                 new DogBreed{Name = "Dalmatian"},
@@ -89,7 +134,7 @@ namespace PetsDates.AppBuilderExtensions
                 new DogBreed{Name = "Pug"},
                 new DogBreed{Name = "Rottweiler"},
                 new DogBreed{Name = "Siberian Huskie"},
-                new DogBreed{Name = "Yorkshire Terrier"}                           
+                new DogBreed{Name = "Yorkshire Terrier"}
             });
 
             data.SaveChanges();

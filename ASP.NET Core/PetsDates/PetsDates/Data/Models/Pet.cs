@@ -3,7 +3,7 @@ using static PetsDates.Data.DataConstants;
 
 namespace PetsDates.Data.Models
 {
-    public abstract class Pet
+    public class Pet
     {
         public int Id { get; set; }
 

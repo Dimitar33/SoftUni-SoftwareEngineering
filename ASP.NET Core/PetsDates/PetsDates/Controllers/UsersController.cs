@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PetsDates.Data.Models.Cats;
+using PetsDates.Data.Models.Dogs;
 using PetsDates.Models.Pets;
 using PetsDates.Services.UsersServices;
 using System.Security.Claims;
@@ -26,9 +28,21 @@ namespace PetsDates.Controllers
         }
 
         [Authorize]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            var pet = userServices.CatOrDog(id);
+
+            if (pet is Dog)
+            {
+                return View();
+            }
+
+            else if (pet is Cat)
+            {
+
+            }
+
+            return View("Error");
         }
 
         [HttpPost]

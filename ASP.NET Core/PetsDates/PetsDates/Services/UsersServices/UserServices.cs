@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PetDates.Services.Pets.PetServices;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Services.Pets;
@@ -66,6 +67,11 @@ namespace PetsDates.Services.UsersServices
             data.SaveChanges();
 
             return true;
+        }
+
+        public Pet CatOrDog(int id)
+        {
+            return data.Pets.Find(id);
         }
     }
 }

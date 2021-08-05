@@ -6,12 +6,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PetDates.Services.Pets.PetServices;
 using PetsDates.AppBuilderExtensions;
 using PetsDates.Data;
 using PetsDates.Data.Models;
-using PetsDates.Services.Pets;
 using PetsDates.Services.Pets.CatsServices;
 using PetsDates.Services.Pets.DogsServices;
+using PetsDates.Services.Pets.PetsServices;
 using PetsDates.Services.UsersServices;
 
 namespace PetsDates
@@ -25,7 +26,6 @@ namespace PetsDates
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services
@@ -47,7 +47,8 @@ namespace PetsDates
             services
                 .AddTransient<IDogServices, DogServices>()
                 .AddTransient<ICatServices, CatServices>()
-                .AddTransient<IUserServices, UserServices>();
+                .AddTransient<IUserServices, UserServices>()
+                .AddTransient<IPetServices, PetServices>();
 
             services.AddControllersWithViews(options =>
             {
@@ -55,7 +56,6 @@ namespace PetsDates
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.PrepareDatabase();

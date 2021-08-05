@@ -10,8 +10,8 @@ using PetsDates.Data;
 namespace PetsDates.Data.Migrations
 {
     [DbContext(typeof(PetsDatesDbContext))]
-    [Migration("20210803105043_Pets")]
-    partial class Pets
+    [Migration("20210805121329_Users")]
+    partial class Users
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

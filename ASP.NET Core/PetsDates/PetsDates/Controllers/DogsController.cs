@@ -18,7 +18,7 @@ namespace PetsDates.Controllers
         public IActionResult AllDogs([FromQuery] AllPetsQueryModel query)
         {
 
-            var dogsQueri = dogServices.AllDogs(
+            var dogsQueri = dogServices.AllPets(
                 query.Breed,
                 query.Gender,
                 query.Purpose,
