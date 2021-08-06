@@ -10,6 +10,7 @@ namespace PetsDates.Services.UsersServices
 {
     public interface IUserServices
     {
+        public void AddToRole(string id);
         public IEnumerable<PetsListingServiceModel> PetsByUser(string userId);
 
         public IEnumerable<PetsListingServiceModel> ListPets(IQueryable<Pet> pet);
@@ -25,7 +26,6 @@ namespace PetsDates.Services.UsersServices
             string picture
             );
 
-        public Pet CatOrDog(int id);
     }
 
 }

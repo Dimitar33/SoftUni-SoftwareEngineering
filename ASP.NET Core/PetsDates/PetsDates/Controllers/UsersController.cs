@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PetsDates.Data.Models;
 using PetsDates.Data.Models.Cats;
 using PetsDates.Data.Models.Dogs;
+using PetsDates.Models.Moderator;
 using PetsDates.Models.Pets;
 using PetsDates.Services.UsersServices;
 using System.Security.Claims;
@@ -12,7 +15,7 @@ namespace PetsDates.Controllers
     {
         private readonly IUserServices userServices;
 
-        public UsersController(IUserServices userServices)
+        public UsersController(IUserServices userServices, UserManager<User> userManager)
         {
             this.userServices = userServices;
         }
@@ -28,19 +31,42 @@ namespace PetsDates.Controllers
         }
 
         [Authorize]
-        public IActionResult Edit(int id)
+        public IActionResult Mod()
         {
-            var pet = userServices.CatOrDog(id);
+            return View();
+        }
 
-            if (pet is Dog)
+        [Authorize]
+        [HttpPost]
+        public IActionResult Mod(ModFormModel modModel)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            else if (pet is Cat)
-            {
+            userServices.AddToRole(userId);
 
-            }
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+           // var pet = userServices.CatOrDog(id);
+
+            //if (pet is Dog)
+            //{
+            //    return View();
+            //}
+
+            //else if (pet is Cat)
+            //{
+
+            //}
 
             return View("Error");
         }
@@ -61,5 +87,7 @@ namespace PetsDates.Controllers
 
             return View(nameof(MyPets));
         }
+
+ 
     }
 }

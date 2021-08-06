@@ -1,20 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using PetDates.Services.Pets.PetServices;
+﻿using Microsoft.AspNetCore.Identity;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Services.Pets;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using static PetsDates.Data.DataConstants;
 
 namespace PetsDates.Services.UsersServices
 {
     public class UserServices : IUserServices
     {
         private readonly PetsDatesDbContext data;
+        private readonly UserManager<User> userManager;
 
-        public UserServices(PetsDatesDbContext data)
+        public UserServices(PetsDatesDbContext data, UserManager<User> userManager)
         {
             this.data = data;
+            this.userManager = userManager;
         }
 
         public IEnumerable<PetsListingServiceModel> PetsByUser(string userId)
@@ -69,9 +72,16 @@ namespace PetsDates.Services.UsersServices
             return true;
         }
 
-        public Pet CatOrDog(int id)
+        public void AddToRole(string id)
         {
-            return data.Pets.Find(id);
+            var user = data.Users.Find(id);
+
+            Task.Run(async () =>
+            {
+                 await userManager.AddToRoleAsync(user, Mod);
+
+            }).GetAwaiter().GetResult();
+
         }
     }
 }

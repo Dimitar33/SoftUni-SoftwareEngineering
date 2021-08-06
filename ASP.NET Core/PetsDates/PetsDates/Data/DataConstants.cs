@@ -13,5 +13,6 @@ namespace PetsDates.Data
         public const int UserNameMinLenght = 2 ;
       
         public const string Administrator = "admin";
+        public const string Mod = "moderator";
     }
 }

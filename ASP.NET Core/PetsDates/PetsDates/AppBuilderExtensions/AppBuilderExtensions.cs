@@ -25,7 +25,7 @@ namespace PetsDates.AppBuilderExtensions
 
             SeedCatBreeds(data);
             SeedDogBreeds(data);
-            Roles(data);
+            SeedRoles(data);
 
             return app;
         }
@@ -36,7 +36,7 @@ namespace PetsDates.AppBuilderExtensions
 
             data.Database.Migrate();
         }
-        private static void Roles(IServiceProvider service)
+        private static void SeedRoles(IServiceProvider service)
         {
             var userManager = service.GetRequiredService<UserManager<User>>();
             var roleManger = service.GetRequiredService<RoleManager<IdentityRole>>();
@@ -62,6 +62,12 @@ namespace PetsDates.AppBuilderExtensions
                     await userManager.CreateAsync(user, adminPass);
 
                     await userManager.AddToRoleAsync(user, role.Name);
+                }
+                if (!await roleManger.RoleExistsAsync(Mod))
+                {
+                    var role = new IdentityRole(Mod);
+
+                    await roleManger.CreateAsync(role);
                 }
             }).GetAwaiter().GetResult();
         }
