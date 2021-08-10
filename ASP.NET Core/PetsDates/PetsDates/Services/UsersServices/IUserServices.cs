@@ -14,7 +14,7 @@ namespace PetsDates.Services.UsersServices
         public IEnumerable<PetsListingServiceModel> PetsByUser(string userId);
 
         public IEnumerable<PetsListingServiceModel> ListPets(IQueryable<Pet> pet);
-
+        public PetsDetailsServiceModel Details(int id);
         public bool Edit(
             int id,
             int breed,
@@ -25,7 +25,5 @@ namespace PetsDates.Services.UsersServices
             double? age,
             string picture
             );
-
     }
-
 }

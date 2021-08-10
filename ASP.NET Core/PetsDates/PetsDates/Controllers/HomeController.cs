@@ -32,7 +32,7 @@ namespace PetsDates.Controllers
                     Age = x.Age,
                     Gender = x.Gender,
                     Name = x.Name,
-                    Picture = x.PictureUrl
+                    PictureUrl = x.PictureUrl
                 }).ToList();
 
             var dogs = data.Dogs
@@ -45,7 +45,7 @@ namespace PetsDates.Controllers
                     Age = x.Age,
                     Gender = x.Gender,
                     Name = x.Name,
-                    Picture = x.PictureUrl
+                    PictureUrl = x.PictureUrl
                 }).ToList();
 
             var pets = new List<PetsListingServiceModel>();

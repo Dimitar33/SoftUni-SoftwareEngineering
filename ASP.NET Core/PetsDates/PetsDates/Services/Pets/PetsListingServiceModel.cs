@@ -1,8 +1,4 @@
 ﻿using PetsDates.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetsDates.Services.Pets
 {
@@ -15,6 +11,6 @@ namespace PetsDates.Services.Pets
         public PetPurpose Purpose { get; set; }
         public double? Price { get; set; }
         public double? Age { get; set; }
-        public string Picture { get; set; }
+        public string PictureUrl { get; set; }
     }
 }

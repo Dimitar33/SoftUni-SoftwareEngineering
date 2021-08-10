@@ -8,17 +8,6 @@ namespace PetsDates.Services.Pets.CatsServices
 {
     public interface ICatServices : IPetServices
     {
-        //PetsQueryServiceModel AllCats(
-        //         string breed,
-        //         string gender,
-        //         int purpose,
-        //         string searchTerm,
-        //         PetSorting sorting,
-        //         int currentPage,
-        //         int petsPerPage);
-
-        IEnumerable<PetsBreedServiceModel> GetCatBreeds();
-
         int AddCat(
          int breedId,
          string gender,

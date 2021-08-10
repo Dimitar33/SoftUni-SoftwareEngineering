@@ -2,10 +2,6 @@
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Data.Models.Dogs;
-using PetsDates.Models.Pets;
-
-using System.Collections.Generic;
-using System.Linq;
 
 namespace PetsDates.Services.Pets.DogsServices
 {
@@ -48,17 +44,5 @@ namespace PetsDates.Services.Pets.DogsServices
 
             return dog.Id;
         }
-
-        public IEnumerable<PetsBreedServiceModel> GetDogBreeds()
-        {
-            return data.DogBreeds.Select(x => new PetsBreedServiceModel
-            {
-                Id = x.Id,
-                Breed = x.Name
-
-            }).OrderBy(x => x.Breed).ToList();
-        }
-
-
     }
 }

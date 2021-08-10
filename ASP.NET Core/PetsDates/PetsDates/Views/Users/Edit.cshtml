@@ -1,6 +1,8 @@
-﻿
+﻿@model AddPetViewModel
+
 @{ 
     ViewBag.Title = "Edit";
 }
 
-<partial name="_PetsViewModelPartial" />
+<h2 class="text-center">Edit</h2>
+<partial name="_PetsViewModelPartial" model="@Model"/>

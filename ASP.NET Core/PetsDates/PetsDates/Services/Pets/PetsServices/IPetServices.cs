@@ -1,8 +1,5 @@
 ﻿using PetsDates.Models.Pets;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetsDates.Services.Pets.PetsServices
 {
@@ -16,5 +13,8 @@ namespace PetsDates.Services.Pets.PetsServices
              PetSorting sorting,
              int currentPage,
              int petsPerPage);
+        public IEnumerable<PetsBreedServiceModel> GetBreeds(int id);
+        IEnumerable<PetsBreedServiceModel> GetDogBreeds();
+        IEnumerable<PetsBreedServiceModel> GetCatBreeds();
     }
 }

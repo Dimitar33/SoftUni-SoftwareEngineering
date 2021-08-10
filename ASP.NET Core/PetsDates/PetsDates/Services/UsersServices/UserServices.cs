@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using PetsDates.Data;
 using PetsDates.Data.Models;
+using PetsDates.Data.Models.Dogs;
 using PetsDates.Services.Pets;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,11 +33,12 @@ namespace PetsDates.Services.UsersServices
         {
             return pet.Select(x => new PetsListingServiceModel
             {
+                Id = x.Id,
                 Age = x.Age,
                 Breed = x.Breed.Name,
                 Gender = x.Gender,
                 Name = x.Name,
-                Picture = x.PictureUrl,
+                PictureUrl = x.PictureUrl,
                 Price = x.Price,
                 Purpose = x.Purpose
             }).ToList();
@@ -71,17 +73,38 @@ namespace PetsDates.Services.UsersServices
 
             return true;
         }
-
         public void AddToRole(string id)
         {
             var user = data.Users.Find(id);
 
             Task.Run(async () =>
             {
-                 await userManager.AddToRoleAsync(user, Mod);
+                await userManager.AddToRoleAsync(user, Mod);
 
             }).GetAwaiter().GetResult();
+        }
+        public PetsDetailsServiceModel Details(int id)
+        {
+            Pet pet = data.Pets
+                .Where(x => x.Id == id).FirstOrDefault();
 
+            return data.Pets
+                .Where(x => x.Id == id)
+                .Select(x => new PetsDetailsServiceModel
+                {
+                    Id = x.Id,
+                    Breed = x.Breed.Name,
+                    Gender = x.Gender,
+                    Age = x.Age,
+                    Name = x.Name,
+                    Purpose = x.Purpose,
+                    PictureUrl = x.PictureUrl,
+                    Price = x.Price,
+                    OwnerId = x.Owner.Id,
+                    FirstName = x.Owner.FirtsName,
+                    LastName = x.Owner.LastName,
+                    Comment = x.Comment,
+                }).FirstOrDefault();
         }
     }
 }

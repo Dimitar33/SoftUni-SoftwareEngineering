@@ -44,11 +44,14 @@ namespace PetsDates
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<PetsDatesDbContext>();
 
+            services.AddAutoMapper(typeof(Startup));
+
             services
                 .AddTransient<IDogServices, DogServices>()
                 .AddTransient<ICatServices, CatServices>()
                 .AddTransient<IUserServices, UserServices>()
                 .AddTransient<IPetServices, PetServices>();
+
 
             services.AddControllersWithViews(options =>
             {

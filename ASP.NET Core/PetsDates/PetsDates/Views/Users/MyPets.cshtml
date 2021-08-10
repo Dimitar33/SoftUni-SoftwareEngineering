@@ -1,12 +1,13 @@
-﻿
+﻿@model IEnumerable<PetsListingServiceModel>
+
 @{
     ViewBag.Title = "My Pets";
 }
 
-@*@if (!Model.Any())
+@if (!Model.Any())
 {
     <h2 class="text-center">You have not added pets yet</h2>
-}*@
+}
 
 
 <partial name="_PetsListingPartial" />

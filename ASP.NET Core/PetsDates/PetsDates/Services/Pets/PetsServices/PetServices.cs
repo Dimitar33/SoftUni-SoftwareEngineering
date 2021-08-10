@@ -4,11 +4,9 @@ using PetsDates.Data.Models.Dogs;
 using PetsDates.Models.Pets;
 using PetsDates.Services.Pets;
 using PetsDates.Services.Pets.PetsServices;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace PetDates.Services.Pets.PetServices
 {
@@ -91,7 +89,7 @@ namespace PetDates.Services.Pets.PetServices
                     Price = x.Price,
                     Age = x.Age,
                     Gender = x.Gender,
-                    Picture = x.PictureUrl
+                    PictureUrl = x.PictureUrl
                 }).ToList();
 
             return new PetsQueryServiceModel
@@ -102,39 +100,29 @@ namespace PetDates.Services.Pets.PetServices
                 Pets = pets
             };
         }
-
-        public int AddDog(
-      int breedId,
-      string gender,
-      double? age,
-      string name,
-      int purpose,
-      double? price,
-      string pictureUrl,
-      string comment,
-      string userId)
+        public IEnumerable<PetsBreedServiceModel> GetBreeds(int id)
         {
-            var dog = new Dog
+            var pet = data.Pets.FirstOrDefault(x => x.Id == id);
+
+            if (pet is Dog)
             {
-                DogBreedId = breedId,
-                Gender = gender,
-                Age = age,
-                Name = name,
-                Purpose = (PetPurpose)purpose,
-                Price = price,
-                PictureUrl = pictureUrl,
-                Comment = comment,
-                UserId = userId
-            };
+                return GetDogBreeds();
+            }
 
-            data.Dogs.Add(dog);
-            data.SaveChanges();
-
-            return dog.Id;
+            return GetCatBreeds();
         }
         public IEnumerable<PetsBreedServiceModel> GetDogBreeds()
         {
             return data.DogBreeds.Select(x => new PetsBreedServiceModel
+            {
+                Id = x.Id,
+                Breed = x.Name
+
+            }).OrderBy(x => x.Breed).ToList();
+        }
+        public IEnumerable<PetsBreedServiceModel> GetCatBreeds()
+        {
+            return data.CatBreeds.Select(x => new PetsBreedServiceModel
             {
                 Id = x.Id,
                 Breed = x.Name
