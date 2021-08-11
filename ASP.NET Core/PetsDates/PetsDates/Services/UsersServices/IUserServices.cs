@@ -25,5 +25,6 @@ namespace PetsDates.Services.UsersServices
             double? age,
             string picture
             );
+        public void Delete(int id);
     }
 }

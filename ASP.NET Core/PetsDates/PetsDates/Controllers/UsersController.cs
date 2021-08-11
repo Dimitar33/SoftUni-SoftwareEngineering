@@ -87,9 +87,15 @@ namespace PetsDates.Controllers
                 petModel.Age,
                 petModel.PictureUrl);
 
-            return View(nameof(MyPets));
+            return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            userServices.Delete(id);
 
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

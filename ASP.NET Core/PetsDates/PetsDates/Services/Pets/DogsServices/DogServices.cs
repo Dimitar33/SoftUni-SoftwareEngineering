@@ -28,7 +28,7 @@ namespace PetsDates.Services.Pets.DogsServices
         {
             var dog = new Dog
             {
-                DogBreedId = breedId,
+                BreedId = breedId,
                 Gender = gender,
                 Age = age,
                 Name = name,

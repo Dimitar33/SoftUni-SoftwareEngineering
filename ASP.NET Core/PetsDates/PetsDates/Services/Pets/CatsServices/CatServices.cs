@@ -31,7 +31,7 @@ namespace PetsDates.Services.Pets.CatsServices
         {
             var cat = new Cat
             {
-                CatBreedId = breedId,
+                BreedId = breedId,
                 Gender = gender,
                 Age = age,
                 Purpose = (PetPurpose)purpose,

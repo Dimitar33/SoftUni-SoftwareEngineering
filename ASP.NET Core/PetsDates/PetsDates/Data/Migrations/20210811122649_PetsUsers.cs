@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetsDates.Data.Migrations
 {
-    public partial class Users : Migration
+    public partial class PetsUsers : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,29 +49,17 @@ namespace PetsDates.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CatBreeds",
+                name: "Breed",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CatBreeds", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DogBreeds",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DogBreeds", x => x.Id);
+                    table.PrimaryKey("PK_Breed", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,13 +178,12 @@ namespace PetsDates.Data.Migrations
                     Age = table.Column<double>(type: "float", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PictureUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BreedId = table.Column<int>(type: "int", nullable: false),
                     Purpose = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: true),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CatBreedId = table.Column<int>(type: "int", nullable: true),
-                    DogBreedId = table.Column<int>(type: "int", nullable: true)
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -208,15 +195,9 @@ namespace PetsDates.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Pets_CatBreeds_CatBreedId",
-                        column: x => x.CatBreedId,
-                        principalTable: "CatBreeds",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Pets_DogBreeds_DogBreedId",
-                        column: x => x.DogBreedId,
-                        principalTable: "DogBreeds",
+                        name: "FK_Pets_Breed_BreedId",
+                        column: x => x.BreedId,
+                        principalTable: "Breed",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -261,14 +242,9 @@ namespace PetsDates.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pets_CatBreedId",
+                name: "IX_Pets_BreedId",
                 table: "Pets",
-                column: "CatBreedId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pets_DogBreedId",
-                table: "Pets",
-                column: "DogBreedId");
+                column: "BreedId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pets_UserId",
@@ -303,10 +279,7 @@ namespace PetsDates.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "CatBreeds");
-
-            migrationBuilder.DropTable(
-                name: "DogBreeds");
+                name: "Breed");
         }
     }
 }

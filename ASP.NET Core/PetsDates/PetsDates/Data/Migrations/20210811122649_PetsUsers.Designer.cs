@@ -10,8 +10,8 @@ using PetsDates.Data;
 namespace PetsDates.Data.Migrations
 {
     [DbContext(typeof(PetsDatesDbContext))]
-    [Migration("20210805121329_Users")]
-    partial class Users
+    [Migration("20210811122649_PetsUsers")]
+    partial class PetsUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -156,34 +156,25 @@ namespace PetsDates.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.Cats.CatBreed", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Breed", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CatBreeds");
-                });
-
-            modelBuilder.Entity("PetsDates.Data.Models.Dogs.DogBreed", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("DogBreeds");
+                    b.ToTable("Breed");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Breed");
                 });
 
             modelBuilder.Entity("PetsDates.Data.Models.Pet", b =>
@@ -196,6 +187,9 @@ namespace PetsDates.Data.Migrations
                     b.Property<double?>("Age")
                         .IsRequired()
                         .HasColumnType("float");
+
+                    b.Property<int>("BreedId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
@@ -227,6 +221,8 @@ namespace PetsDates.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BreedId");
 
                     b.HasIndex("UserId");
 
@@ -310,14 +306,23 @@ namespace PetsDates.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("PetsDates.Data.Models.Cats.CatBreed", b =>
+                {
+                    b.HasBaseType("PetsDates.Data.Models.Breed");
+
+                    b.HasDiscriminator().HasValue("CatBreed");
+                });
+
+            modelBuilder.Entity("PetsDates.Data.Models.Dogs.DogBreed", b =>
+                {
+                    b.HasBaseType("PetsDates.Data.Models.Breed");
+
+                    b.HasDiscriminator().HasValue("DogBreed");
+                });
+
             modelBuilder.Entity("PetsDates.Data.Models.Cats.Cat", b =>
                 {
                     b.HasBaseType("PetsDates.Data.Models.Pet");
-
-                    b.Property<int>("CatBreedId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("CatBreedId");
 
                     b.HasDiscriminator().HasValue("Cat");
                 });
@@ -325,11 +330,6 @@ namespace PetsDates.Data.Migrations
             modelBuilder.Entity("PetsDates.Data.Models.Dogs.Dog", b =>
                 {
                     b.HasBaseType("PetsDates.Data.Models.Pet");
-
-                    b.Property<int>("DogBreedId")
-                        .HasColumnType("int");
-
-                    b.HasIndex("DogBreedId");
 
                     b.HasDiscriminator().HasValue("Dog");
                 });
@@ -387,44 +387,25 @@ namespace PetsDates.Data.Migrations
 
             modelBuilder.Entity("PetsDates.Data.Models.Pet", b =>
                 {
+                    b.HasOne("PetsDates.Data.Models.Breed", "Breed")
+                        .WithMany("Pets")
+                        .HasForeignKey("BreedId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("PetsDates.Data.Models.User", "Owner")
                         .WithMany("Pets")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.Navigation("Breed");
+
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("PetsDates.Data.Models.Cats.Cat", b =>
+            modelBuilder.Entity("PetsDates.Data.Models.Breed", b =>
                 {
-                    b.HasOne("PetsDates.Data.Models.Cats.CatBreed", "Breed")
-                        .WithMany("Cats")
-                        .HasForeignKey("CatBreedId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Breed");
-                });
-
-            modelBuilder.Entity("PetsDates.Data.Models.Dogs.Dog", b =>
-                {
-                    b.HasOne("PetsDates.Data.Models.Dogs.DogBreed", "Breed")
-                        .WithMany("Dogs")
-                        .HasForeignKey("DogBreedId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Breed");
-                });
-
-            modelBuilder.Entity("PetsDates.Data.Models.Cats.CatBreed", b =>
-                {
-                    b.Navigation("Cats");
-                });
-
-            modelBuilder.Entity("PetsDates.Data.Models.Dogs.DogBreed", b =>
-                {
-                    b.Navigation("Dogs");
+                    b.Navigation("Pets");
                 });
 
             modelBuilder.Entity("PetsDates.Data.Models.User", b =>

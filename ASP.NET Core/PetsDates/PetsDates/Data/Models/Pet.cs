@@ -21,6 +21,7 @@ namespace PetsDates.Data.Models
         [Url]
         public string PictureUrl { get; set; }
 
+        public int BreedId { get; set; }
         [Required]
         public Breed Breed { get; set; }
 
