@@ -5,6 +5,19 @@ namespace PetsDates.Services.Pets.PetsServices
 {
     public interface IPetServices
     {
+        public void Delete(int id);
+        public PetsDetailsServiceModel Details(int id);
+        public bool Edit(
+           int id,
+           int breed,
+           string gender,
+           string name,
+           int purpose,
+           double? price,
+           double? age,
+           string picture,
+           string comment
+           );
         public PetsQueryServiceModel AllPets(
              string breed,
              string gender,

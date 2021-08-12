@@ -27,12 +27,6 @@ namespace PetsDates.Data
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //builder.Entity<Cat>()
-            //    .HasOne(b => b.Breed)
-            //    .WithMany(c => c.Cats)
-            //    .HasForeignKey(x => x.CatBreedId)
-            //    .OnDelete(DeleteBehavior.Restrict);
-
             builder.Entity<Pet>()
                 .HasOne(b => b.Breed)
                 .WithMany(d => d.Pets)

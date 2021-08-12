@@ -2,10 +2,6 @@
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Data.Models.Cats;
-using PetsDates.Models.Pets;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 namespace PetsDates.Services.Pets.CatsServices
 {

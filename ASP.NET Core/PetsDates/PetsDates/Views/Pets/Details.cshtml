@@ -1,0 +1,24 @@
+﻿@model PetsDetailsServiceModel
+
+<div class="row">
+    <div class="col-md-6">
+        <img class="card-img-top" src="@Model.PictureUrl" alt="@Model.Breed @Model.Gender @Model.Purpose" />
+    </div>
+    <div class="col-md-auto">
+        <h4>Breed <span class="font-weight-normal"> - @Model.Breed</span> </h4>
+        <h4>Gender <span class="font-weight-normal"> - @Model.Gender</span> </h4>
+        <h4>Age <span class="font-weight-normal"> - @Model.Age</span> </h4>
+        <h4>Name <span class="font-weight-normal"> - @Model.Name</span> </h4>
+        <h4>Purpose <span class="font-weight-normal"> - @Model.Purpose</span> </h4>
+        <h4>Price <span class="font-weight-normal"> - @Model.Price</span> </h4>
+
+        <h4>Owner Name <span class="font-weight-normal"> - @Model.FirstName</span> </h4>
+        <h4>Contact Owner<span class="font-weight-normal"> - @Model.PhoneNumber</span> </h4>
+        <h4>Contact Owner<span class="font-weight-normal"> - @Model.Email</span> </h4>
+    </div>
+</div>
+<h4>Comment </h4>
+<div class=" text-black">
+    @Model.Comment
+</div>
+

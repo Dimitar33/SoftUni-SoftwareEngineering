@@ -3,17 +3,17 @@
 <div class="row">
     @foreach (var pet in Model)
     {
-        <div class="col-4">
+        <div class="col-md-4">
             <div class="card">
-                <a asp-controller="Users" asp-action="Details" asp-route-id="@pet.Id">
+                <a asp-controller="Pets" asp-action="Details" asp-route-id="@pet.Id">
                     <img class="card-img-top" src="@pet.PictureUrl" alt="@pet.Breed @pet.Gender @pet.Purpose" />
                 </a>
                 <div class="card-body text-center">
                     <h5 class="card-text">
                         @pet.Breed @pet.Gender @pet.Age years @pet.Purpose
                     </h5>
-                    <a asp-controller="Users" asp-action="Edit" asp-route-id="@pet.Id">Edit</a>
-                    <a asp-controller="Users" asp-action="Delete" asp-route-id="@pet.Id" class=" text-danger">Delete</a>
+                    <a asp-controller="Pets" asp-action="Edit" asp-route-id="@pet.Id">Edit</a>
+                    <a asp-controller="Pets" asp-action="Delete" asp-route-id="@pet.Id" class=" text-danger">Delete</a>
                 </div>
             </div>
         </div>

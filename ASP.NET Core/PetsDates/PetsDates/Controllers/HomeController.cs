@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PetsDates.Data;
 using PetsDates.Models;
 using PetsDates.Models.Home;
-using PetsDates.Models.Pets;
+using PetsDates.Services.HomeServices;
 using PetsDates.Services.Pets;
 using System;
 using System.Collections.Generic;
@@ -13,40 +12,18 @@ namespace PetsDates.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly PetsDatesDbContext data;
+        private readonly IHomeService homeServices;
 
-        public HomeController(PetsDatesDbContext data)
+        public HomeController(IHomeService homeServices)
         {
-            this.data = data;
+            this.homeServices = homeServices;
         }
 
         public IActionResult Index()
         {
-            var cats = data.Cats
-                .OrderByDescending(x => x.Id)
-                .Take(3)
-                .Select(x => new PetsListingServiceModel
-                {
-                    Id = x.Id,
-                    Breed = x.Breed.Name,
-                    Age = x.Age,
-                    Gender = x.Gender,
-                    Name = x.Name,
-                    PictureUrl = x.PictureUrl
-                }).ToList();
+            var cats = homeServices.CatsCarousel().ToList();
 
-            var dogs = data.Dogs
-                .OrderByDescending(x => x.Id)
-                .Take(3)
-                .Select(x => new PetsListingServiceModel
-                {
-                    Id = x.Id,
-                    Breed = x.Breed.Name,
-                    Age = x.Age,
-                    Gender = x.Gender,
-                    Name = x.Name,
-                    PictureUrl = x.PictureUrl
-                }).ToList();
+            var dogs = homeServices.DogsCarousel().ToList();
 
             var pets = new List<PetsListingServiceModel>();
             var count = Math.Ceiling((double)(cats.Count() + dogs.Count()) / 2);
@@ -68,8 +45,6 @@ namespace PetsDates.Controllers
                 Pets = pets
             });
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

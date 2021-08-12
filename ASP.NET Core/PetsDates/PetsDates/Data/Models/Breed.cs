@@ -1,8 +1,4 @@
-﻿using PetsDates.Data.Models.Cats;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace PetsDates.Data.Models
 {

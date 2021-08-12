@@ -10,6 +10,7 @@ using PetDates.Services.Pets.PetServices;
 using PetsDates.AppBuilderExtensions;
 using PetsDates.Data;
 using PetsDates.Data.Models;
+using PetsDates.Services.HomeServices;
 using PetsDates.Services.Pets.CatsServices;
 using PetsDates.Services.Pets.DogsServices;
 using PetsDates.Services.Pets.PetsServices;
@@ -47,6 +48,7 @@ namespace PetsDates
             services.AddAutoMapper(typeof(Startup));
 
             services
+                .AddTransient<IHomeService, HomeService>()
                 .AddTransient<IDogServices, DogServices>()
                 .AddTransient<ICatServices, CatServices>()
                 .AddTransient<IUserServices, UserServices>()

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PetsDates.Models.Home;
 using PetsDates.Models.Pets;
+using PetsDates.Services.HomeServices;
 using PetsDates.Services.Pets.CatsServices;
 using System.Linq;
 using System.Security.Claims;
@@ -10,10 +12,22 @@ namespace PetsDates.Controllers
     public class CatsController : Controller
     {
         private readonly ICatServices catServices;
+        private readonly IHomeService homeServices;
 
-        public CatsController(ICatServices petServices)
-        {     
+        public CatsController(ICatServices petServices, IHomeService homeServices)
+        {
             this.catServices = petServices;
+            this.homeServices = homeServices;
+        }
+
+        public IActionResult Cats()
+        {
+            var cats = homeServices.CatsCarousel().ToList();
+
+            return View(new IndexViewModel
+            {
+                Pets = cats
+            }); ;
         }
 
         public IActionResult AllCats([FromQuery]AllPetsQueryModel query)

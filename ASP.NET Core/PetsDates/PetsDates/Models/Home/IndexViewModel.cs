@@ -1,5 +1,4 @@
-﻿using PetsDates.Models.Pets;
-using PetsDates.Services.Pets;
+﻿using PetsDates.Services.Pets;
 using System.Collections.Generic;
 
 namespace PetsDates.Models.Home
