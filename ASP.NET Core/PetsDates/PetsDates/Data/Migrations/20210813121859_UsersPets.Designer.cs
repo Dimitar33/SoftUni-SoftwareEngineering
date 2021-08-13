@@ -10,8 +10,8 @@ using PetsDates.Data;
 namespace PetsDates.Data.Migrations
 {
     [DbContext(typeof(PetsDatesDbContext))]
-    [Migration("20210811122649_PetsUsers")]
-    partial class PetsUsers
+    [Migration("20210813121859_UsersPets")]
+    partial class UsersPets
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -249,16 +249,6 @@ namespace PetsDates.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("FirtsName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

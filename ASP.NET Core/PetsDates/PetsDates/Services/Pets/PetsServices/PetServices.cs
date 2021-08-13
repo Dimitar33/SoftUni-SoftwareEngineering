@@ -179,8 +179,7 @@ namespace PetDates.Services.Pets.PetServices
                Email = x.Owner.Email,
                PhoneNumber = x.Owner.PhoneNumber,
                OwnerId = x.Owner.Id,
-               FirstName = x.Owner.FirtsName,
-               LastName = x.Owner.LastName,
+               OwnerName = x.Owner.UserName,
                Comment = x.Comment,
 
            }).FirstOrDefault();

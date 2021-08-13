@@ -12,8 +12,12 @@
                     <h5 class="card-text">
                         @pet.Breed @pet.Gender @pet.Age years @pet.Purpose
                     </h5>
-                    <a asp-controller="Pets" asp-action="Edit" asp-route-id="@pet.Id">Edit</a>
-                    <a asp-controller="Pets" asp-action="Delete" asp-route-id="@pet.Id" class=" text-danger">Delete</a>
+                    @if (User.IsInRole("admin") || User.IsInRole("moderator") || ViewBag.AllowEdit == true)
+                    {
+                        <a asp-controller="Pets" asp-action="Edit" asp-route-id="@pet.Id">Edit</a>
+                        <a asp-controller="Pets" asp-action="Delete" asp-route-id="@pet.Id" class="text-danger" onclick="return confirm('Confirm Delete')">Delete</a>
+                    }
+
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ namespace PetsDates.Infrastructure
             CreateMap<PetsDetailsServiceModel, AddPetViewModel>();
             CreateMap<Pet, PetsDetailsServiceModel>()
                 .ForMember(x => x.Breed , cfg => cfg.MapFrom(x => x.Breed.Name))
-                .ForMember(x => x.FirstName, c => c.MapFrom(x => x.Owner.FirtsName));
+                .ForMember(x => x.OwnerName, c => c.MapFrom(x => x.Owner.UserName));
         }
     }
 }

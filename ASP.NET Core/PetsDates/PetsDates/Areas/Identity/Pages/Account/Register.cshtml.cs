@@ -42,19 +42,15 @@ namespace PetsDates.Areas.Identity.Pages.Account
                 UserNameMaxLenght,
                 MinimumLength = UserNameMinLenght,
                 ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
-            public string FirstName { get; set; }
-
-            [Required]
-            [StringLength(
-                UserNameMaxLenght,
-                MinimumLength = UserNameMinLenght,
-                ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
-            public string LastName { get; set; }
+            public string Username { get; set; }
 
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Phone]
+            public string PhoneNumber { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
@@ -81,10 +77,9 @@ namespace PetsDates.Areas.Identity.Pages.Account
             {
                 var user = new User 
                 { 
-                    FirtsName = Input.FirstName,
-                    LastName = Input.LastName,
-                    UserName = Input.Email, 
-                    Email = Input.Email
+                    UserName = Input.Username, 
+                    Email = Input.Email,
+                    PhoneNumber = Input.PhoneNumber
                 };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -100,8 +95,6 @@ namespace PetsDates.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

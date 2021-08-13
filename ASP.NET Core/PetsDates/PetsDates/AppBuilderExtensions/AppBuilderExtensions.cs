@@ -51,9 +51,7 @@ namespace PetsDates.AppBuilderExtensions
 
                     var user = new User
                     {
-                        UserName = "admin@asd.com",
-                        FirtsName = "admin",
-                        LastName = "admin",
+                        UserName = "admin",
                         Email = "admin@asd.com"
                     };
 

@@ -40,7 +40,6 @@ namespace PetsDates.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress]
             public string Email { get; set; }
 
             [Required]
@@ -92,8 +91,6 @@ namespace PetsDates.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

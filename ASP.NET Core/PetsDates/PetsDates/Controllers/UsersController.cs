@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PetsDates.Data.Models;
-using PetsDates.Models.Moderator;
 using PetsDates.Services.UsersServices;
 using System.Security.Claims;
 
@@ -34,17 +33,13 @@ namespace PetsDates.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Mod(ModFormModel modModel)
+        public IActionResult Mod(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
             userServices.AddToRole(userId);
-
+            
+            SignOut();
             return RedirectToAction("Index", "Home");
         }
 
