@@ -42,7 +42,7 @@ namespace PetsDates.Areas.Identity.Pages.Account
                 UserNameMaxLenght,
                 MinimumLength = UserNameMinLenght,
                 ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
-            public string Username { get; set; }
+            public string UserName { get; set; }
 
             [Required]
             [EmailAddress]
@@ -68,7 +68,6 @@ namespace PetsDates.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;      
         }
-
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
@@ -77,7 +76,7 @@ namespace PetsDates.Areas.Identity.Pages.Account
             {
                 var user = new User 
                 { 
-                    UserName = Input.Username, 
+                    UserName = Input.UserName, 
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber
                 };

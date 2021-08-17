@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UserViewModel>
+
+@{ ViewBag.Title = "Users Administration"; }
+
+<h1>Users</h1>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">PhoneNumber</th>
+            <th scope="col">DateRegistered</th>
+            <th scope="col">PetsCount</th>
+            <th scope="col">IsMod</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+<tr>
+    <td scope="col">@user.Username</td>
+    <td scope="col">@user.Email</td>
+    <td scope="col">@user.PhoneNumber</td>
+    <td scope="col">@user.DateRegistered</td>
+    <td scope="col">@user.PetsCount</td>
+    <td scope="col">@(user.IsMod ? "Yes" : "No")</td>
+    <td scope="col">
+        <a class="btn btn-danger float-lg-right 
+           @(!user.IsMod ? "disabled" : string.Empty)"
+           asp-area="Administration"
+           asp-controller="Users"
+           asp-action="RemoveMod"
+           asp-route-username="@user.Username">Remove Mod</a>
+        <a class="btn btn-primary float-lg-right
+           @(user.IsMod ? "disabled" : string.Empty)"
+           asp-area="Administration"
+           asp-controller="Users"
+           asp-action="GiveMod"
+           asp-route-username="@user.Username">Give Mod</a>
+
+    </td>
+</tr>
+        }
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using PetsDates.Areas.Administration.Models;
 using PetsDates.Data;
 using PetsDates.Data.Models;
 using PetsDates.Services.Pets;
@@ -18,6 +19,21 @@ namespace PetsDates.Services.UsersServices
         {
             this.data = data;
             this.userManager = userManager;
+        }
+
+        public IEnumerable<UserViewModel> AllUsers()
+        {
+            return data.Users
+                .Where(x => x.UserName != "admin")
+                .Select(x => new UserViewModel
+                {
+                    Username = x.UserName,
+                    Email = x.Email,
+                    PhoneNumber = x.PhoneNumber,
+                    DateRegistered = x.DateRegistered,
+                    IsMod = x.IsMod,
+                    PetsCount = x.Pets.Count()
+                });
         }
 
         public IEnumerable<PetsListingServiceModel> PetsByUser(string userId)
@@ -42,13 +58,29 @@ namespace PetsDates.Services.UsersServices
                 Purpose = x.Purpose
             }).ToList();
         }
-        public void AddToRole(string id)
+
+        public void GiveMod(string username)
         {
-            var user = data.Users.Find(id);
+            var user = data.Users.FirstOrDefault(x => x.UserName == username);
+
+            user.IsMod = true;
 
             Task.Run(async () =>
             {
                 await userManager.AddToRoleAsync(user, Mod);
+
+            }).GetAwaiter().GetResult();
+        }
+
+        public void RemoveMod(string username)
+        {
+            var user = data.Users.FirstOrDefault(x => x.UserName == username);
+
+            user.IsMod = false;
+
+            Task.Run(async () =>
+            {
+                await userManager.RemoveFromRoleAsync(user, Mod);
 
             }).GetAwaiter().GetResult();
         }

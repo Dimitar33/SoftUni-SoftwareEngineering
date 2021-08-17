@@ -43,9 +43,9 @@ namespace PetsDates.AppBuilderExtensions
 
             Task.Run(async () =>
             {
-                if (!await roleManger.RoleExistsAsync(Administrator))
+                if (!await roleManger.RoleExistsAsync(Admin))
                 {
-                    var role = new IdentityRole { Name = Administrator };
+                    var role = new IdentityRole { Name = Admin };
 
                     await roleManger.CreateAsync(role);
 

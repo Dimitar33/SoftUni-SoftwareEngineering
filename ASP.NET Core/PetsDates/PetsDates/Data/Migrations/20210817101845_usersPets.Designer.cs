@@ -10,8 +10,8 @@ using PetsDates.Data;
 namespace PetsDates.Data.Migrations
 {
     [DbContext(typeof(PetsDatesDbContext))]
-    [Migration("20210813121859_UsersPets")]
-    partial class UsersPets
+    [Migration("20210817101845_usersPets")]
+    partial class usersPets
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -243,11 +243,17 @@ namespace PetsDates.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DateRegistered")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsMod")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")

@@ -25,23 +25,5 @@ namespace PetsDates.Controllers
             return View(pets);
         }
 
-        [Authorize]
-        public IActionResult Mod()
-        {
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public IActionResult Mod(int id)
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            userServices.AddToRole(userId);
-            
-            SignOut();
-            return RedirectToAction("Index", "Home");
-        }
-
     }
 }
