@@ -13,7 +13,6 @@ function main(matrix){
                     count++;
                 }
             }
-
             
             if (!(i + 1 >= matrix.length)) {
 
