@@ -31,6 +31,8 @@ function solve() {
             let leftOver = (num / 16) - devizor;
             let endNumber = leftOver * 16;
 
+            // dynamically changing the variable type is bad!! its used just for the learning pourpose
+
             switch (endNumber) {
                 case 10:
                     endNumber = `A`

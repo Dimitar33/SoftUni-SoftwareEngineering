@@ -17,7 +17,7 @@ function solve() {
 
             const [name, salary] = el.split(` `);
             
-            worker = {
+           const worker = {
 
                name,
                salary
@@ -33,7 +33,7 @@ function solve() {
 
          workers.sort((a, b) => b.salary - a.salary)
 
-         const avgSalary = workers.reduce((sum, worker) => sum + Number(worker.salary) / workers.length);
+         const avgSalary = workers.reduce((sum, worker) => sum + Number(worker.salary), 0 ) / workers.length;
          const bestSalary = Number(workers[0].salary);
 
          restourants[restourantName] = {
@@ -46,7 +46,7 @@ function solve() {
 
       });
 
-      let bestName = ``;
+      let bestName = undefined;
       let bestSalary = 0;
 
       for (const i in restourants) {
@@ -60,18 +60,18 @@ function solve() {
 
       const bestRestourant = restourants[bestName];
       
-      document.querySelector(`#bestRestaurant p`).textContent = 
-      `Name: ${bestName} Average Salary: ${bestRestaurant.avgSalary.toFixed(2)} Best Salary: ${bestRestaurant.bestSalary.toFixed(2)}`;
+      document.querySelector(`#bestRestaurant>p`).textContent = 
+      `Name: ${bestName} Average Salary: ${bestRestourant.avgSalary.toFixed(2)} Best Salary: ${bestRestourant.bestSalary.toFixed(2)}`;
 
       
 
       let workersResult = [];
 
-      bestRestorant.workers.forEach(el => {
+      bestRestourant.workers.forEach(el => {
          
-         workersResult.push(`Name: ${w.name} With Salary: ${w.salary}`)
+         workersResult.push(`Name: ${el.name} With Salary: ${el.salary}`)
       });
 
-      document.querySelector(`#workers p`).textContent = workersResult.join(` `);
+      document.querySelector(`#workers>p`).textContent = workersResult.join(` `);
    }
 }

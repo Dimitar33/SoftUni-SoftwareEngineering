@@ -17,7 +17,9 @@ function generateReport() {
             }
 
             return obj;
-        }, {});
+        },
+        
+        {});
 
         result.push(currRow);
     });

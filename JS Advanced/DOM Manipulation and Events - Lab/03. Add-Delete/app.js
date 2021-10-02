@@ -14,7 +14,7 @@ function addItem() {
     
     let del = document.createElement(`a`);
     del.href = `#`;
-    del.textContent = `[DELETE]`;
+    del.textContent = `[Delete]`;
 
     del.addEventListener(`click`, deleteItem)
 

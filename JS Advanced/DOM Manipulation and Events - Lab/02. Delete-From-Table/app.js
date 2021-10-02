@@ -1,7 +1,7 @@
 function deleteByEmail() {
     
-    let input = document.getElementsByName(`email`)[0].value;
-    let emails = document.querySelectorAll(`#customers tr td:nth-child(2)`)
+    let input = document.getElementsByName("email")[0].value;
+    let emails = Array.from(document.querySelectorAll(`#customers tr td:nth-child(2)`));
 
     emails.forEach(td => {
         
@@ -9,7 +9,7 @@ function deleteByEmail() {
             
             client = td.parentNode;
             client.parentNode.removeChild(client);
-            document.getElementById(`result`).textContent = `Deleted`
+            document.getElementById(`result`).textContent = `Deleted`;
             return;
         }
         
