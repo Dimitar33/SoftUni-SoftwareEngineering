@@ -31,7 +31,7 @@ function solve() {
 
       output.value += `You bought ${[...products.keys()].join(`, `)} for ${total.toFixed(2)}.`;
       
-      document.getElementsByClassName(`checkout`)[0].removeEventListener();
+      document.getElementsByClassName(`checkout`)[0].removeEventListener(`click`, checkout);
       document.getElementsByClassName(`shopping-cart`)[0].removeEventListener(`click`, select);
    }
 
