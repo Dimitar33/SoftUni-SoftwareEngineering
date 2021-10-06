@@ -18,7 +18,6 @@ function lockedProfile() {
                 content.style.display = `block`;
                 btn.textContent = `Hide it`;
 
-                console.log(isLocked)
             }
             else {
 

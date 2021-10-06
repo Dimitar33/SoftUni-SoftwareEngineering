@@ -6,7 +6,7 @@ function solve() {
   createBtn.addEventListener(`click`, create);
   buyBtn.addEventListener(`click`, buy);
 
-  function create(ev) {
+  function create() {
 
     let input = document.getElementById(`exercise`).children[1].value;
     newFurniture = JSON.parse(input);
