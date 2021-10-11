@@ -8,9 +8,9 @@ function calculator() {
 
         init: (selector1, selector2, selector3) => {
 
-             first = document.querySelector(selector1);
-             second = document.querySelector(selector2);
-             res = document.querySelector(selector3);
+            first = document.querySelector(selector1);
+            second = document.querySelector(selector2);
+            res = document.querySelector(selector3);
         },
 
         add: () => res.value = Number(first.value) + Number(second.value),
