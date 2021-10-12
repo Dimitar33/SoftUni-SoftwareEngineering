@@ -1,33 +1,127 @@
-function main(obj) {
+function solution(request) {
 
-    const validMethods = ["GET", "POST", "DELETE", "CONNECT"];
-    const validVersions = ["HTTP/0.9", "HTTP/1.0", "HTTP/1.1", "HTTP/2.0"];
-    const uriRegex = /(^[\w.]+$)/;
-    const messageRegex = /([<>\\&`"])/;
+    let entries = Object.entries(request);
 
-    if (!obj.method || !validMethods.includes(obj.method)) {
+    let isValid = true;
 
-        throw new Error(`Invalid request header: Invalid Method`);
+    validate_Method(entries[0]);
+
+    validate_uri(entries[1]);
+
+    validate_version(entries[2]);
+
+    validate_message(entries[3]);
+
+
+    return request;
+
+
+
+    function validate_Method(entry) {
+
+        let methodValues = ['GET', 'POST', 'DELETE', 'CONNECT'];
+
+        if (entry === undefined) {
+
+            isValid = false;
+
+        } else {
+
+            let [name, val] = entry;
+            if (name !== 'method' ||
+                !methodValues.includes(val)) {
+
+                isValid = false;
+            };
+        };
+
+        if (!isValid) {
+
+            throw new Error('Invalid request header: Invalid Method');
+        };
     }
 
-    if (!obj.uri || obj.uri == "" || !uriRegex.test(obj.uri)) {
 
-        throw new Error(`Invalid request header: Invalid URI`);
+    function validate_uri(entry) {
+
+        if (entry === undefined) {
+
+            isValid = false;
+
+        } else {
+
+            let [name, val] = entry;
+
+            if (name !== 'uri' || val === '') {
+                isValid = false;
+            }
+
+            if (name === 'uri' && val !== '*' && val !== '') {
+
+                let regexp = /^[a-zA-Z0-9.]*$/;
+                isValid = regexp.test(val);
+            };
+        };
+
+        if (!isValid) {
+            throw new Error('Invalid request header: Invalid URI')
+        };
     }
 
-    if (!obj.version || !validVersions.includes(obj.version)) {
+    function validate_version(entry) {
 
-        throw new Error(`Invalid request header: Invalid Version`);
+        let validVersions = ['HTTP/0.9', 'HTTP/1.0', 'HTTP/1.1', 'HTTP/2.0'];
+
+        if (entry === undefined) {
+
+            isValid = false;
+
+        } else {
+
+            let [name, val] = entry;
+
+            if (name !== 'version' ||
+                !validVersions.includes(val)) {
+                isValid = false;
+            };
+        };
+
+        if (!isValid) {
+            throw new Error('Invalid request header: Invalid Version');
+
+        };
     }
 
-    if (obj.message == undefined || messageRegex.test(obj.message)) {
+    function validate_message(entry) {
 
-        throw new Error(`Invalid request header: Invalid Message`);
+        if (entry === undefined) {
+
+            isValid = false;
+
+        } else {
+
+            let [name, val] = entry;
+
+            if (name !== 'message') {
+                isValid = false;
+
+            } else {
+
+                let regexp = /^[^<>\\&'"]*$/;
+                isValid = regexp.test(val);
+            };
+
+        };
+
+        if (!isValid) {
+            throw new Error('Invalid request header: Invalid Message')
+        };
     }
 
-    return obj;
+
 
 }
+
 
 console.log(main({
     method: 'POST',

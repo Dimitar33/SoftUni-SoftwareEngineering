@@ -5,6 +5,7 @@ function notify(message) {
   notification.addEventListener(`click`, () => {
     
     notification.style.display = `none`;
+    
   });
 
 

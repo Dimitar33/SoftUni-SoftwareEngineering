@@ -1,99 +1,130 @@
 function validate() {
 
-    const usernameRegex = /^[\w]{3,20}$/;
-    const passRegex = /^[\w]{5,15}$/;
-    const emailRegex = /^[^@.]+@[^@]*\.[^@]*$/;
+    document.querySelector("#submit").type = "button"; //Защо по дяволите???
 
-    let userInfo = document.querySelectorAll(`#userInfo div`);
+    const btn = document.querySelector('#submit');
+    const checkbox = document.querySelector('#company')
+    let div = document.getElementById('valid');
 
-    let username = userInfo[0].children[1];
-    let email = userInfo[1].children[1];
-    let password = userInfo[2].children[1];
-    let confirmPass = userInfo[3].children[1];
-    let companyCheck = userInfo[4].children[1];
+    let isValid = true;
 
-    document.getElementById(`companyNumber`).addEventListener(`change`, (el) => {
+    btn.addEventListener('click', onClick);
+    checkbox.addEventListener('change', onChange);
+
+    function onClick(event) {
+
+        let username = document.querySelector('#username').value;
+        validateUsername(username);
+
+        let email = document.getElementById('email').value;
+        validateEmail(email);
+
+        let password = document.getElementById('password').value;
+        let confirmPassword = document.getElementById('confirm-password').value;
+        validatePasswords(password, confirmPassword);
+
+        let companyNumber = document.getElementById('companyNumber').value;
+        validateCompanyNumber(Number(companyNumber));
 
 
-        if (el.target.value < 1000 || el.target.value >= 10000) {
 
-            el.target.style.borderColor = `red`;
+
+        if (isValid) {
+            div.style.display = 'block';
+
+        } else {
+            div.style.display = 'none';
+        };
+    };
+
+    function onChange(event) {
+        let companyInfo = document.getElementById('companyInfo');
+
+        if (event.target.checked) {
+            companyInfo.style.display = 'block';
+        } else {
+            companyInfo.style.display = 'none';
         }
-        else {
-            
-            el.target.style.borderColor = ``;
-        }
-
-        console.log(el.target.value)
+    }
 
 
-    })
+    function validateUsername(username) {
 
-    document.getElementById(`userInfo`).addEventListener(`change`, (el) => {
+        let regexName = /^[A-Za-z0-9]{3,20}$/;
 
-        if (el.target == username) {
+        if (!regexName.test(username)) {
 
-            if (usernameRegex.test(el.target.value)) {
+            document.getElementById('username').style.borderColor = 'red';
+            isValid = false;
 
-                el.target.style.borderColor = ``;
-            }
-            else {
-
-                el.target.style.borderColor = `red`;
-            }
-        }
-
-        if (el.target == email) {
-
-            if (emailRegex.test(el.target.value)) {
-
-                el.target.style.borderColor = ``;
-            }
-            else {
-
-                el.target.style.borderColor = `red`;
-            }
-        }
-
-        if (el.target == password) {
-
-            if (passRegex.test(el.target.value)) {
-
-                el.target.style.borderColor = ``;
-            }
-            else {
-
-                el.target.style.borderColor = `red`;
-            }
+        } else {
+            document.getElementById('username').style.borderColor = '';
         }
 
-        if (el.target == confirmPass) {
+    }
 
-            if (el.target.value != document.getElementById(`password`).value) {
+    function validateEmail(email) {
 
-                el.target.style.borderColor = `red`;
-            }
-            else {
+        let regEmail = /^[^@.]+@[^@]*\.[^@]*$/;
 
-                el.target.style.borderColor = ``;
-            }
+        if (!regEmail.test(email)) {
+
+            document.getElementById('email').style.borderColor = 'red';
+            isValid = false;
+        } else {
+            document.getElementById('email').style.borderColor = '';
+        }
+    }
+
+
+    function validatePasswords(password, confirmPassword) {
+
+        let regPassword = /^[A-Za-z0-9\_]{5,15}$/;
+
+        if (!regPassword.test(password)) {
+
+            document.getElementById('password').style.borderColor = 'red';
+            isValid = false;
+
+        } else {
+            document.getElementById('password').style.borderColor = '';
         }
 
-        if (el.target == companyCheck) {
 
-            if (el.target.checked == true) {
 
-                document.getElementById(`companyInfo`).style.display = `block`;
-            }
-            else {
+        if (!regPassword.test(confirmPassword)) {
 
-                document.getElementById(`companyInfo`).style.display = `none`;
-            }
+            document.getElementById('confirm-password').style.borderColor = 'red';
+            isValid = false;
+
+        } else {
+            document.getElementById('confirm-password').style.borderColor = '';
         }
 
+        if (password !== confirmPassword) {
 
-    })
+            document.getElementById('password').style.borderColor = 'red';
+            document.getElementById('confirm-password').style.borderColor = 'red';
+            isValid = false;
+        };
+    }
 
+    function validateCompanyNumber(companyNumber) {
+        if (checkbox.checked) {
 
+            if (Number.isInteger(companyNumber) &&
+                companyNumber >= 1000 &&
+                companyNumber <= 9999) {
 
+                document.getElementById('companyNumber').style.borderColor = '';
+
+            } else {
+                document.getElementById('companyNumber').style.borderColor = 'red';
+                isValid = false;
+            };
+
+        };
+    }
 }
+
+  

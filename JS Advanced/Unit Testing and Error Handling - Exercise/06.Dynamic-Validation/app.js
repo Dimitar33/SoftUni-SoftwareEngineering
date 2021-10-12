@@ -14,6 +14,4 @@ function validate() {
         }
 
     })
-
-    console.log(email.value);
 }
