@@ -55,7 +55,7 @@ function main() {
 
         toString() {
 
-            return super.toString() + ` Area: ${this.area} - radius: ${this.radius}`
+            return super.toString() + ` Area: ${this.area} - radius: ${this.rad}`
         }
     }
 
@@ -87,7 +87,7 @@ function main() {
 
         toString() {
 
-            return super.toString() + ` Area: ${this.area} - width: ${this.width}, height: ${this.height}`;
+            return super.toString() + ` Area: ${this.area} - width: ${this.propWidth}, height: ${this.propHeight}`;
         }
     }
 
