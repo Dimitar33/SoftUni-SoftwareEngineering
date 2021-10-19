@@ -29,6 +29,7 @@ function solution() {
 
 
         toString() {
+            
             let result = super.toString() + `\nRating: ${this.likes - this.dislikes}`;
 
             if (this.comments.length > 0) {
@@ -58,7 +59,7 @@ function solution() {
 
         toString(){
 
-            return `${super.toString()}\nViews: ${this.views}"`
+            return super.toString() + `\nViews: ${this.views}`;
         }
     }
 
