@@ -50,7 +50,6 @@ class ChristmasDinner {
         if (isProd) {
 
             this.dishes.push(recipe);
-            console.log(recipe[`recipeName`])
             return `${recipe[`recipeName`]} has been successfully cooked!`;
         }
 
