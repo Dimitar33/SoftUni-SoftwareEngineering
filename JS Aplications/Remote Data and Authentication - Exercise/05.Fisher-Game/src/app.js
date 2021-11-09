@@ -113,7 +113,7 @@ loadBtn.addEventListener(`click`, async (ev) => {
                 },
                 body: JSON.stringify({ angler, weight, species, location, bait, captureTime })
             });
-            console.log(angler)
+            
             loadBtn.click();
         })
 
