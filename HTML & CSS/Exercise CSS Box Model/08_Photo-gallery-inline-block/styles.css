@@ -1,0 +1,19 @@
+
+li{
+
+    vertical-align: middle;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    border: solid black 0.4rem;
+}
+
+img{
+    
+    width: 300px;
+}
+
+ul{
+    display: inline-block;
+    margin-left: 30px;
+}

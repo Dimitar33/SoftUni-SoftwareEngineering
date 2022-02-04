@@ -1,0 +1,16 @@
+header *{
+    
+    display: inline-block;
+}
+
+h1{
+    margin-right: 60px;
+}
+nav a{
+    color: green;
+    margin: 10px;
+}
+html{
+    margin-left: 24px;
+    font-family: Helvetica, sans-serif;
+}
