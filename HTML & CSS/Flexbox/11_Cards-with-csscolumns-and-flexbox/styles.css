@@ -1,0 +1,57 @@
+
+body{
+
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(238, 238, 238);
+    padding: 100px;
+}
+h2{
+    margin-left: 10px;
+}
+body>div>div{
+    
+    flex-basis: 25%;
+    box-shadow: 0 0 10px grey;
+    border-radius: 5px;
+    margin: 10px;
+
+}
+
+.masonry>div{
+    align-self: flex-start;
+}
+
+section{
+
+    padding-left: 15px;
+    border-bottom: solid 1px black;
+}
+
+img{
+
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+footer{
+
+    margin-left: 15px;
+    align-self: flex-end;
+}
+
+
+.masonry{
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.flex{
+
+    display: flex;
+    flex-wrap: wrap;
+
+}

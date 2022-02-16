@@ -1,0 +1,40 @@
+
+html{
+    box-sizing: border-box;
+}
+
+div{
+
+    display: flex;
+    align-items: center;
+    max-width: 65vw;
+    justify-content: center;
+}
+
+span{
+    border: 1px black solid;
+    height: 100px;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    line-height: 60px;
+}
+
+
+section{
+
+    display: flex;
+    flex-flow: wrap;
+    
+}
+
+.notes{
+
+    flex-direction: column;
+    height: 408px;
+    width: 200px;
+}
+.work, .weekend{
+
+    flex-basis: 100%;
+}

@@ -1,0 +1,38 @@
+
+h1{
+
+    padding-left: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid black;
+    
+    
+}
+
+main{
+
+    padding-left: 30px;
+    flex-flow: nowrap;
+    flex-grow: auto;
+}
+p{
+    flex-grow: 1;
+}
+
+body{
+
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    font-family: Helvetica, sans-serif;
+    background-color: rgb(238, 238, 238);
+    border: 2px solid black;
+}
+
+footer{
+
+    padding-left: 30px;
+    position: sticky;
+    bottom: 0;
+    color: rgb(255, 255, 255);
+    background-color: rgb(102, 102, 102);
+}

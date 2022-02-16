@@ -1,0 +1,36 @@
+
+body{
+    background: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px;
+    
+}
+
+header, footer, main, aside{
+
+    background-color: white;
+    border: black 2px ;
+    margin: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px slategray
+    
+}
+header, footer{
+
+    flex-basis: 100%;
+    height: 100px;
+    
+}
+
+main{
+    
+    height: 200px;
+    flex-basis: 70%;
+}
+
+aside
+{
+    flex-grow: 1;
+}

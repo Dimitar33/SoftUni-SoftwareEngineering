@@ -1,0 +1,26 @@
+
+body{
+
+    margin: 50px;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid rgb(0,0,0) 2px;
+}
+
+ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+li{
+
+    margin: 10px;
+    justify-content: space-between;
+}
+a{
+    text-decoration: none;
+    color: rgb(0, 153, 0);
+}

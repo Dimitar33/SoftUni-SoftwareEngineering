@@ -1,0 +1,88 @@
+.page{
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+h1{
+
+    font-family: Georgia, serif;
+}
+
+.title{
+
+    border-bottom: 2px solid black;
+    padding-bottom: 30px;
+}
+
+article{
+    flex: 1;
+}
+
+body{
+
+    padding: 50px;
+    background-color: rgb(238, 238, 238);
+}
+
+
+aside{
+    margin-left: 40px;
+}
+
+main{
+    padding-right: 80px;
+}
+
+
+a{
+    text-decoration: none;
+    color: rgb(0, 153, 0);
+}
+
+
+img{
+    border: solid 3px black;
+    padding: 5px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25);
+}
+
+blockquote{
+
+    font-family: Georgia, serif;
+    float: right;
+    width: 50%;
+    border-left: solid black;
+    padding-left: 10px;
+    margin-top: 0px;
+}
+
+blockquote p{
+    
+    margin-top: 0px;
+}
+
+#author{
+
+    text-align: right;
+}
+
+img{
+
+    background-color: rgb(255, 255, 255);
+}
+
+#img1{
+
+    float: right;
+    margin-left: 10px;
+    
+    
+}
+
+#img2{
+
+    float: left;
+    margin-right: 10px;
+}
