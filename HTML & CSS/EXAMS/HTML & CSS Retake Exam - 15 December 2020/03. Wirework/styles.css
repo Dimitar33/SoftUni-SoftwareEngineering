@@ -1,0 +1,191 @@
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css");
+
+html{
+
+    font-family: Helvetica;
+}
+
+body{
+
+   border: 2px solid black;
+   padding: 5px 20px;
+   padding: 0px;
+}
+
+article{
+
+    background-color: rgb(207, 95, 51);
+    
+}
+
+main ul{
+
+    width: 100%;
+}
+
+div i {
+
+    height: 200px;
+}
+
+header,div, ul{
+
+    display: flex;
+}
+
+header{
+
+    padding: 1px 30px;
+}
+
+header p{
+
+    padding-top: 20px;
+}
+
+article p{
+
+    padding: 30px 100px;
+    text-align: center;
+    color: white;
+    margin: 0px;
+}
+
+nav{
+
+    flex-grow: 1;
+    padding-left:  10vw;
+}
+
+img{
+
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+ul{
+
+    list-style-type: none;
+    padding: 0px;
+}
+
+header li{
+
+    margin-right: 1px;
+    width: 100% ;
+    background-color: rgb(224, 214, 214);
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+header li:hover{
+
+    background-color: rgb(207, 95, 51);
+}
+
+main article{
+
+    flex-grow: 1;
+}
+
+main li{
+
+    width: 100% ;
+    margin: 10px;
+    text-align: center;
+    color: white;
+}
+
+div ul {
+
+    margin: 0px;
+    
+}
+
+section{
+
+    padding: 50px;
+    text-align: center;
+}
+
+section h1{
+
+    font-size: 35px;
+    margin-bottom: 0px;
+}
+
+main div ul li p:first-of-type {
+
+    font-size: 20px;
+}
+
+main div ul li p:last-of-type {
+
+    line-height: 25px;
+    color: grey;
+}
+
+footer{
+
+    background-color: rgb(81, 196, 81);
+    text-align: center;
+    padding: 60px;
+    color: rgb(198, 216, 172);
+}
+
+.underscore{
+
+    text-decoration: underline 2px ;
+}
+
+b{
+    color: whitesmoke;
+}
+
+button{
+
+    background-color: rgb(85, 148, 85);
+    height: 50px;
+    width: 200px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.under-font{
+
+    border-bottom: 2px rgb(97, 74, 74) solid;
+    padding-bottom: 20px;
+}
+
+main div{
+
+    padding: 70px 50px;
+    background-color: rgb(70, 51, 47);
+}
+
+header h1{
+
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right: 2px solid rgb(219, 207, 207);
+}
+
+a{
+
+    text-decoration: none;
+}
+
+main a{
+
+    color: white;
+}
+
+main i{
+
+    background-color: rgb(207, 95, 51);
+    height: 50px;
+    align-content: center;
+    vertical-align: middle;
+    padding: 20px;
+}

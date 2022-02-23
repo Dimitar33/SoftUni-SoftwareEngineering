@@ -1,0 +1,21 @@
+@media (max-width: 600px) {
+    
+   section article article{
+
+        display: none;
+    }
+
+    .w3-hide-small{
+
+        display: none;
+    }
+    .w3-col.m6{
+
+        width: auto;
+    }
+
+    .w3-col.l6 {
+
+        width: auto;
+    }
+}

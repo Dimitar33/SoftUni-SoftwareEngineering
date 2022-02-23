@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+h2, h3{
+
+    font-family: Montserrat;
+}
+
+p{
+
+    font-family: Poppins;
+}
+body{
+    
+    display: flex;
+    padding: 2rem 10rem;
+    border: solid 3px black;
+}
+
+article{
+    margin-right: 20px;
+    flex-grow: 1;
+}
+
+body>img{
+
+    padding-top: 20px;
+}
+
+article>div>img{
+
+    float: left;
+    width: 70px;
+}
+
+article>div>h3{
+
+    padding-top: 7px;
+    margin-bottom: 0px;
+}
+
+article>div>p{
+
+    margin: 0px;
+}
