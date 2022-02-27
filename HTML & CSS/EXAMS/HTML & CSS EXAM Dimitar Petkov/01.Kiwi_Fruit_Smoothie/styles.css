@@ -1,0 +1,66 @@
+@import url("https://fonts.google.com/specimen/PT+Serif");
+
+html{
+
+    font-family: PT, serif;
+}
+
+main{
+    position: absolute;
+    top: 0%;
+    left: 5%
+}
+
+main{
+
+    display: flex;
+}
+
+.image img{
+
+    margin: 28px;
+    width: 100%;
+}
+
+section{
+
+    width: 50%;
+}
+
+section div{
+
+    display: flex;
+    justify-content: space-between;
+}
+
+h1{
+
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 20px 0px;
+    border-bottom: dotted 2px rgb(106, 167, 106);
+}
+
+ul{
+    list-style: none;
+    padding: 0px;
+}
+
+span, b{
+
+    color: green;
+}
+
+table{
+
+    border: 1px solid green;
+    border-collapse: collapse;
+}
+
+td{
+
+    text-align: center;
+    border: 1px solid green;
+    margin: 0px;
+    width: 160px;
+}

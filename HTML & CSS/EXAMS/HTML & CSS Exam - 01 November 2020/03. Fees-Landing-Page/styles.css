@@ -1,0 +1,164 @@
+
+main{
+
+    position: relative;
+}
+header nav{
+
+    display: flex;
+    justify-content: space-between;
+}
+
+header ul{
+
+    display: flex;
+   
+}
+
+header li{
+
+    margin: 10px;
+}
+
+ul{
+
+    list-style: none;
+}
+
+.taxes{
+
+    display: flex;
+    position: relative;
+    height: 360px;
+    background-color: rgb(46, 10, 46);
+}
+
+main{
+
+     position: absolute;
+    top: 40%;
+    left: 10%;
+}
+
+.boxes{
+
+    display: flex;
+    width: 80%;
+    
+}
+
+tr:nth-child(odd) {
+
+    background-color: rgb(233, 231, 231);
+}
+
+tr:nth-child(even) {
+
+    background-color: whitesmoke;
+    
+}
+
+td:nth-child(1){
+
+    width: 700px;
+    padding-left: 10px;
+}
+
+td{
+
+    height: 40px;
+}
+
+td:nth-child(n+2){
+
+    width: 150px;
+    text-align: center;
+}
+
+.boxes>div{
+
+    flex: 1;
+    text-align: center;
+    margin: 7px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.boxes>div>div{
+
+    background-color: greenyellow;
+}
+
+.fundamentals ul, .professional ul{
+
+    display: flex;
+    padding: 0px;
+}
+
+.fundamentals ul li, .professional ul li{
+
+    flex: 1;
+}
+
+.checks{
+
+    padding: 70px;
+}
+
+article div{
+
+    width: 70%;
+}
+
+.bank, article div{
+
+    display: inline-block;
+}
+.taxes img{
+
+    width: 15%;
+    position: absolute;
+    left: -6%;
+    top: 20%;
+}
+
+.taxes h2{
+
+    position: absolute;
+    left: 50%;
+    width: 20px;
+    color: white;
+    align-items: center;
+}
+
+a{
+
+    text-decoration: none;
+}
+
+header a{
+
+    color: black;
+}
+
+.creativeImg{
+
+    width: 20%;
+}
+
+table{
+
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+footer{
+
+    position: absolute;
+    bottom: -160%;
+    background-color: rgb(46, 21, 46);
+    width: 100%;
+    text-align: center;
+    color: rgb(91, 78, 92);
+}

@@ -1,0 +1,51 @@
+
+@media (max-width: 600px) {
+    
+     #main-menu{
+
+        width: 100%;
+    }
+
+    #main-menu ul, #main-menu{
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #main-menu li{
+
+        text-align: center;
+        border: 2px solid red;
+        width: 100%;
+        margin: 5px;
+    }
+
+    #news{
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #news article{
+
+        width: 90%;
+    }
+
+    #left-aside{
+
+        display: flex;
+        border-bottom: none;
+    }
+    #left-aside article{
+
+        width: 100%;
+        border-bottom: none;
+    }
+
+    #right-aside{
+
+        width: 90%;
+    }
+}

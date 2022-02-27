@@ -1,0 +1,56 @@
+
+body{
+
+    border: 3px solid black;
+    padding: 20px 70px;
+}
+
+section{
+
+    display: flex;
+    border-bottom:none;
+    padding-bottom: 20px;
+    background:linear-gradient(black,black) bottom /* left or right or else */ no-repeat;
+    background-size: 35% 1px;
+}
+
+button{
+
+    height: 40px;
+    width: 200px;
+    position: absolute;
+    bottom: 10px;
+    background-color: rgb(64, 139, 89);
+    color: white;
+}
+
+.btnDiv{
+
+    display: flex;
+    position: relative;
+    width: 2200px;
+    margin-right: 20px;
+}
+
+div{
+
+    flex-grow: 70%;
+}
+
+h1, h4{
+
+    font-family: Georgia;
+}
+
+span{
+
+    background-color: rgb(137, 224, 129);
+}
+
+    
+
+p{
+
+    font-family:Helvetica;
+    color: rgba(0, 0, 0, 0.5);
+}

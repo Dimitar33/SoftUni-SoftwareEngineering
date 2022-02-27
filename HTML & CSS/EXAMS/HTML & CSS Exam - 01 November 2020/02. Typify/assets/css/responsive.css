@@ -1,0 +1,61 @@
+
+@media (max-width: 600px) {
+    
+
+    .features{
+
+        flex-direction: column;
+        
+    }
+
+    .footer:before{
+
+        left: 10%;
+        width: 80%;
+    }
+
+    .inner{
+
+        padding: 0rem 1rem;
+    }
+
+    .feature{
+
+        width: 100%;
+    }
+
+    .grid-form{
+
+        flex-direction: column;
+    }
+
+    .grid-form .form-control.narrow {
+
+        width: 100%;
+    }
+
+    .actions li{
+
+        width: 100%;
+    }
+
+    .banner h2{
+
+        width: 95%;
+    }
+
+    .button.special{
+
+        width: 95%;
+    }
+
+    .actions input{
+
+        width: 100%;
+    }
+
+    .wrapper{
+
+        display: flex;
+    }
+}

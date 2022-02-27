@@ -1,0 +1,250 @@
+@import url("https://use.fontawesome.com/releases/v5.15.4/css/all.css"); 
+
+html{
+
+    font-family: Helvetica, sans-serif;
+}
+
+header a{
+
+    text-decoration: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: black;
+}
+
+header span{
+
+    color: rgb(97, 156, 137);
+}
+
+header img{
+
+    width: 100%;
+}
+
+nav{
+
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+}
+
+nav p {
+
+    line-height: 40px;
+}
+
+ul {
+
+    list-style: none;
+    display: flex;
+}
+
+header ul li{
+
+    margin: 10px;
+}
+header{
+
+    position: relative;
+}
+
+header a:hover{
+
+    margin-bottom: 10px;
+    text-decoration: underline 2px solid turquoise;
+}
+
+button{
+
+    cursor: pointer;
+
+}
+
+header div{
+
+    position: absolute;
+    bottom: 20%;
+    left: 15%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+header div h2, header div button{
+
+    margin: 10px;
+}
+
+header div button{
+
+    border: none;
+    border-radius: 20px;
+    height: 30px;
+    width: 150px;
+    background-color: turquoise;
+    
+}
+
+main article{
+
+    text-align: center;
+    padding: 20px 80px;
+    
+}
+
+main article h1{
+
+    padding-bottom: 7px;
+    background:linear-gradient(rgb(60, 147, 182), rgb(68, 140, 189)) bottom /* left or right or else */ no-repeat;
+    background-size: 9% 2px;
+}
+
+main article p{
+
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+main article button{
+
+    border-radius: 20px;
+    width: 100px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+main section{
+
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+main section ul{
+
+    padding: 20px;
+}
+
+main section li{
+    
+    margin: 7px;
+    border-radius: 4px ;
+    overflow: hidden;
+    background-color: white;
+}
+
+main section img{
+
+    width: 100%;
+}
+
+main section button{
+
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: none;
+    height: 30px;
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+footer section{
+    
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.658);
+    color: white;
+
+}
+
+footer h1{
+
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+    background:linear-gradient(white, white) bottom /* left or right or else */ no-repeat;
+    background-size: 9% 2px;
+}
+
+footer nav{
+
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+footer nav ul {
+
+    width: 100%;
+}
+
+footer section p{
+
+    font-size: 12px;
+    margin-top: 0px;
+}
+
+footer input{
+
+    height: 25px;
+    width: 400px;
+    border-radius: 5px;
+    padding-left: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.157);
+}
+
+footer button{
+
+    width: 120px;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    background-color: rgb(108, 150, 189);
+}
+
+.footer-nav{
+
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+    width: 20vw;
+    
+}
+
+.follow{
+
+   width: 100%;
+   text-align: center;
+   align-items: center;
+}
+
+.links li{
+
+    margin-top: 8px;
+}
+
+footer a{
+
+    text-decoration: none;
+    color:  white;
+
+}
+
+.follow ul{
+
+    margin-left: 8vw;
+}
+
+.follow li {
+
+   margin: 8px;
+}
+
+footer nav p{
+
+    margin: 0px;
+}
