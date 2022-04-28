@@ -1,11 +1,11 @@
 
 window.onload = function parseText() {
 
-    let asd = Array.from(document.querySelectorAll("img"));
+    let namesInput = Array.from(document.querySelectorAll("img"));
     let prices = Array.from(document.querySelectorAll('span[style="display: none"]'));
     let ratings = Array.from(document.querySelectorAll('body>div'));
 
-    let names = asd.filter(x => x.alt != 'Sold Out');
+    let names = namesInput.filter(x => x.alt != 'Sold Out');
 
     let products = [];
 
