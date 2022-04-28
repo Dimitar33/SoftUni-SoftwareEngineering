@@ -4,12 +4,12 @@ const jsdom = require("jsdom")
 function parseText(document) {
 
     const dom = new jsdom.JSDOM(document);
-    let asd = Array.from(dom.window.document.querySelectorAll("img"));
+    let namesInput = Array.from(dom.window.document.querySelectorAll("img"));
     let prices = Array.from(dom.window.document.querySelectorAll('span[style="display: none"]'));
     let ratings = Array.from(dom.window.document.querySelectorAll('body>div'));
 
 
-    let names = asd.filter(x => x.alt != 'Sold Out');
+    let names = namesInput.filter(x => x.alt != 'Sold Out');
 
     let products = [];
 
