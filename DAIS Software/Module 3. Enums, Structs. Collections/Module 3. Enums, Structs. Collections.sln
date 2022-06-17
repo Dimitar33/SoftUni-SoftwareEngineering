@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 1. Create enumeration Day with 7 values", "Task 1. Create enumeration Day with 7 values\Task 1. Create enumeration Day with 7 values.csproj", "{DD442EEC-1362-4608-B878-F18F2DB4A402}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 2. Create struct Coffee", "Task 2. Create struct Coffee\Task 2. Create struct Coffee.csproj", "{6CBC319E-F921-4984-8EBC-049C637EE8B6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 3. Getter-Setter", "Task 3. Getter-Setter\Task 3. Getter-Setter.csproj", "{3AD62DB2-A949-408D-996C-2FFF3F3BA637}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 4.  Indexer", "Task 4.  Indexer\Task 4.  Indexer.csproj", "{1FB3E935-70B1-429D-A254-D4A7EC63603B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 5. Use collections. Understand collections", "Task 5. Use collections. Understand collections\Task 5. Use collections. Understand collections.csproj", "{F3489B9E-6987-4CB9-B4F0-D11EC66C8AB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 6. Delegates-Events", "Task 6. Delegates-Events\Task 6. Delegates-Events.csproj", "{6B0E55A4-29F0-4851-81C0-89A1D137CB88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD442EEC-1362-4608-B878-F18F2DB4A402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD442EEC-1362-4608-B878-F18F2DB4A402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD442EEC-1362-4608-B878-F18F2DB4A402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD442EEC-1362-4608-B878-F18F2DB4A402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CBC319E-F921-4984-8EBC-049C637EE8B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CBC319E-F921-4984-8EBC-049C637EE8B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CBC319E-F921-4984-8EBC-049C637EE8B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CBC319E-F921-4984-8EBC-049C637EE8B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AD62DB2-A949-408D-996C-2FFF3F3BA637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AD62DB2-A949-408D-996C-2FFF3F3BA637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AD62DB2-A949-408D-996C-2FFF3F3BA637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AD62DB2-A949-408D-996C-2FFF3F3BA637}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB3E935-70B1-429D-A254-D4A7EC63603B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB3E935-70B1-429D-A254-D4A7EC63603B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB3E935-70B1-429D-A254-D4A7EC63603B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB3E935-70B1-429D-A254-D4A7EC63603B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3489B9E-6987-4CB9-B4F0-D11EC66C8AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3489B9E-6987-4CB9-B4F0-D11EC66C8AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3489B9E-6987-4CB9-B4F0-D11EC66C8AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3489B9E-6987-4CB9-B4F0-D11EC66C8AB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B0E55A4-29F0-4851-81C0-89A1D137CB88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0E55A4-29F0-4851-81C0-89A1D137CB88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B0E55A4-29F0-4851-81C0-89A1D137CB88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0E55A4-29F0-4851-81C0-89A1D137CB88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02D127F8-B8A7-4F65-85D1-9870869F32C7}
+	EndGlobalSection
+EndGlobal

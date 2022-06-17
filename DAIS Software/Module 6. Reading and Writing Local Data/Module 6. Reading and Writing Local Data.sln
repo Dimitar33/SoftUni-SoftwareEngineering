@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1. Recursive Search", "Task 1. Recursive Search\Task 1. Recursive Search.csproj", "{626AB2D6-56A0-4761-A783-B5905B3107AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 2. File viewer-editor", "Task 2. File viewer-editor\Task 2. File viewer-editor.csproj", "{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{626AB2D6-56A0-4761-A783-B5905B3107AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{626AB2D6-56A0-4761-A783-B5905B3107AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{626AB2D6-56A0-4761-A783-B5905B3107AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{626AB2D6-56A0-4761-A783-B5905B3107AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A8DD89B-F9A5-4A25-AE98-A7F3F62B610B}
+	EndGlobalSection
+EndGlobal

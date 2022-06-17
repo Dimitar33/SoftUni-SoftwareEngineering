@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1. Class hierarchy", "Task 1. Class hierarchy\Task 1. Class hierarchy.csproj", "{DE437A82-3FDB-4F4F-AA15-11F1B7D558AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 2. Implement custom Exception", "Task 2. Implement custom Exception\Task 2. Implement custom Exception.csproj", "{6F68DCB3-2816-46A8-8956-D6FCD6927F82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 3. Inherit generic collection and specify type", "Task 3. Inherit generic collection and specify type\Task 3. Inherit generic collection and specify type.csproj", "{1D4A08C5-1EA4-40B8-ACFA-0939BABD12FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE437A82-3FDB-4F4F-AA15-11F1B7D558AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE437A82-3FDB-4F4F-AA15-11F1B7D558AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE437A82-3FDB-4F4F-AA15-11F1B7D558AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE437A82-3FDB-4F4F-AA15-11F1B7D558AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F68DCB3-2816-46A8-8956-D6FCD6927F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F68DCB3-2816-46A8-8956-D6FCD6927F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F68DCB3-2816-46A8-8956-D6FCD6927F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F68DCB3-2816-46A8-8956-D6FCD6927F82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D4A08C5-1EA4-40B8-ACFA-0939BABD12FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D4A08C5-1EA4-40B8-ACFA-0939BABD12FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D4A08C5-1EA4-40B8-ACFA-0939BABD12FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D4A08C5-1EA4-40B8-ACFA-0939BABD12FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6F7F315-14CF-47DE-88AF-9057B80C4341}
+	EndGlobalSection
+EndGlobal
