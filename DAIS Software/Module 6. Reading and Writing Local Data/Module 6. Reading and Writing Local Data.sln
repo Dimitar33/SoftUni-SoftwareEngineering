@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 1. Recursive Search", "Task 1. Recursive Search\Task 1. Recursive Search.csproj", "{626AB2D6-56A0-4761-A783-B5905B3107AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 1. Recursive Search", "Task 1. Recursive Search\Task 1. Recursive Search.csproj", "{626AB2D6-56A0-4761-A783-B5905B3107AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 2. File viewer-editor", "Task 2. File viewer-editor\Task 2. File viewer-editor.csproj", "{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task 2. File viewer-editor", "Task 2. File viewer-editor\Task 2. File viewer-editor.csproj", "{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 4. Reverse file lines", "Task 4. Reverse file lines\Task 4. Reverse file lines.csproj", "{D3B74305-6BE8-4368-8C2E-782FCB955969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 7. Simple Json, XML serilization", "Task 7. Simple Json, XML serilization\Task 7. Simple Json, XML serilization.csproj", "{EAC8FB74-ADFE-4BE5-B438-909BBD8E4BAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task 5. Super Encryptor", "Task 5. Super Encryptor\Task 5. Super Encryptor.csproj", "{8A531C28-0A4C-4CC5-AF75-DCBE65A2F105}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84DD6BD8-99B9-4EC5-A6DA-A6B1CA3E0EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B74305-6BE8-4368-8C2E-782FCB955969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B74305-6BE8-4368-8C2E-782FCB955969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B74305-6BE8-4368-8C2E-782FCB955969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B74305-6BE8-4368-8C2E-782FCB955969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC8FB74-ADFE-4BE5-B438-909BBD8E4BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC8FB74-ADFE-4BE5-B438-909BBD8E4BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC8FB74-ADFE-4BE5-B438-909BBD8E4BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC8FB74-ADFE-4BE5-B438-909BBD8E4BAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A531C28-0A4C-4CC5-AF75-DCBE65A2F105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A531C28-0A4C-4CC5-AF75-DCBE65A2F105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A531C28-0A4C-4CC5-AF75-DCBE65A2F105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A531C28-0A4C-4CC5-AF75-DCBE65A2F105}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
