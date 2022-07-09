@@ -1,0 +1,109 @@
+Add-Migration initial -o Models 
+Update-database - to create da database
+
+public TestAppDbContext() - the DbContext needs constrctor !!!
+            :base()
+        { }
+
+public TestAppDbContext(DbContextOptions options) - the DbContext needs constrctor !!!
+            :base(options)
+        { }
+
+
+  	builder.Services.AddControllersWithViews(); - this is added beforehand
+        builder.Services.AddDbContext<TestAppDbContext>(options => 
+                    options.UseSqlServer("name=ConnectionStrings:DefaultConnection")); - in the Program class
+
+===============================================================================
+
+		database first
+
+Scaffold-DbContext "Server=.\SQLExpress;Database=SchoolDB;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force    -- -Force is for reloading if changes
+
+==========================================================================
+
+ HttpContext.Session.GetInt32("id");			
+ HttpContext.Session.GetString("Username");	for authorization
+
+===========================================================================
+
+class MyValidationClass : VallidationAttribute - for custom validation
+
+====================================================================
+
+<script>
+    function deleteMat(ev, id) {
+
+        if (!confirm("Delete the Material ?")) {
+
+            return;
+        }								JS delete					
+
+        $.get("/Courses/DeleteMaterial/" + id);
+
+        $(ev.target).parent().parent().parent().remove();
+    };
+
+</script>
+------------------------------
+<h1 id="box" style="color:greenyellow; text-align:center">@ViewBag.Message</h1>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        setTimeout(() => {						JS settimeout
+            const box = document.getElementById('box');
+
+            box.style.display = 'none';
+
+        }, 3000);
+    </script>
+}
+
+========================================================================
+
+			asp.net Form example
+-----------------------------------------------------------------------------------------
+
+<div class="container">
+    <div class="row">
+        <div class="offset-3 col-6">
+            <form method="post">
+
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" type="text" placeholder="Name">
+                    <span asp-validation-for="Name" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" rows="3" class="form-control" placeholder="Description"></textarea>
+                </div>
+
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+----------------------------------------------------------------------
+
+CREATE TABLE StudentsCourses(
+StudentId INT NOT NULL,				create maping table with primary key
+CourseId INT NOT NULL,
+PRIMARY KEY (StudentId, CourseId))
+
+======================================================================
+
+ 		<div class="form-group">
+                    <label asp-for="Type"></label>				select options in HTML
+                    <select asp-for="Type" class="form-control">
+                        <option disabled selected>-- select type --</option>
+                        <option>Audio</option>
+                        <option>Video</option>
+                        <option>Presentation</option>
+                    </select>
+                </div>

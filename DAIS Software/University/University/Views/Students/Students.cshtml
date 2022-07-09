@@ -1,0 +1,44 @@
+﻿@model List<UserViewModel>;
+
+<header>
+    <h1>Students</h1>
+
+</header>
+
+<div class="row">
+    @foreach (var student in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <a asp-controller="Students" asp-action="Details" asp-route-id="@student.Id">
+                    <img class="card-img-top" src="" alt="" />
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Name <span class="font-weight-normal"> - @student.FirstName @student.LastName</span> </h4>
+                        <h4>Age <span class="font-weight-normal"> - @student.Age</span> </h4>
+                        <h4>Roles <span class="font-weight-normal"> - @student.Role</span> </h4>
+                    </h5>
+
+                    <a asp-controller="Students" asp-action="Details" asp-route-id="@student.Id">Details</a>
+                    <a asp-controller="Students" asp-action="StudentGrades" asp-route-id="@student.Id">Grades</a>
+                  
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    h1 {
+        color: coral;
+        text-align: center;
+    }
+
+    .card-body a {
+        margin: 5px;
+        background-color:aqua;
+        padding: 5px;
+        text-decoration:none;
+    }
+</style>

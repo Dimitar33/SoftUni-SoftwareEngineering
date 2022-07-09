@@ -1,0 +1,56 @@
+﻿@model List<TestViewModel>;
+
+<header>
+    <h1>Tests</h1>
+
+</header>
+
+<div class="row">
+    @foreach (var test in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Duration <span class="font-weight-normal"> - @test.Duration</span> </h4>
+                        <h4>Start Date <span class="font-weight-normal"> - @test.StartDate</span> </h4>
+                        <h4>End Date <span class="font-weight-normal"> - @test.EndDate</span> </h4>
+                    </h5>
+
+                    <a asp-controller="Courses" asp-action="TestDetails" asp-route-id="@test.Id">Details</a>
+                    <button id="delete" onclick="deleteTest(event, @test.Id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+
+    function deleteTest(event, id) {
+
+        if (!confirm("Delete the test!")) {
+
+            return;
+        }
+
+        $.get("/Teachers/DeleteTest/" + id);
+
+        $(event.target).parent().parent().parent().remove();
+
+    }
+</script>
+
+<style>
+    h1 {
+        color: blue;
+        text-align: center;
+    }
+
+    .card-body a {
+        margin: 5px;
+        background-color: aqua;
+        padding: 5px;
+        text-decoration: none;
+    }
+</style>

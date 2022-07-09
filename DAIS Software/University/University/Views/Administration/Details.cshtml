@@ -1,0 +1,22 @@
+﻿@model UserViewModel
+
+<div style="display:inline-block" class="row">
+    <div class="col-md-auto">
+        <h4>First Name <span class="font-weight-normal"> - @Model.FirstName</span> </h4>
+        <h4>Last Name <span class="font-weight-normal"> - @Model.LastName</span> </h4>
+        <h4>Age <span class="font-weight-normal"> - @Model.Age</span> </h4>
+        <h4>Email <span class="font-weight-normal"> - @Model.Email</span> </h4>
+        <h4>Phone <span class="font-weight-normal"> - @Model.Phone</span> </h4>
+    </div>
+    <a asp-controller="Administration" asp-action="Moderate" asp-route-id="@Model.Id">Moderate</a>
+    <a asp-controller="Students" asp-action="CreateStudent" asp-route-id="@Model.Id">Create Student</a>
+    <a asp-controller="Teachers" asp-action="CreateTeacher" asp-route-id="@Model.Id">Create Teacher</a>
+    <a asp-controller="Administration" asp-action="CreateOperator" asp-route-id="@Model.Id">Create Operator</a>
+    <a asp-controller="Administration" asp-action="CreateAdmin" asp-route-id="@Model.Id">Create Administrator</a>
+</div>
+
+<style>
+    a {
+        margin: 5px;
+    }
+</style>

@@ -1,0 +1,38 @@
+﻿@model List<ModulesViewModel>;
+
+<header>
+    <h1>Modules</h1>
+
+</header>
+
+<div class="row">
+    @foreach (var module in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Module <span class="font-weight-normal"> - @module.Name</span> </h4>
+                        <h4>Description <span class="font-weight-normal"> - @module.Description</span> </h4>
+                    </h5>
+
+                    
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    h1 {
+        color: burlywood;
+        text-align: center;
+    }
+
+    .card-body a {
+        margin: 5px;
+        background-color:aqua;
+        padding: 5px;
+        text-decoration:none;
+    }
+</style>

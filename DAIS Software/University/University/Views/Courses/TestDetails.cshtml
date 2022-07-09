@@ -1,0 +1,47 @@
+﻿@model TestViewModel
+
+<div>
+    <div >
+        <h4>Duration <span class="font-weight-normal"> - @Model.Duration</span> </h4>
+        <h4>Start Date <span class="font-weight-normal"> - @Model.StartDate</span> </h4>
+        <h4>End Date <span class="font-weight-normal"> - @Model.EndDate</span> </h4>
+       
+        <div class="mainDiv">
+
+            @{
+                var qCount = 0;
+                var aCount = 0;
+            }
+
+            @foreach (var question in Model.Questions)
+            {
+                qCount++;
+
+                <div style="margin: 10px">
+
+                    <h4>Question @qCount<span class="font-weight-normal"> - @question.Description</span> </h4>
+
+                    <br>
+
+                    @foreach (var answer in question.Answers)
+                    {
+                        aCount++;
+
+                        <h4>Answear @aCount<span class="font-weight-normal"> - @answer.Answear</span> </h4>
+                        <h4><span class="font-weight-normal">@(answer.IsCorrect == true ? "Correct" : "Wrong") </span> </h4>
+                    }
+                    <br>
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <a asp-controller="Teachers" asp-action="AddQuestion" asp-route-id="@Model.Id">Add Qustion</a>
+    </div>
+</div>
+
+<style>
+    .mainDiv {
+        margin: 10px;
+    }
+</style>

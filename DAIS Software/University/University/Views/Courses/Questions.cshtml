@@ -1,0 +1,37 @@
+﻿@model List<QuestionViewModel>;
+
+<header>
+    <h1>Questions</h1>
+   
+</header>
+
+<div class="row">
+    @foreach (var queestion in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Name <span class="font-weight-normal"> - @queestion.Description</span> </h4>
+                    </h5>
+
+                    <a asp-controller="Teachers" asp-action="Answers" asp-route-id="@queestion.Id">Answers</a>
+                   
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    h1 {
+        color:blue;
+        text-align: center;
+    }
+    .card-body a {
+        margin: 5px;
+        background-color:aqua;
+        padding: 5px;
+        text-decoration:none;
+    }
+</style>

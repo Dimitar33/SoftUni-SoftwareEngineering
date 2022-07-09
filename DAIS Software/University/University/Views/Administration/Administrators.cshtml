@@ -1,0 +1,55 @@
+﻿@model List<UserViewModel>;
+
+<header>
+    <h1 style="text-align: center">Administrators</h1>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+
+                    @if (Model.Count == 0)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="CreateAdmin">Add Admin</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="row">
+    @foreach (var admin in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <div class="col-md-auto">
+                            <h4>Name <span class="font-weight-normal"> - @admin.FirstName @admin.LastName</span> </h4>
+                            <h4>Age <span class="font-weight-normal"> - @admin.Age</span> </h4>
+                        </div>
+                    </h5>
+
+                    <a asp-controller="Administration" asp-action="Details" asp-route-id="@admin.Id">Details</a>
+                    <a asp-controller="Administration" asp-action="Delete" asp-route-id="@admin.Id" class="text-danger" onclick="return confirm('Confirm Delete')">Delete</a>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    h1 {
+        color: aqua;
+        text-align: center;
+    }
+
+</style>

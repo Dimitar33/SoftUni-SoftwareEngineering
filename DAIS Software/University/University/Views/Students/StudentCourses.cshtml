@@ -1,0 +1,68 @@
+﻿@model List<CourseViewModel>
+
+<h1 id="box" style="color:greenyellow; text-align:center">@ViewBag.Message</h1>
+
+<div class="row">
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Course <span class="font-weight-normal"> - @course.Name</span> </h4>
+                        <h4>Dificulty <span class="font-weight-normal"> - @course.Dificulty</span> </h4>
+                        <h4>Students <span class="font-weight-normal"> - @course.StudentsCount</span> </h4>
+                    </h5>
+                    <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">Details</a>
+                    <a class="remove" asp-controller="Students" asp-action="RemoveStudentFromCourse" asp-route-studentId="@ViewBag.studentId" asp-route-courseId="@course.Id" class="text-danger" onclick="return confirm('Confirm Remove')">Remove</a>
+
+                </div>
+                <ul>
+                    <li>
+                        <button class="like" onclick="like(event, @ViewBag.studentId, @course.Id)">Like</button>
+
+                        <button class="dislike" onclick="dislike(event, @ViewBag.studentId, @course.Id)">Dislike</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    }
+</div>
+
+<style>
+    ul {
+        list-style-type: none;
+    }
+
+    .like {
+        background-color: greenyellow;
+        margin: 5px;
+    }
+
+    .dislike {
+        background-color: orangered;
+        margin: 5px;
+    }
+</style>
+
+<script>
+
+    function like(ev, studentId, courseId) {
+
+        $.get("/Students/Like?studentId=" + studentId + "&courseId=" + courseId);
+
+        $(ev.target).prop("disabled", true);
+        $(ev.target).next().prop("disabled", false);
+        console.log($(ev.target).next())
+    }
+    function dislike(ev, studentId, courseId) {
+
+        $.get("/Students/Dislike?studentId=" + studentId + "&courseId=" + courseId);
+
+        $(ev.target).prop("disabled", true);
+        $(ev.target).prev().prop("disabled", false);
+    }
+</script>
+
+

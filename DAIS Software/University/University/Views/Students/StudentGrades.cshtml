@@ -1,0 +1,15 @@
+﻿@model List<GradeViewModel>
+
+
+@foreach (var grade in Model)
+{
+    <div class="row">
+        <h5 class="card-text">
+            @grade.Course - @grade.Score 
+        </h5>
+
+    </div>
+    <br />
+}
+
+

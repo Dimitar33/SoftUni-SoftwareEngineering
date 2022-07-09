@@ -1,0 +1,56 @@
+﻿@model List<UserViewModel>;
+
+<header>
+    <h1>Students in this course</h1>
+
+</header>
+
+<h1 id="box" style="color:greenyellow; text-align:center">@ViewBag.Message</h1>
+<div class="row">
+    @foreach (var student in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <a asp-controller="Students" asp-action="Details" asp-route-id="@student.Id">
+                    <img class="card-img-top" src="" alt="" />
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Name <span class="font-weight-normal"> - @student.FirstName @student.LastName</span> </h4>
+                        <h4>Age <span class="font-weight-normal"> - @student.Age</span> </h4>
+                    </h5>
+
+                    <a asp-controller="Courses" asp-action="WriteGrade" asp-route-courseId="@ViewBag.courseId" asp-route-studentId="@student.Id">Write grade</a>
+                    <a asp-controller="Students" asp-action="StudentGrades" asp-route-id="@student.Id">View Grades</a>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    h1 {
+        color: coral;
+        text-align: center;
+    }
+
+    .card-body a {
+        margin: 5px;
+        background-color: aqua;
+        padding: 5px;
+        text-decoration: none;
+    }
+</style>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        setTimeout(() => {
+            const box = document.getElementById('box');
+
+            box.style.display = 'none';
+
+        }, 3000);
+    </script>
+}

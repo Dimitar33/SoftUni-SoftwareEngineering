@@ -1,0 +1,38 @@
+﻿@model GradeViewModel
+
+<h1 id="box" style="color:greenyellow; text-align:center">@ViewBag.Message</h1>
+
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-body text-center">
+            <form method="post">
+                <h5 class="card-text">
+                    <h4> <span class="font-weight-normal">@Model.StudentsNames</span> </h4>
+                </h5>
+
+                <div class="form-group">
+                    <label asp-for="Score"></label>
+                    <input asp-for="Score" type="number" class="form-control" />
+                    <span asp-validation-for="Score" class="small text-danger"></span>
+                </div>
+                <br />
+
+                <input type="submit" value="Submit" />
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        setTimeout(() => {
+            const box = document.getElementById('box');
+
+            box.style.display = 'none';
+
+        }, 3000);
+    </script>
+}

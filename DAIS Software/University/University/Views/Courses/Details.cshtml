@@ -1,0 +1,55 @@
+﻿@model CourseViewModel
+<header>
+    <h1>@Model.Name</h1>
+
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Teachers" asp-action="Tests" asp-route-id="@Model.Id">Tests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Materials" asp-route-id="@Model.Id">Materials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="Modules" asp-route-id="@Model.Id">Modules</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Teachers" asp-action="CreateTest" asp-route-id="@Model.Id">Create Test</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="AddMaterial" asp-route-id="@Model.Id">Add Materials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="AddModule" asp-route-id="@Model.Id">Add Module</a>
+                        </li>
+                          <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Courses" asp-action="CourseStudents" asp-route-id="@Model.Id">Course Students</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+<div class="row">
+    <div class="col-md-auto">
+        <h4>Course <span class="font-weight-normal"> - @Model.Name</span> </h4>
+        <h4>Dificulty <span class="font-weight-normal"> - @Model.Dificulty</span> </h4>
+        <h4>Teacher <span class="font-weight-normal"> - @Model.TeacherName</span> </h4>
+        <h4>Students <span class="font-weight-normal"> - @Model.StudentsCount</span> </h4>
+        <h4>Modules <span class="font-weight-normal"> - @Model.CourseModules</span> </h4>
+    </div>
+   
+   
+
+</div>
+<h4>Descriotion </h4>
+<div class=" text-black">
+    @Model.Descriotion
+</div>

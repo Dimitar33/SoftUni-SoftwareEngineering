@@ -1,0 +1,54 @@
+﻿@model List<UserViewModel>;
+
+ <header>
+     <h1>Users</h1>
+       
+    </header>
+
+<div class="row">
+    @foreach (var user in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <a asp-controller="Students" asp-action="Details" asp-route-id="@user.Id">
+                    <img class="card-img-top" src="" alt="" />
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Name <span class="font-weight-normal"> - @user.FirstName @user.LastName</span> </h4>
+                        <h4>Age <span class="font-weight-normal"> - @user.Age</span> </h4>
+                        <h4>Roles <span class="font-weight-normal"> - @user.Role</span> </h4>
+                    </h5>
+
+                    <a asp-controller="Administration" asp-action="EditUser" asp-route-id="@user.Id">Edit</a>
+                    <button id="delete" onclick="deleteUser(event, @user.Id)">Delete</button>
+                    <a asp-controller="Administration" asp-action="AddRole" asp-route-id="@user.Id">Add Role</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+function deleteUser(ev, id){
+
+    if (!confirm("Are you shure ?")) {
+        
+        return;
+    }
+
+    $.get("/Administration/Delete/" + id);
+
+    $(ev.target).parent().parent().parent().remove();
+}
+</script>
+
+<style>
+    h1 {
+        color:burlywood;
+        text-align: center;
+    }
+    a{
+        margin: 5px;
+    }
+</style>

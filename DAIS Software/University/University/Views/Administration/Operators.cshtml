@@ -1,0 +1,40 @@
+﻿@model List<UserViewModel>;
+
+<header>
+    <h1>Operators</h1>
+
+</header>
+
+<div class="row">
+    @foreach (var op in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Name <span class="font-weight-normal"> - @op.FirstName @op.LastName</span> </h4>
+                        <h4>Age <span class="font-weight-normal"> - @op.Age</span> </h4>
+                        <h4>Roles <span class="font-weight-normal"> - @op.Role</span> </h4>
+                    </h5>
+
+                    <a asp-controller="Administration" asp-action="OperatorDetails" asp-route-id="@op.Id">Details</a>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    h1 {
+        color: bisque;
+        text-align: center;
+    }
+
+    .card-body a {
+        margin: 5px;
+        background-color:aqua;
+        padding: 5px;
+        text-decoration:none;
+    }
+</style>

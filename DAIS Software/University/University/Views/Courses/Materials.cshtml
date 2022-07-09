@@ -1,0 +1,53 @@
+﻿@model List<MaterialsViewModel>;
+
+<header>
+    <h1>Materials</h1>
+
+</header>
+
+<div class="row">
+    @foreach (var material in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Course <span class="font-weight-normal"> - @material.Type</span> </h4>
+                        <h4>Dificulty <span class="font-weight-normal"> - @material.Url</span> </h4>
+                    </h5>
+
+                    <button class="button" onclick="deleteMat(event, @material.Id)">Delete</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    function deleteMat(ev, id) {
+
+        if (!confirm("Delete the Material ?")) {
+
+            return;
+        }
+
+        $.get("/Courses/DeleteMaterial/" + id);
+
+        $(ev.target).parent().parent().parent().remove();
+    };
+
+</script>
+
+<style>
+    h1 {
+        color: burlywood;
+        text-align: center;
+    }
+
+    .card-body a {
+        margin: 5px;
+        background-color: aqua;
+        padding: 5px;
+        text-decoration: none;
+    }
+</style>

@@ -1,0 +1,30 @@
+﻿@model AnswearViewModel
+
+
+<div class="container">
+    <div class="row">
+        <div class="offset-3 col-6">
+            <form method="post">
+
+                <div>
+                    <label asp-for="Answear"></label>
+                    <textarea asp-for="Answear" class="form-control" rows="2" placegolder="Answer"></textarea>
+                </div>
+
+                <br />
+
+                 <div>
+                    <label asp-for="IsCorrect"></label>
+                    <input asp-for="IsCorrect" type="checkbox" />
+                </div>
+               
+                <br />
+
+                <a asp-controller="Teachers" asp-action="AddAnswer" asp-route-id="@ViewBag.TestId">Add Answer</a>
+
+
+            </form>
+            <input type="submit" value="Add"/>
+        </div>
+    </div>
+</div>

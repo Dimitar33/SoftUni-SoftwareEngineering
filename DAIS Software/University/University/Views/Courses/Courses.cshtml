@@ -1,0 +1,41 @@
+﻿@model List<CourseViewModel>;
+
+<header>
+    <h1>Courses</h1>
+
+</header>
+
+<div class="row">
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        <h4>Course <span class="font-weight-normal"> - @course.Name</span> </h4>
+                        <h4>Dificulty <span class="font-weight-normal"> - @course.Dificulty</span> </h4>
+                        <h4>StudentsCount <span class="font-weight-normal"> - @course.StudentsCount</span> </h4>
+                        <h4>Likes: <span class="font-weight-normal"> @course.Likes</span> </h4>
+                    </h5>
+
+                    <a asp-controller="Courses" asp-action="Details" asp-route-id="@course.Id">Details</a>
+                    
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    h1 {
+        color: burlywood;
+        text-align: center;
+    }
+
+    .card-body a {
+        margin: 5px;
+        background-color:aqua;
+        padding: 5px;
+        text-decoration:none;
+    }
+</style>

@@ -1,0 +1,46 @@
+﻿
+@model BusinessLogic.ViewModels.UserViewModel
+
+
+<div class="container">
+    <div class="row">
+        <div class="offset-3 col-6">
+            <form method="post">
+
+                <div class="form-group">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" type="text" placeholder="Last name here…">
+                    <span asp-validation-for="FirstName" class="small text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" type="text" placeholder="First name here…">
+                    <span asp-validation-for="LastName" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Age"></label>
+                    <input asp-for="Age" class="form-control" type="number" placeholder="Pet's age here…">
+                    <span asp-validation-for="Age" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" type="text" placeholder="Email here…">
+                    <span asp-validation-for="Email" class="small text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" type="text" placeholder="Phone number here…">
+                    <span asp-validation-for="Phone" class="small text-danger"></span>
+                </div>
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+
+        </div>
+    </div>
+</div>
